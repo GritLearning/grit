@@ -50,8 +50,8 @@
                           {{#each content in controller}}
                           <li class="span4">
                               <div class="thumbnail">
-                                  <a href="{{content.launchCommand}}" class="thumbnail">
-                                      <img data-src="{{content.icon}}" alt="{{content.name}}" >
+                                  <a {{bindAttr href="content.launchCommand"}} class="thumbnail">
+                                      <img {{bindAttr src="content.icon"}} alt="{{content.name}}" >
                                     <center><h3>{{content.name}}</h3></center>
                                 </a>
                               </div>
