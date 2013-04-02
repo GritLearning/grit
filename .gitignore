@@ -1,0 +1,8 @@
+.*
+!.gitignore
+!.perltidyrc
+*~
+Makefile*
+*.vimbk
+*.swp
+*.swo
