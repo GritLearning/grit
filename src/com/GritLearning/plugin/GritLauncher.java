@@ -1,52 +1,48 @@
 package com.GritLearning.plugin;
 
+import java.util.List;
+
 import org.apache.cordova.api.CordovaPlugin;
-import org.apache.cordova.api.PluginResult;
+
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.widget.Toast;
+
 
 public class GritLauncher extends CordovaPlugin {
-    @Override
 
-    public void startApplication(String packageName)
-    {
-        try
-        {
-            Intent intent = new Intent("android.intent.action.MAIN");
-            intent.addCategory("android.intent.category.LAUNCHER");
+	private void  launchComponent(String packageName, String name){
+	    Intent launch_intent = new Intent("android.intent.action.MAIN");
+	    Activity activity = new Activity();
+	    launch_intent.addCategory("android.intent.category.LAUNCHER");
+	    launch_intent.setComponent(new ComponentName(packageName, name));
+	    launch_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            List<ResolveInfo> resolveInfoList = getPackageManager().queryIntentActivities(intent, 0);
+	    activity.startActivity(launch_intent);
+	}
 
-            for(ResolveInfo info : resolveInfoList)
-                if(info.activityInfo.packageName.equalsIgnoreCase(packageName))
-                {
-                    launchComponent(info.activityInfo.packageName, info.activityInfo.name);
-                    return;
-                }
+	public void startApplication(String application_name){
+	    try{
+	        Intent intent = new Intent("android.intent.action.MAIN");
+		    Activity activity = new Activity();
+	        intent.addCategory("android.intent.category.LAUNCHER");
 
-            // No match, so application is not installed
-            showInMarket(packageName);
-        }
-        catch (Exception e) 
-        {
-            showInMarket(packageName);
-        }
-    }
+	        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+	        List<ResolveInfo> resolveinfo_list = activity.getPackageManager().queryIntentActivities(intent, 0);
 
-    private void launchComponent(String packageName, String name)
-    {
-        Intent intent = new Intent("android.intent.action.MAIN");
-        intent.addCategory("android.intent.category.LAUNCHER");
-        intent.setComponent(new ComponentName(packageName, name));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        startActivity(intent);
-    }
-
-    private void showInMarket(String packageName)
-    {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
+	        for(ResolveInfo info:resolveinfo_list){
+	            if(info.activityInfo.packageName.equalsIgnoreCase(application_name)){
+	                launchComponent(info.activityInfo.packageName, info.activityInfo.name);
+	                break;
+	            }
+	        }
+	    }
+	    catch (ActivityNotFoundException e) {
+		    Activity activity = new Activity();
+	        Toast.makeText(activity.getApplicationContext(), "There was a problem loading the application: "+application_name,Toast.LENGTH_SHORT).show();
+	    }
+	}
 }
