@@ -2,6 +2,8 @@ App = Ember.Application.create();
 
 App.Router.map(function() {
   // put your routes here
+  this.route("level", { path: "/level" });
+  this.route("quiz", { path: "/quiz" });
 });
 
 
@@ -15,6 +17,13 @@ App.IndexRoute = Ember.Route.extend({
     return App.Content.FIXTURES;
   }
 });
+
+App.LevelRoute = Ember.Route.extend({
+  model: function() {
+    return App.Content.FIXTURES;
+  }
+});
+
 
 App.Content = DS.Model.extend({
         name: DS.attr('string'),
