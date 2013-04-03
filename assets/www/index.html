@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
+<html ng-app="App">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -29,116 +10,21 @@
     </head>
     <body>
 
-  <script type="text/x-handlebars">
+        <div ng-view></div>
 
-    {{outlet}}
-  </script>
+        <script src="js/libs/jquery-1.9.1.js"></script>
+        <script src="js/libs/cordova-2.5.0.js"></script>
+        <script src="js/libs/angular/angular.js"></script>
 
-  <script type="text/x-handlebars" data-template-name="quiz">
-      <div class="progress progress-striped">
-          <div class="bar" style="width: 20%;"></div>
-      </div>
-      <div class="hero-unit">
-          <h1>Which number is the highest</h1>
-      </div>
-      <div class="questionbody">
-          <p>
-              <button class="btn btn-large" type="button">3</button>
-              <button class="btn btn-large" type="button">7</button>
-          </p>
-          <p>
-              <button class="btn btn-large" type="button">5</button>
-              <button class="btn btn-large" type="button">2</button>
-          </p>
-      </div>
-  </script>
+        <script src="js/app.js"></script>
+        <script src="js/index.js"></script>
 
-  <script type="text/x-handlebars" data-template-name="level">
-      <div class="hero-unit">
-              <h1>Level 1</h1>
-      </div>
-      <ul class="thumbnails">
-          {{#each content in controller}}
-          <li class="span4">
-                  <a {{bindAttr href="content.launchCommand"}} class="thumbnail">
-                      <img {{bindAttr src="content.icon"}} alt="{{content.name}}" class="img-rounded">
-                      <center><h3>{{content.name}}</h3></center>
-                  </a>
-          </li>
-          {{/each}} 
-      </ul>
-      <div class="well well-large">
-          <span class="pull-right">{{#linkTo "quiz"}}Level up{{/linkTo}}
-      </div>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="index">
-      <div class="accordion" id="accordion1">
-          <div class="accordion-group">
-              <div class="accordion-heading">
-                  <div class="well well-small">
-                      <h3>
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#levelone">Level 1</a>
-                      </h3>
-                  </div>
-              </div>
-              <div id="levelone" class="accordion-body collapse in">
-                  <div class="accordion-inner">
-                      <ul class="thumbnails">
-                          {{#each content in controller}}
-                          <li class="span4">
-                              <div class="thumbnail">
-                                  <a {{bindAttr href="content.launchCommand"}} class="thumbnail">
-                                      <img {{bindAttr src="content.icon"}} alt="{{content.name}}" >
-                                    <center><h3>{{content.name}}</h3></center>
-                                </a>
-                              </div>
-                          </li>
-                          {{/each}} 
-                      </ul>
-                  </div>
-              </div>
-          </div>
-          <div class="accordion-group">
-              <div class="accordion-heading">
-                  <div class="well well-small">
-                      <h3>
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#leveltwo">Level 2</a>
-                      </h3>
-                  </div>
-              </div>
-              <div id="leveltwo" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                  </div>
-              </div>
-          </div>
-          <div class="accordion-group">
-              <div class="accordion-heading">
-                  <div class="well well-small">
-                      <h3>
-                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#levelthree">Level 3</a>
-                      </h3>
-                  </div>
-              </div>
-              <div id="levelthree" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                  </div>
-              </div>
-          </div>
-      </div>
-  </script>
-
-  <script src="js/libs/jquery-1.9.1.js"></script>
-  <script src="js/libs/cordova-2.5.0.js"></script>
-  <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
-  <script src="js/libs/ember-1.0.0-rc.2.js"></script>
-  <script src="js/libs/ember-data.js"></script>
-  <script src="js/libs/bootstrap-transition.js"></script>
-  <script src="js/libs/bootstrap-collapse.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/index.js"></script>
-  <script type="text/javascript">
-      app.initialize();
-  </script>
-  </body>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/directives.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
 </html>

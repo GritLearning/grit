@@ -1,0 +1,16 @@
+<div ng-controller="ContentListCtrl">
+      <div class="hero-unit">
+              <h1>Level 1</h1>
+      </div>
+      <ul class="thumbnails">
+          <li class="span4" ng-repeat="c in content">
+                  <a href="{{c.launchCommand}}" class="thumbnail">
+                      <img ng-src="{{c.icon}}" alt="{{c.name}}" class="img-rounded">
+                      <center><h3>{{c.name}}</h3></center>
+                  </a>
+          </li>
+      </ul>
+      <div class="well well-large">
+          <span class="pull-right"><a href="#/quiz/1">Level up</a>
+      </div>
+</div>
