@@ -5,8 +5,8 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('grit.services', ['ngResource']).
-    factory('Player', function($resource) {
+angular.module('grit.services', ['ngResource'])
+   .factory('Player', function($resource) {
       var player = [];
       
       $resource.addPlayer = function(kid) {
@@ -31,8 +31,8 @@ angular.module('grit.services', ['ngResource']).
           return level;
       };
       return $resource; // returning this is very important
-    });
-  factory('Quiz', function($resource){
+    })
+  .factory('Quiz', function($resource){
      return $resource('content/quiz.json', {}, {
        query: {method:'GET', params:{id:'1'}, isArray:true}
      });

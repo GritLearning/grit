@@ -3,10 +3,14 @@
 /* Controllers */
 
 
-function ContentListCtrl($scope, $http) {
+function ContentListCtrl($scope, $http, $routeParams) {
     $http.get('content/apps.json').success(function(data) {
         $scope.content = data;
     });
+
+    $scope.filterByLevel = function(item) {
+        return item.value < $scope.inputNumber;
+    };
 
     $scope.open = function(app, name) {
         console.log("open: " + name);
@@ -39,7 +43,7 @@ function QuizCtrl($scope, $routeParams, Quiz) {
 	$scope.resultClick = function () {
 		//alert($location.hash());
 		$location.path('edit');
-    }
+    };
 }
 
 function QuizDetailCtrl($scope, $routeParams) {
@@ -57,42 +61,8 @@ function KidsListCtrl($scope, $http, Player) {
     };
     $scope.removePlayer = function() {
         Player.rmPlayer();
-    }
+    };
 
-//    $scope.player = [
-//        { image: "img/child-placeholder.png" }
-//    ];
-//
-//  $scope.setPlayer = function(kid) {
-//    var k2 = $scope.player.pop();
-//    if(k2 && k2.name){
-//        $scope.player.push(k2);
-//        $scope.player.push(kid);
-//    } else {
-//        $scope.player.push(kid);
-//    }
-//    console.log( kid );
-//  };
-//
-//  $scope.removePlayer = function(kid) {
-//      var k2 = $scope.player.pop();
-//      if(k2){
-//          console.log( kid );
-//      } else {
-//        $scope.player.push({image: "img/child-placeholder.png"});
-//      }
-//  };
-//
-//  $scope.getFirstLevel = function() {
-//      var level = 0;
-//      for(p in $scope.player){
-//        if(p.level > level){
-//            level = p.level;
-//        }
-//      }
-//      console.log("Level: " + level);
-//      return level;
-//  };
 
 }
 
