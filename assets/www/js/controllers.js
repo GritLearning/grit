@@ -37,8 +37,6 @@ function QuizCtrl($scope, $routeParams, Quiz) {
 	$scope.quizId = $routeParams.quizId;
 	$scope.nextQuestion = $routeParams.quizId + 1;
 	$scope.resultClick = function () {
-		//$routeParams.quizId = $routeParams.quizId + 1;
-		//$scope.quizId = $routeParams.quizId;
 		//alert($location.hash());
 		$location.path('edit');
     }
