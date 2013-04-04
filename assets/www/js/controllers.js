@@ -41,11 +41,14 @@ function QuizCtrl($scope, $routeParams, Quiz) {
 	    
 	});*/
 	$scope.quiz = Quiz.query();
-	$scope.orderProp = 'id';alert($scope.quiz);
-	$scope.quizId = $routeParams.quizId;
-	$scope.nextQuestion = parseInt($routeParams.quizId) + 1;
+	$scope.orderProp = 'id';
+	$scope.filterByLevel = function(quiz) {
+        if(quiz.level == $routeParams.quizId){
+            return quiz;
+        }
+    };
 	$scope.resultClick = function () {
-		$location.path($scope.quizId);
+		//alert('button click');
     };
 }
 
