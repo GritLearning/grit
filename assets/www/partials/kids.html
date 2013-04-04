@@ -1,0 +1,20 @@
+<div ng-controller="KidsListCtrl">
+      <div class="well">
+          <ul class="thumbnails">
+              <div ng-hide="{{player[0]}}">
+                  <li class="span2"><img src="img/child-placeholder.png"></li>
+              </div>
+              <li class="span2" ng-repeat="p in player">
+                  <img ng-src="{{p.image}}" class="img-rounded" ng-click="removePlayer(p)">
+                  <span class="badge badge-success">{{p.level}}</span>
+              </li>
+          </ul>
+            <a class="pull-right" href="#/level/{{getFirstLevel}}">start playing</a>
+        </div>
+      </div>
+      <ul class="thumbnails">
+          <li class="span2" ng-repeat="k in kids">
+              <img ng-src="{{k.image}}" alt="{{k.name}}" class="img-rounded" ng-click="setPlayer(k)">
+          </li>
+      </ul>
+</div>
