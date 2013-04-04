@@ -3,7 +3,7 @@
     "id": 1,
     "question": "Which is the biggest number",
     "answer": [1,2,3,4],
-    "icon": "img/monkey.png",
+    "correct": "4",
     "type": "app",
     "level": 1
 },
@@ -11,31 +11,31 @@
     "id": 2,
     "question": "Which is the smalles number",
     "answer": [10,20,30,40],
-    "icon": "img/monkey.png",
+    "correct": "10",
     "type": "app",
     "level": 1
 },
 {
     "id": 3,
-    "question": "សំណួរខ្មែរ",
+    "question": "សំណួរខ្មែរ 8 + 6 = __",
     "answer": [11,12,13,14],
-    "icon": "img/monkey.png",
+    "correct": "14",
     "type": "app",
-    "level": 2
+    "level": 1
 },
 {
     "id": 4,
-    "question": "Exciting count 50",
-    "answer": [1,2,3,4],
-    "icon": "img/monkey.png",
+    "question": "Please fill in the gap 12 x 2",
+    "answer": [18,20,24,30],
+    "correct": "24",
     "type": "app",
-    "level": 2
+    "level": 1
 },
 {
     "id": 5,
-    "question": "How to count",
-    "answer": [1,2,3,4],
-    "icon": "img/monkey.png",
+    "question": "How many star here: *****",
+    "answer": [3,4,5,6],
+    "correct": "5",
     "type": "video",
     "level": 1
 }

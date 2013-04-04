@@ -36,24 +36,25 @@ function errorHdl() {
     console.log('open failed');
 }
 
-function QuizCtrl($scope, $routeParams, Quiz) {
-	/*$scope.quiz = Quiz.get({id: $routeParams.quizId}, function(quiz) {
-	    
-	});*/
+function QuizCtrl($scope, $routeParams, Quiz, Result) {
 	$scope.quiz = Quiz.query();
 	$scope.orderProp = 'id';
+	$scope.display = '1';
 	$scope.filterByLevel = function(quiz) {
         if(quiz.level == $routeParams.quizId){
             return quiz;
         }
     };
-	$scope.resultClick = function () {
-		//alert('button click');
+    $scope.result = Result.getResult();
+	$scope.resultClick = function (index, length, quiz, answer) {
+		Result.addResult(quiz, answer);
+		if (index + 1 >= length) {
+			window.location = '#/result/';
+		}
+		var element = document.getElementById(index);
+		angular.element(element).css('display', 'none');
+		angular.element(element).next().css('display', 'block');
     };
-}
-
-function QuizDetailCtrl($scope, $routeParams) {
-  $scope.quizId = $routeParams.quizId;
 }
 
 function KidsListCtrl($scope, $http, Player) {
@@ -72,6 +73,11 @@ function KidsListCtrl($scope, $http, Player) {
     $scope.getLevel = Player.getLevel();
 
 
+}
+
+function ResultCtrl($scope, Result) {
+	$scope.result = Result.getResult();
+	$scope.conclusion = Result.getConclusionResult();
 }
 
 
