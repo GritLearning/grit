@@ -18,14 +18,14 @@ function ContentListCtrl($scope, $http, $routeParams, Player) {
 
     $scope.open = function(app, name) {
         console.log("open: " + name);
-        /* thi makes the app crash, fix later!
+        /* thi makes the app crash, fix later! */
         cordova.exec(
             successHdl(),
             errorHdl(),
             "GritLauncher", 
             "startActivity", 
             [ app ]);
-        */
+        /**/
     };
 }
 
