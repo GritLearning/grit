@@ -8,9 +8,11 @@
 angular.module('grit.services', ['ngResource'])
    .factory('Player', function($resource) {
       var player = [];
+      var level = 1;
       
       $resource.addPlayer = function(kid) {
         player.push(kid);
+        $resource.getFirstLevel();
         return 'added player';
       };
       $resource.rmPlayer = function() {
@@ -21,17 +23,18 @@ angular.module('grit.services', ['ngResource'])
         return player;
       };
       $resource.getFirstLevel = function() {
-          var level = 0;
-          for(p in player){
-              if(p.level > level){
-                  level = p.level;
+          console.log(player);
+
+          angular.forEach(player, function(value){
+              if(value.level > level){
+                level = value.level;
               }
-          }
+          });
           console.log("Level: " + level);
           return level;
       };
     $resource.getLevel = function() {
-        return 1;
+        return level;
     };
       return $resource; // returning this is very important
     })
