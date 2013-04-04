@@ -10,12 +10,14 @@ function ContentListCtrl($scope, $http) {
 
     $scope.open = function(app, name) {
         console.log("open: " + name);
+        /* thi makes the app crash, fix later!
         cordova.exec(
             successHdl(),
             errorHdl(),
-            "Launcher", 
-            "open", 
-            [app, name]);
+            "GritLauncher", 
+            "startActivity", 
+            [ app ]);
+        */
     };
 }
 
