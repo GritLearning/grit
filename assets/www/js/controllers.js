@@ -3,14 +3,18 @@
 /* Controllers */
 
 
-function ContentListCtrl($scope, $http, $routeParams) {
+function ContentListCtrl($scope, $http, $routeParams, Player) {
     $http.get('content/apps.json').success(function(data) {
         $scope.content = data;
     });
 
-    $scope.filterByLevel = function(item) {
-        return item.value < $scope.inputNumber;
+    $scope.filterByLevel = function(content) {
+        if(content.level == $scope.levelId){
+            return content;
+        }
     };
+
+    $scope.levelId = $routeParams.levelId;
 
     $scope.open = function(app, name) {
         console.log("open: " + name);

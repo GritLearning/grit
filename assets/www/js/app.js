@@ -11,6 +11,6 @@ angular.module('App', ['grit.services'])
     $routeProvider.when('/kids', {templateUrl: 'partials/kids.html', controller: KidsListCtrl});
     $routeProvider.when('/level/:levelId', {templateUrl: 'partials/level.html', controller: ContentListCtrl});
     $routeProvider.when('/quiz/:quizId', {templateUrl: 'partials/quiz.html', controller: QuizCtrl});
-    $routeProvider.otherwise({redirectTo: '/level'});
+    $routeProvider.otherwise({redirectTo: '/level/1'});
   }]);
 
