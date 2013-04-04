@@ -32,3 +32,8 @@ angular.module('grit.services', ['ngResource']).
       };
       return $resource; // returning this is very important
     });
+  factory('Quiz', function($resource){
+     return $resource('content/quiz.json', {}, {
+       query: {method:'GET', params:{id:'1'}, isArray:true}
+     });
+  });

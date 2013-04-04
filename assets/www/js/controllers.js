@@ -28,14 +28,20 @@ function errorHdl() {
     console.log('open failed');
 }
 
-function QuizCtrl($scope) {
-    $scope.quiz = [
-        {
-            id: 1,
-            question: 'Which is the biggest number',
-            answer: [1,2,3,4]
-        }
-    ];
+function QuizCtrl($scope, $routeParams, Quiz) {
+	/*$scope.quiz = Quiz.get({id: $routeParams.quizId}, function(quiz) {
+	    
+	});*/
+	$scope.quiz = Quiz.query();
+	$scope.orderProp = 'id';
+	$scope.quizId = $routeParams.quizId;
+	$scope.nextQuestion = $routeParams.quizId + 1;
+	$scope.resultClick = function () {
+		//$routeParams.quizId = $routeParams.quizId + 1;
+		//$scope.quizId = $routeParams.quizId;
+		//alert($location.hash());
+		$location.path('edit');
+    }
 }
 
 function QuizDetailCtrl($scope, $routeParams) {
