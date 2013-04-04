@@ -30,6 +30,9 @@ angular.module('grit.services', ['ngResource'])
           console.log("Level: " + level);
           return level;
       };
+    $resource.getLevel = function() {
+        return 1;
+    };
       return $resource; // returning this is very important
     })
   .factory('Quiz', function($resource){
