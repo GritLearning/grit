@@ -69,6 +69,8 @@ function KidsListCtrl($scope, $http, Player) {
         Player.rmPlayer();
     };
 
+    $scope.getLevel = Player.getLevel();
+
 
 }
 

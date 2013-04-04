@@ -9,7 +9,9 @@
                   <span class="badge badge-success">{{p.level}}</span>
               </li>
           </ul>
-            <a class="pull-right" href="#/level/{{getFirstLevel}}">start playing</a>
+            <!-- still needs debugging why the getLevel does not update
+            after adding kids -->
+            <a class="pull-right" ng-href="#/level/{{getLevel}}">start playing</a>
         </div>
       </div>
       <ul class="thumbnails">
