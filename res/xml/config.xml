@@ -55,7 +55,7 @@
     <plugin name="Echo" value="org.apache.cordova.Echo" />
     <plugin name="Globalization" value="org.apache.cordova.Globalization"/>
     <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser"/>
-    <plugin name="Launcher" value="com.GritLearning.plugin.GritLauncher"/>
+    <plugin name="GritLauncher" value="com.GritLearning.plugin.GritLauncher"/>
 </plugins>
 </cordova>
 
