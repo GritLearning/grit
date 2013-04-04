@@ -37,12 +37,11 @@ function QuizCtrl($scope, $routeParams, Quiz) {
 	    
 	});*/
 	$scope.quiz = Quiz.query();
-	$scope.orderProp = 'id';
+	$scope.orderProp = 'id';alert($scope.quiz);
 	$scope.quizId = $routeParams.quizId;
-	$scope.nextQuestion = $routeParams.quizId + 1;
+	$scope.nextQuestion = parseInt($routeParams.quizId) + 1;
 	$scope.resultClick = function () {
-		//alert($location.hash());
-		$location.path('edit');
+		$location.path($scope.quizId);
     };
 }
 

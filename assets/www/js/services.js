@@ -33,7 +33,14 @@ angular.module('grit.services', ['ngResource'])
       return $resource; // returning this is very important
     })
   .factory('Quiz', function($resource){
-     return $resource('content/quiz.json', {}, {
+     /*return $resource('content/quiz.json', {}, {
        query: {method:'GET', params:{id:'1'}, isArray:true}
-     });
+     });*/
+	  var questions = $resource('content/quiz.json', {}, {
+	       query: {method:'GET', params:{id:'1'}, isArray:true}
+	     });
+	  return questions;
+	$resource.getQuestionBylevel = function(level) {
+		
+	}
   });
