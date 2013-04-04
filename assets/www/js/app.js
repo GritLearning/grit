@@ -9,7 +9,7 @@ angular.module('App', ['grit.services'])
   })
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/kids', {templateUrl: 'partials/kids.html', controller: KidsListCtrl});
-    $routeProvider.when('/level', {templateUrl: 'partials/level.html', controller: ContentListCtrl});
+    $routeProvider.when('/level/:levelId', {templateUrl: 'partials/level.html', controller: ContentListCtrl});
     $routeProvider.when('/quiz/:quizId', {templateUrl: 'partials/quiz.html', controller: QuizCtrl});
     $routeProvider.otherwise({redirectTo: '/level'});
   }]);
