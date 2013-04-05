@@ -2,7 +2,7 @@
 {
     "id": 1,
     "name": "Foundation Math",
-    "launchCommand": "uk.co.readwritephonics.maths123.demo",
+    "launchCommand": "uk.co.readwritephonics.maths123",
     "icon": "content/apps/foundation_math.png",
     "type": "app",
     "level": 1
@@ -17,38 +17,54 @@
 },
 {
     "id": 3,
-    "name": "Just2Long",
-    "launchCommand": "uk.henspace.memory",
-    "icon": "content/apps/just2long.png",
+    "name": "Monkey Math School Sunshine",
+    "launchCommand": "com.thup.MonkeyMath",
+    "icon": "content/apps/monkey_math_school.png",
     "type": "app",
     "level": 2
 },
 {
     "id": 4,
-    "name": "Math Genie Grade Two",
-    "launchCommand": "com.funtastic.mathgenie.gradetwo",
-    "icon": "content/apps/math_genie_gr2.png",
+    "name": "Okta's Rescue",
+    "launchCommand": "air.com.learningtoday.octopusAndroid2",
+    "icon": "content/apps/oktasrescue.png",
     "type": "app",
     "level": 2
 },
 {
     "id": 5,
-    "name": "Okta's Rescue",
-    "launchCommand": "air.com.learningtoday.octopusAndroid2",
-    "icon": "content/apps/oktasrescue.png",
+    "name": "Math for kids",
+    "launchCommand": "sages360.lms.pub.android",
+    "icon": "content/apps/math_for_kids.png",
     "type": "app",
-    "level": 3
+    "level": 2
 },
 {
     "id": 6,
-    "name": "Fun and Learn: Math Power Lite",
-    "launchCommand": "com.spaceO.mathpowerLite",
-    "icon": "content/apps/fun_and_learn.png",
+    "name": "Math Genie Grade Two",
+    "launchCommand": "com.funtastic.mathgenie.gradetwo",
+    "icon": "content/apps/math_genie_gr2.png",
     "type": "app",
     "level": 3
 },
 {
     "id": 7,
+    "name": "Just2Long",
+    "launchCommand": "uk.henspace.memory",
+    "icon": "content/apps/just2long.png",
+    "type": "app",
+    "level": 3
+},
+{
+    "id": 8,
+    "name": "Fun and Learn: Math Power Lite",
+    "launchCommand": "com.spaceO.mathpower",
+    "icon": "content/apps/fun_and_learn.png",
+    "type": "app",
+    "level": 4
+},
+{
+    "id": 9,
     "name": "Kids Math",
     "launchCommand": "com.mobiloids.kidsmath",
     "icon": "content/apps/kids_math.png",
@@ -56,31 +72,31 @@
     "level": 4 
 },
 {
-    "id": 8,
+    "id": 10,
     "name": "Kids Numbers and Math",
     "launchCommand": "zok.android.numbers",
     "icon": "content/apps/kids_numbers_math.png",
     "type": "app",
-    "level": 4
+    "level": 5
 },
 {
-    "id": 9,
+    "id": 11,
     "name": "Kindergarten Math",
-    "launchCommand": "com.infinut.kindergarten.math.free",
+    "launchCommand": "com.infinut.kindergarten.math",
     "icon": "content/apps/kindergarten.png",
     "type": "app",
     "level": 5
 },
 {
-    "id": 10,
+    "id": 12,
     "name": "Max Math Magic for Kids",
     "launchCommand": "com.anthem.mathsmagic",
     "icon": "content/apps/mmax_math_magic.png",
     "type": "app",
-    "level": 5 
+    "level": 6 
 },
 {
-    "id": 11,
+    "id": 13,
     "name": "Montessori 1",
     "launchCommand": "com.alsoft.montessori1",
     "icon": "content/apps/montessori.jpg",
@@ -88,15 +104,15 @@
     "level": 6
 },
 {
-    "id": 12,
+    "id": 14,
     "name": "Kids Math Blocks",
     "launchCommand": "l.sumitblocksfree",
     "icon": "content/apps/kids_math_blocks.png",
     "type": "app",
-    "level": 6 
+    "level": 7 
 },
 {
-    "id": 13,
+    "id": 15,
     "name": "Mad Math 4 Kids",
     "launchCommand": "air.com.zoki.madmathkidsfree",
     "icon": "content/apps/mad_math_kids.png",
@@ -104,15 +120,15 @@
     "level": 7
 },
 {
-    "id": 14,
+    "id": 16,
     "name": "Math PRO for Kids",
     "launchCommand": "com.teachersparadise.mathpro",
     "icon": "content/apps/math_pro.png",
     "type": "app",
-    "level": 7
+    "level": 8
 },
 {
-    "id": 15,
+    "id": 17,
     "name": "Mathemagica",
     "launchCommand": "com.remarkable.mathemagica",
     "icon": "content/apps/mathemagica.png",
@@ -120,31 +136,31 @@
     "level": 8
 },
 {
-    "id": 16,
+    "id": 18,
     "name": "MathOpen",
     "launchCommand": "com.mathopen.androidmath",
     "icon": "content/apps/mathopen.png",
     "type": "app",
-    "level": 8 
+    "level": 9 
 },
 {
-    "id": 17,
+    "id": 19,
     "name": "Mental Math Addition",
-    "launchCommand": "air.intergraphics.mentalMath.Addition.demo",
+    "launchCommand": "app.intergraphics.mentalMath.Addition",
     "icon": "content/apps/mental_math.png",
     "type": "app",
     "level": 9 
 },
 {
-    "id": 18,
+    "id": 20,
     "name": "Einstein Math Academy",
     "launchCommand": "com.eddiehsu.mathgame",
     "icon": "content/apps/einstein.png",
     "type": "app",
-    "level": 9
+    "level": 10
 },
 {
-    "id": 19,
+    "id": 21,
     "name": "Math Maniac",
     "launchCommand": "de.math.maniac",
     "icon": "content/apps/math_maniac.png",
@@ -153,7 +169,7 @@
 },
 
 {
-    "id": 20,
+    "id": 22,
     "name": "Math Practice Flash Cards",
     "launchCommand": "com.teachersparadise.mathpractice",
     "icon": "content/apps/math_practice_flash.png",
@@ -161,7 +177,7 @@
     "level": 11 
 },
 {
-    "id": 21,
+    "id": 23,
     "name": "Math Workout",
     "launchCommand": "com.akbur.mathsworkout",
     "icon": "content/apps/math_workout.png",
@@ -169,7 +185,7 @@
     "level": 11
 },
 {
-    "id": 22,
+    "id": 24,
     "name": "Mathris",
     "launchCommand": "com.divmob.mathtetrislite",
     "icon": "content/apps/mathris.png",
@@ -177,7 +193,7 @@
     "level": 12
 },
 {
-    "id": 23,
+    "id": 25,
     "name": "Pick a Path",
     "launchCommand": "air.org.nctm.PickaPath",
     "icon": "content/apps/pickapath.png",
