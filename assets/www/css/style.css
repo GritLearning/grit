@@ -1,22 +1,30 @@
 /* Put your CSS here */
-html, body {
-    margin: 20px;
+
+@font-face {
+      font-family: Khmer;
+      src: url("css/fonts/khmer.ttf");
+}       
+
+body {
+    font-family: Khmer;
 }
+
 span.result_0 {
-	width: 10%;
-	background-color: red;
-	float: left;
-	text-align: center;
+       width: 10%;
+       background-color: red;
+       float: left;
+       text-align: center;
 }
 span.result_1 {
-	width: 10%;
-	background-color: green;
-	float: left;
-	text-align: center;
+       width: 10%;
+       background-color: green;
+       float: left;
+       text-align: center;
 }
+
 h2.final_result_passed {
-	color: green;
+       color: green;
 }
 h2.final_result_failed {
-	color: red;
+       color: red;
 }

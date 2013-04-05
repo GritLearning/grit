@@ -1,0 +1,18 @@
+[
+{
+    "id": 1,
+    "question": "How many stars?",
+    "question_2": "***",
+    "answer": ["៦", "២", "៣"],
+    "correct": "៣",
+    "level": 1
+},
+{
+    "id": 2,
+    "question": "How many stars?",
+    "question_2": "*******",
+    "answer": ["៧", "២", "៨"],
+    "correct": "៧",
+    "level": 1
+}
+]

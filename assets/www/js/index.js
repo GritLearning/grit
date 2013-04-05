@@ -47,20 +47,4 @@ var app = {
     }
 };
 
-//var GritLauncher = function() { 
-//
-//};
-//
-//GritLauncher.ACTION_SEND = "android.intent.action.SEND";
-//GritLauncher.prototype.startActivity = function(params, success, fail) {
-//    return cordova.exec(function(args) {
-//        success(args);
-//    }, function(args) {
-//        fail(args);
-//    }, 'GritLauncher', 'startActivity', [params]);
-//};
-//cordova.addConstructor(function() {
-//    cordova.addPlugin('gritlauncher', new GritLauncher());
-//    PluginManager.addService("GritLauncher","com.GritLearning.plugin.GritLauncher");
-//});
 

@@ -2,6 +2,32 @@
 
 /* Controllers */
 
+function RootCtrl($location) {
+    console.log("in root controller");
+    if(window.localStorage.getItem("level")){
+        var level = window.localStorage.getItem("level");
+        console.log("found level: " + level);
+        $location.path('/level/' + level);
+    } else {
+        $location.path('/kids');
+        console.log("found no level");
+    }
+}
+
+function AdminCtrl($scope) {
+    $scope.closeGrit = function(){
+        navigator.app.exitApp();
+    };
+
+    $scope.settings = function() {
+        cordova.exec(
+            successHdl(),
+            errorHdl(),
+            "GritLauncher", 
+            "startActivity", 
+            [ 'com.android.settings' ]);
+    };
+}
 
 function ContentListCtrl($scope, $http, $routeParams, Player) {
     $http.get('content/apps.json').success(function(data) {
@@ -18,14 +44,14 @@ function ContentListCtrl($scope, $http, $routeParams, Player) {
 
     $scope.open = function(app, name) {
         console.log("open: " + name);
-        /* thi makes the app crash, fix later! */
+        window.localStorage.setItem("level", $scope.levelId);
+        console.log("Level: " + window.localStorage.getItem("level"));
         cordova.exec(
             successHdl(),
             errorHdl(),
             "GritLauncher", 
             "startActivity", 
             [ app ]);
-        /**/
     };
 }
 

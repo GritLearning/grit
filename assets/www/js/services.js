@@ -72,11 +72,11 @@ angular.module('grit.services', ['ngResource'])
     		} else {
     			return 'failed';
     		}
-    	}
+        };
     	return $resource; // returning this is very important
     })
   .factory('Quiz', function($resource){
-	  return $resource('content/quiz.json', {}, {
+	  return $resource('content/quiz_en.json', {}, {
 	       query: {method:'GET', params:{id:'1'}, isArray:true}
-	});
-  });
+      });
+});
