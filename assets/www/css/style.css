@@ -2,3 +2,21 @@
 html, body {
     margin: 20px;
 }
+span.result_0 {
+	width: 10%;
+	background-color: red;
+	float: left;
+	text-align: center;
+}
+span.result_1 {
+	width: 10%;
+	background-color: green;
+	float: left;
+	text-align: center;
+}
+h2.final_result_passed {
+	color: green;
+}
+h2.final_result_failed {
+	color: red;
+}

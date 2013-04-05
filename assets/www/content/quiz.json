@@ -3,30 +3,40 @@
     "id": 1,
     "question": "Which is the biggest number",
     "answer": [1,2,3,4],
+    "correct": "4",
+    "type": "app",
     "level": 1
 },
 {
     "id": 2,
     "question": "Which is the smalles number",
     "answer": [10,20,30,40],
-    "level": 2
+    "correct": "10",
+    "type": "app",
+    "level": 1
 },
 {
     "id": 3,
-    "question": "which number is missing? 1, 2, 4, 5",
-    "answer": [2,3,4,5],
-    "level": 3
+    "question": "សំណួរខ្មែរ 8 + 6 = __",
+    "answer": [11,12,13,14],
+    "correct": "14",
+    "type": "app",
+    "level": 1
 },
 {
     "id": 4,
-    "question": "which number is next? 3, 4, 5, 6",
-    "answer": [3,5,7,9],
-    "level": 4
+    "question": "Please fill in the gap 12 x 2",
+    "answer": [18,20,24,30],
+    "correct": "24",
+    "type": "app",
+    "level": 1
 },
 {
     "id": 5,
-    "question": "2 + 4 =",
-    "answer": [2,4,5,6],
-    "level": 5
+    "question": "How many star here: *****",
+    "answer": [3,4,5,6],
+    "correct": "5",
+    "type": "video",
+    "level": 1
 }
 ]
