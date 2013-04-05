@@ -1,42 +1,92 @@
 [
 {
     "id": 1,
-    "question": "Which is the biggest number",
-    "answer": [1,2,3,4],
-    "correct": "4",
+    "question": "How many stars?",
+    "question_2": "*******",
+    "answer": [7,2,8],
+    "correct": "7",
     "type": "app",
     "level": 1
 },
 {
     "id": 2,
-    "question": "Which is the smalles number",
-    "answer": [10,20,30,40],
-    "correct": "10",
+    "question": "How many stars?",
+    "question_2": "********** ********** **********",
+    "answer": [30,80,10],
+    "correct": "30",
     "type": "app",
     "level": 1
 },
 {
     "id": 3,
-    "question": "សំណួរខ្មែរ 8 + 6 = __",
-    "answer": [11,12,13,14],
-    "correct": "14",
+    "question": "Fill the gaps:",
+    "question_2": "10, 20, ___,40, 50",
+    "answer": [60,30,70],
+    "correct": "30",
     "type": "app",
     "level": 1
 },
 {
     "id": 4,
-    "question": "Please fill in the gap 12 x 2",
-    "answer": [18,20,24,30],
-    "correct": "24",
+    "question": "Fill the gaps:",
+    "question_2": "101, 102, ___,104, 105",
+    "answer": [106,103,109],
+    "correct": "103",
     "type": "app",
     "level": 1
 },
 {
     "id": 5,
-    "question": "How many star here: *****",
-    "answer": [3,4,5,6],
-    "correct": "5",
+    "question": "What’s the number?",
+    "question_2": "100 + 50 + 5 = ___",
+    "answer": [160, 150, 155],
+    "correct": "155",
     "type": "video",
     "level": 1
+},
+{
+    "id": 6,
+    "question": "How many stars?",
+    "question_2": "********** ********** ********** **********",
+    "answer": [20,80,40],
+    "correct": "40",
+    "type": "app",
+    "level": 2
+},
+{
+    "id": 7,
+    "question": "How many stars?",
+    "question_2": "********** ********** ********** ********** ********** ********** **********",
+    "answer": [10,70,50],
+    "correct": "70",
+    "type": "app",
+    "level": 2
+},
+{
+    "id": 8,
+    "question": "Fill the gaps:",
+    "question_2": "5, 10, ___,20, 25",
+    "answer": [15,11,20],
+    "correct": "15",
+    "type": "app",
+    "level": 2
+},
+{
+    "id": 9,
+    "question": "Fill the gaps:",
+    "question_2": "997, 998, 999, ___",
+    "answer": [1000,106,900],
+    "correct": "1000",
+    "type": "app",
+    "level": 2
+},
+{
+    "id": 10,
+    "question": "What’s the number?",
+    "question_2": "200 + 60 + 8 = ___",
+    "answer": [268, 168, 257],
+    "correct": "268",
+    "type": "video",
+    "level": 2
 }
 ]

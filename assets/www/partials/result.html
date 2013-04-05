@@ -4,4 +4,11 @@
 </div>
 <span ng-repeat="res in result" class="result_{{res}}">{{$index + 1}}</span>
 <h2 class="final_result_{{conclusion}}">{{conclusion}}</h2>
+<input type="hidden" ng-model="button" ng-init="button=conclusion" />
+<div ng-switch on="button">
+	<button class="btn btn-large" type="button" ng-switch-when="passed" ng-click="homeScreen(nextLevel)">Home screen</button>
+	<div ng-switch-when="failed">
+		<button class="btn btn-large" type="button" ng-click="homeScreen(level)">Home screen</button>
+		<button class="btn btn-large" type="button" ng-click="tryAgain(level)">Try again</button>
+	</div>
 </div>
