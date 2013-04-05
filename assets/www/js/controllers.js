@@ -14,7 +14,7 @@ function ContentListCtrl($scope, $http, $routeParams, Player) {
         }
     };
 
-    $scope.levelId = $routeParams.levelId;
+    $scope.levelId = Number($routeParams.levelId);
 
     $scope.open = function(app, name) {
         console.log("open: " + name);
@@ -47,6 +47,7 @@ function QuizCtrl($scope, $routeParams, Quiz) {
             return quiz;
         }
     };
+    $scope.levelId = Number($routeParams.quizId);
 	$scope.resultClick = function () {
 		//alert('button click');
     };

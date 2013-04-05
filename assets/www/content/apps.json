@@ -1,42 +1,66 @@
 [
 {
     "id": 1,
-    "name": "Monkey Game",
-    "launchCommand": "com.sand.airdroid",
-    "icon": "img/monkey.png",
+    "name": "Foundation Math",
+    "launchCommand": "uk.co.readwritephonics.maths123.demo",
+    "icon": "content/apps/foundation_maths.jpg",
     "type": "app",
     "level": 1
 },
 {
     "id": 2,
-    "name": "Count 20",
-    "launchCommand": "com.sand.airdroid",
-    "icon": "img/monkey.png",
+    "name": "Junior Math",
+    "launchCommand": "com.nibhav.android.juniormathfree",
+    "icon": "content/apps/juniormath.jpg",
     "type": "app",
     "level": 1
 },
 {
     "id": 3,
-    "name": "AirDroid",
-    "launchCommand": "com.sand.airdroid",
-    "icon": "img/monkey.png",
+    "name": "Just2Long",
+    "launchCommand": "uk.henspace.memory",
+    "icon": "content/apps/just2long.jpg",
     "type": "app",
     "level": 2
 },
 {
     "id": 4,
-    "name": "Exciting count 50",
-    "launchCommand": "com.sand.airdroid",
-    "icon": "img/monkey.png",
+    "name": "Math Genie Grade Two",
+    "launchCommand": "com.funtastic.mathgenie.gradetwo",
+    "icon": "content/apps/Math_Genie_Grade_Two.jpg",
     "type": "app",
     "level": 2
 },
 {
     "id": 5,
-    "name": "How to count",
-    "launchCommand": "com.sand.airdroid",
-    "icon": "img/monkey.png",
-    "type": "video",
-    "level": 1
+    "name": "Mathemagica",
+    "launchCommand": "com.remarkable.mathemagica",
+    "icon": "content/apps/mathemagica.jpg",
+    "type": "app",
+    "level": 3
+},
+{
+    "id": 6,
+    "name": "Okta's Rescue",
+    "launchCommand": "air.com.learningtoday.octopusAndroid2",
+    "icon": "content/apps/oktasrescue.jpg",
+    "type": "app",
+    "level": 3
+},
+{
+    "id": 7,
+    "name": "Math Maniac",
+    "launchCommand": "de.math.maniac",
+    "icon": "content/apps/mathmaniac.jpg",
+    "type": "app",
+    "level": 4
+},
+{
+    "id": 7,
+    "name": "Kindergarten Math",
+    "launchCommand": "com.infinut.kindergarten.math.free",
+    "icon": "content/apps/kindergarten.jpg",
+    "type": "app",
+    "level": 4
 }
 ]

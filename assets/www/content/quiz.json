@@ -3,40 +3,30 @@
     "id": 1,
     "question": "Which is the biggest number",
     "answer": [1,2,3,4],
-    "icon": "img/monkey.png",
-    "type": "app",
     "level": 1
 },
 {
     "id": 2,
     "question": "Which is the smalles number",
     "answer": [10,20,30,40],
-    "icon": "img/monkey.png",
-    "type": "app",
-    "level": 1
+    "level": 2
 },
 {
     "id": 3,
-    "question": "សំណួរខ្មែរ",
-    "answer": [11,12,13,14],
-    "icon": "img/monkey.png",
-    "type": "app",
-    "level": 2
+    "question": "which number is missing? 1, 2, 4, 5",
+    "answer": [2,3,4,5],
+    "level": 3
 },
 {
     "id": 4,
-    "question": "Exciting count 50",
-    "answer": [1,2,3,4],
-    "icon": "img/monkey.png",
-    "type": "app",
-    "level": 2
+    "question": "which number is next? 3, 4, 5, 6",
+    "answer": [3,5,7,9],
+    "level": 4
 },
 {
     "id": 5,
-    "question": "How to count",
-    "answer": [1,2,3,4],
-    "icon": "img/monkey.png",
-    "type": "video",
-    "level": 1
+    "question": "2 + 4 =",
+    "answer": [2,4,5,6],
+    "level": 5
 }
 ]

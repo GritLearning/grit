@@ -1,4 +1,4 @@
-<div ng-repeat="question in filtered = (quiz | filter:filterByLevel)" ng-hide="!$first">
+<div ng-repeat="question in filtered = (quiz | filter:filterByLevel)">
       <div class="progress progress-striped">
           <div class="bar" style="width: {{(($index +1 ) * 100)/filtered.length}}%;"></div>
       </div>
@@ -14,11 +14,12 @@
                       </div>
                   </div>
               </div>
-              <div class="control-group">
+              <!-- <div class="control-group">
                   <div class="controls">
                       <button type="submit" class="btn" ng-click="saveAnswer(question,answer)">continue</button>
                   </div>
-              </div>
+              </div> -->
           </fieldset>
       </form>
+      <a href="#/level/{{levelId + 1}}">continue</a>
 </div>
