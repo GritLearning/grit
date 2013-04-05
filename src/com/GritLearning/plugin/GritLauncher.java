@@ -29,7 +29,7 @@ public class GritLauncher extends CordovaPlugin {
 	            Activity ctx = cordova.getActivity();
 	            PackageManager manager = ctx.getPackageManager();
 	            //PackageManager manager = getPackageManager();
-	            i = manager.getLaunchIntentForPackage("com.sand.airdroid");
+	            i = manager.getLaunchIntentForPackage(name);
 	            LOG.d(TAG, "intent: " + i.toString());
 	            i.addCategory(Intent.CATEGORY_LAUNCHER);
 	            LOG.d(TAG, "intent: " + i.toString());
