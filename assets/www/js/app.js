@@ -9,9 +9,9 @@ angular.module('App', ['grit.services'])
   })
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/kids', {templateUrl: 'partials/kids.html', controller: KidsListCtrl});
-    $routeProvider.when('/result', {templateUrl: 'partials/result.html', controller: ResultCtrl});
+    $routeProvider.when('/result/:levelId', {templateUrl: 'partials/result.html', controller: ResultCtrl});
     $routeProvider.when('/level/:levelId', {templateUrl: 'partials/level.html', controller: ContentListCtrl});
-    $routeProvider.when('/quiz/:quizId', {templateUrl: 'partials/quiz.html', controller: QuizCtrl});
+    $routeProvider.when('/quiz/:levelId', {templateUrl: 'partials/quiz.html', controller: QuizCtrl});
     $routeProvider.otherwise({redirectTo: '/kids'});
   }])
   .directive('myRepeatDirective', function() {

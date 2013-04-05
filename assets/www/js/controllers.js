@@ -41,7 +41,7 @@ function QuizCtrl($scope, $routeParams, Quiz, Result) {
 	$scope.orderProp = 'id';
 	$scope.display = '1';
 	$scope.filterByLevel = function(quiz) {
-        if(quiz.level == $routeParams.quizId){
+        if(quiz.level == $routeParams.levelId){
             return quiz;
         }
     };
@@ -49,7 +49,7 @@ function QuizCtrl($scope, $routeParams, Quiz, Result) {
 	$scope.resultClick = function (index, length, quiz, answer) {
 		Result.addResult(quiz, answer);
 		if (index + 1 >= length) {
-			window.location = '#/result/';
+			window.location = '#/result/' + $routeParams.levelId;
 		}
 		var element = document.getElementById(index);
 		angular.element(element).css('display', 'none');
@@ -75,9 +75,19 @@ function KidsListCtrl($scope, $http, Player) {
 
 }
 
-function ResultCtrl($scope, Result) {
+function ResultCtrl($scope, $routeParams, Result) {
 	$scope.result = Result.getResult();
+	$scope.level = $routeParams.levelId;
+	$scope.nextLevel = parseInt($routeParams.levelId) + 1;
 	$scope.conclusion = Result.getConclusionResult();
+	$scope.homeScreen = function(level) {
+		Result.removeAll();
+		window.location = '#/level/' + level;
+	}
+	$scope.tryAgain = function(level) {
+		Result.removeAll();
+		window.location = '#/quiz/' + level;
+	}
 }
 
 

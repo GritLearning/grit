@@ -51,6 +51,9 @@ angular.module('grit.services', ['ngResource'])
     	$resource.getResult = function() {
     		return result;
     	};
+    	$resource.removeAll = function() {
+    		result = [];
+    	};
     	$resource.getConclusionResult = function() {
     		var count = 0;
     		var wrong = 0;

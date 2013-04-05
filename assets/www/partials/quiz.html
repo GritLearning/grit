@@ -4,6 +4,7 @@
       </div>
       <div class="hero-unit">
           <h1>{{question.question}}</h1>
+          <h1>{{question.question_2}}</h1>
       </div>
       <div class="questionbody">
           <button class="btn btn-large" type="button" ng-repeat="answer in question.answer" ng-click="resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}">{{answer}}</button>
