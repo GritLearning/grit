@@ -14,11 +14,12 @@ function RootCtrl($location) {
     }
 }
 
-function AdminCtrl($scope) {
+function AdminCtrl($scope, Player) {
     $scope.closeGrit = function(){
         navigator.app.exitApp();
     };
 
+    $scope.player = Player.getPlayer();
     $scope.settings = function() {
         cordova.exec(
             successHdl(),
