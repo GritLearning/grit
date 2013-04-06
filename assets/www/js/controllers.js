@@ -86,7 +86,9 @@ function QuizCtrl($scope, $routeParams, $timeout, Quiz, Result) {
 	$scope.resultClick = function (index, length, quiz, answer) {
 		var result = Result.addResult(quiz, answer);
 		var element = document.getElementById(index);
-		if (index + 1 >= length) {
+		if (index + 1 >= length && result) {
+			window.location = '#/result/' + $routeParams.levelId;
+		} else if (index + 1 >= length && clickTime % 2 == 1) {
 			window.location = '#/result/' + $routeParams.levelId;
 		}
 		var nextQuestion = function () {

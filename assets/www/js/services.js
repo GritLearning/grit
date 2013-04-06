@@ -52,6 +52,9 @@ angular.module('grit.services', ['ngResource'])
     	$resource.addResult = function(quiz, answer) {
     		if (quiz.correct == answer) {
     			result.push(1);
+    			if ((result.length % 2) == 1) {
+    				result.push(1);
+    			}
     			return 1;
     		} else {
     			result.push(0);
@@ -78,7 +81,7 @@ angular.module('grit.services', ['ngResource'])
     			}
     		});
     		// result up to 60% correct will be passed
-    		if ((right * 100)/count > 60) {
+    		if ((right * 100)/count >= 70) {
     			return 'passed';
     		} else {
     			return 'failed';
