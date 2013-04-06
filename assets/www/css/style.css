@@ -37,22 +37,22 @@ ul.result-icons li {
 ul.result-icons li.current {
 	background-image:url("../content/images/coin-current.png");
 	background-repeat:no-repeat;
-	background-size: 50%;
+	background-size: 43%;
 }
 ul.result-icons li.next {
 	background-image:url("../content/images/coin-later.png");
 	background-repeat:no-repeat;
-	background-size: 50%;
+	background-size: 43%;
 }
 ul.result-icons li.lost {
 	background-image:url("../content/images/coin-lost.png");
 	background-repeat:no-repeat;
-	background-size: 50%;
+	background-size: 43%;
 }
 ul.result-icons li.won {
 	background-image:url("../content/images/coin-won.png");
 	background-repeat:no-repeat;
-	background-size: 50%;
+	background-size: 43%;
 }
 
 .sidebar {
