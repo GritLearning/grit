@@ -8,3 +8,4 @@ Makefile*
 *.vimbk
 *.swp
 *.swo
+local.properties
