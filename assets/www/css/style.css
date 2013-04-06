@@ -6,7 +6,7 @@
 }       
 
 body {
-    font-family: Khmer;
+    /* font-family: Khmer; */
 }
 
 span.result_0 {
@@ -27,4 +27,9 @@ h2.final_result_passed {
 }
 h2.final_result_failed {
        color: red;
+}
+
+.sidebar {
+    background-color: #F5F5F5;
+    height: 400px;
 }
