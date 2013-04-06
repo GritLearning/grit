@@ -1,23 +1,27 @@
 <div ng-controller="KidsListCtrl">
-      <div class="well">
-          <ul class="thumbnails">
-              <div ng-hide="{{player[0]}}">
-                  <li class="span2"><img src="img/child-placeholder.png"></li>
-              </div>
-              <li class="span2" ng-repeat="p in player">
-                  <img ng-src="{{p.image}}" class="img-rounded" ng-click="removePlayer(p)">
-                  <span class="badge badge-success">{{p.level}}</span>
-              </li>
-          </ul>
-            <!-- still needs debugging why the getLevel does not update
-            after adding kids -->
-            <a class="pull-right" ng-href="#/level/{{getLevel}}">start playing</a>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well">
+                    <ul "thumbnails">
+                        <li class="span2" ng-repeat="p in player">
+                            <img ng-src="{{p.image}}" class="img-rounded" ng-click="removePlayer(p)">
+                            <span class="badge badge-success">{{p.level}}</span>
+                        </li>
+                    </ul>
+                    <!-- still needs debugging why the getLevel does not update after adding kids -->
+                    <p><a class="btn btn-large btn-primary" ng-href="#/level/{{getLevel}}">start playing</a></p>
+                    <p><a href="#/kids" class="btn btn-large">Home</a></p>
+                    <p><a href="#/admin" class="btn btn-large">Admin</a></p>
+                </div>
+            </div>
+            <div class="span10">
+                <ul class="thumbnails">
+                    <li class="span2" ng-repeat="k in kids">
+                        <img ng-src="{{k.image}}" alt="{{k.name}}" class="img-rounded" ng-click="setPlayer(k)">
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <ul class="thumbnails">
-          <li class="span2" ng-repeat="k in kids">
-              <img ng-src="{{k.image}}" alt="{{k.name}}" class="img-rounded" ng-click="setPlayer(k)">
-          </li>
-      </ul>
-      <a href="#/admin">admin</a>
+    </div>
 </div>
