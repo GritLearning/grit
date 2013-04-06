@@ -43,8 +43,10 @@ angular.module('grit.services', ['ngResource'])
     	$resource.addResult = function(quiz, answer) {
     		if (quiz.correct == answer) {
     			result.push(1);
+    			return 1;
     		} else {
     			result.push(0);
+    			return 0;
     		}
     		return 'push result';
     	};
