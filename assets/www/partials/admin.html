@@ -1,4 +1,18 @@
 <div ng-controller="AdminCtrl">
+
+<div id="auth" class="modal show" data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <h3>Please authenticate</h3>
+  </div>
+  <div class="modal-body">
+      <p>type your password here</p>
+      <form novalidate class="simple-form">
+          <input type="password" ng-model="pass" required/><br />
+          <button class="btn btn-large btn-primary" ng-click="unlock()">unlock</button>
+      </form>
+  </div>
+</div>
+
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span2">
