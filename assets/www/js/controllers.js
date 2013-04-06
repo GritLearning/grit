@@ -94,6 +94,8 @@ function KidsListCtrl($scope, $http, Player) {
     $http.get('content/kids.json').success(function(data) {
         $scope.kids = data;
     });
+    window.localStorage.setItem("level", 1);
+    console.log("Level: " + window.localStorage.getItem("level"));
 
     $scope.player = Player.getPlayer();
     $scope.setPlayer = function(kid) {
