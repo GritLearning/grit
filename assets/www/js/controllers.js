@@ -14,11 +14,17 @@ function RootCtrl($location) {
     }
 }
 
-function AdminCtrl($scope) {
+function AdminCtrl($scope, Player) {
     $scope.closeGrit = function(){
         navigator.app.exitApp();
     };
 
+    $scope.unlock = function() {
+        //$('#auth').modal('true');
+        return true;
+    };
+
+    $scope.player = Player.getPlayer();
     $scope.settings = function() {
         cordova.exec(
             successHdl(),
@@ -35,12 +41,13 @@ function ContentListCtrl($scope, $http, $routeParams, Player) {
     });
 
     $scope.filterByLevel = function(content) {
-        if(content.level == $scope.levelId){
+        if(content.level <= $scope.levelId){
             return content;
         }
     };
 
     $scope.levelId = Number($routeParams.levelId);
+    $scope.player = Player.getPlayer();
 
     $scope.open = function(app, name) {
         console.log("open: " + name);

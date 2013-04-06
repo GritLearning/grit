@@ -1,2 +1,43 @@
-<button class="btn" ng-click="closeGrit()">close Grit</button>
-<button class="btn" ng-click="settings()">Settings</button>
+<div ng-controller="AdminCtrl">
+
+<div id="auth" class="modal show" data-backdrop="static" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <h3>Please authenticate</h3>
+  </div>
+  <div class="modal-body">
+      <p>type your password here</p>
+      <form novalidate class="simple-form">
+          <input type="password" ng-model="pass" required/><br />
+          <button class="btn btn-large btn-primary" ng-click="unlock()">unlock</button>
+      </form>
+  </div>
+</div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="sidebar">
+
+                    <ul class="nav nav-list">
+                          <li class="nav-header">Admin</li>
+                          <li class="active"><a href="#/kids">Home</a></li>
+                          <li class="nav-header">Player</li>
+                          <li ng-repeat="p in player">
+                              <img ng-src="{{p.image}}" class="img-rounded" ng-click="removePlayer(p)">
+                              <span class="badge badge-success">{{p.level}}</span>
+                          </li>
+                          <li class="divider"></li>
+                          <li><a href="#" ng-click="closeGrit()">close</a></li>
+                          <li><a href="#" ng-click="settings()">Settings</a></li>
+                      </ul>
+
+                </div>
+            </div>
+            <div class="span10">
+                <p>
+                    Admin screen
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

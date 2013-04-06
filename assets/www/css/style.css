@@ -6,7 +6,7 @@
 }       
 
 body {
-    font-family: Khmer;
+    /* font-family: Khmer; */
 }
 
 span.result_0 {
@@ -53,4 +53,9 @@ ul.result-icons li.won {
 	background-image:url("../content/images/coin-won.png");
 	background-repeat:no-repeat;
 	background-size: 50%;
+}
+
+.sidebar {
+    background-color: #F5F5F5;
+    height: 400px;
 }
