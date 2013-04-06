@@ -41,6 +41,7 @@ function ContentListCtrl($scope, $http, $routeParams, Player) {
     };
 
     $scope.levelId = Number($routeParams.levelId);
+    $scope.player = Player.getPlayer();
 
     $scope.open = function(app, name) {
         console.log("open: " + name);

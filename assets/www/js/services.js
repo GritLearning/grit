@@ -7,22 +7,31 @@
 // In this case it is a simple value service.
 angular.module('grit.services', ['ngResource'])
    .factory('Player', function($resource) {
-      var player = [];
       var level = 1;
+      var player = [];
       
       $resource.addPlayer = function(kid) {
-        player.push(kid);
-        $resource.getFirstLevel();
-        return 'added player';
+          $resource.getPlayer;
+          console.log(player);
+          player.push(kid);
+          window.localStorage.setItem("player", JSON.stringify(player));
+          $resource.getFirstLevel();
+          return 'added player';
       };
       $resource.rmPlayer = function() {
-        player.pop();
-        return 'removed player';
+          $resource.getPlayer;
+          player.pop();
+          window.localStorage.setItem("player", JSON.stringify(player));
+          return 'removed player';
       };
       $resource.getPlayer = function() {
-        return player;
+          if(window.localStorage.getItem("player")){
+              player = JSON.parse(window.localStorage.getItem("player"));
+          }
+          return player;
       };
       $resource.getFirstLevel = function() {
+          $resource.getPlayer;
           console.log(player);
 
           angular.forEach(player, function(value){
