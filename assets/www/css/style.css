@@ -31,25 +31,25 @@ h2.final_result_failed {
 button.btn-large {
 	width: 100%;
 }
-ul.result-icons li {
+div.result-icons div {
 	height: 30px;
 }
-ul.result-icons li.current {
+div.result-icons div.current {
 	background-image:url("../content/images/coin-current.png");
 	background-repeat:no-repeat;
 	background-size: 43%;
 }
-ul.result-icons li.next {
+div.result-icons div.next {
 	background-image:url("../content/images/coin-later.png");
 	background-repeat:no-repeat;
 	background-size: 43%;
 }
-ul.result-icons li.lost {
+div.result-icons div.lost {
 	background-image:url("../content/images/coin-lost.png");
 	background-repeat:no-repeat;
 	background-size: 43%;
 }
-ul.result-icons li.won {
+div.result-icons div.won {
 	background-image:url("../content/images/coin-won.png");
 	background-repeat:no-repeat;
 	background-size: 43%;

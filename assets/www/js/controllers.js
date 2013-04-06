@@ -99,6 +99,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Quiz, Result) {
 		if (result) {
 			angular.element(icon).removeClass('current');
 			angular.element(icon).addClass('won');
+			angular.element(element).find('button').attr('disabled','disabled');
 			if ((clickTime % 2) == 0) {
 				clickTime ++;
 				angular.element(icon).next().removeClass('current');
@@ -109,6 +110,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Quiz, Result) {
 			angular.element(icon).removeClass('current');
 			angular.element(icon).addClass('lost');
 			if ((clickTime % 2) == 1) {
+				angular.element(element).find('button').attr('disabled','disabled');
 				$timeout(nextQuestion, 1000);
 			}
 		}

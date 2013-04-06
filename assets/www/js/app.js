@@ -23,12 +23,12 @@ angular.module('App', ['grit.services'])
             result: "=result"
          },
          link: function($scope, $element, $attrs) {
-        	 $element.append("<li class='span1'>Level" + $scope.levelId + "</li>");
+        	 $element.append("<div class='span1'>Level" + $scope.levelId + "</div>");
         	 for(var i=0; i<10; i++) {
         		 if (i == 0 || i == 1) {
-        			 $element.append("<li class='span1 current' id='result_" + i + "'><span></span></li>");
+        			 $element.append("<div class='span1 current' id='result_" + i + "'><span></span></div>");
         		 } else {
-        			 $element.append("<li class='span1 next' id='result_" + i + "'><span></span></li>");
+        			 $element.append("<div class='span1 next' id='result_" + i + "'><span></span></div>");
         		 }
         		 
         	 }

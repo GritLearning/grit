@@ -1,7 +1,7 @@
 <div class="well">
-    <ul class="thumbnails result-icons" level-id="levelId" result="noDisable" score-icon-directive>
-    </ul>
- 	</div>
+    <div class="row result-icons" level-id="levelId" result="noDisable" score-icon-directive>
+    </div>
+</div>
 <div ng-repeat="question in filtered = (quiz | filter:filterByLevel)" id="{{$index}}" my-repeat-directive>
       <div class="hero-unit">
           <h1>{{question.question}}</h1>
