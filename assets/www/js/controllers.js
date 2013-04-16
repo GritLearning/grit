@@ -69,7 +69,7 @@ function errorHdl() {
     console.log('open failed');
 }
 
-function QuizCtrl($scope, $routeParams, Quiz, Result) {
+function QuizCtrl($scope, $routeParams, $timeout, Quiz, Result) {
 	$scope.quiz = Quiz.query();
 	$scope.orderProp = 'id';
 	$scope.display = '1';
@@ -78,15 +78,44 @@ function QuizCtrl($scope, $routeParams, Quiz, Result) {
             return quiz;
         }
     };
+    $scope.levelId = $routeParams.levelId;
+    $scope.noDisable = 1;
     $scope.result = Result.getResult();
+    var clickTime = 0;
+    var questionIndex = 0;
 	$scope.resultClick = function (index, length, quiz, answer) {
-		Result.addResult(quiz, answer);
-		if (index + 1 >= length) {
+		var result = Result.addResult(quiz, answer);
+		var element = document.getElementById(index);
+		if (index + 1 >= length && result) {
+			window.location = '#/result/' + $routeParams.levelId;
+		} else if (index + 1 >= length && clickTime % 2 == 1) {
 			window.location = '#/result/' + $routeParams.levelId;
 		}
-		var element = document.getElementById(index);
-		angular.element(element).css('display', 'none');
-		angular.element(element).next().css('display', 'block');
+		var nextQuestion = function () {
+			angular.element(element).css('display', 'none');
+			angular.element(element).next().css('display', 'block');
+		}
+		var icon = document.getElementById('result_' + clickTime);
+		if (result) {
+			angular.element(icon).removeClass('current');
+			angular.element(icon).addClass('won');
+			angular.element(element).find('button').attr('disabled','disabled');
+			if ((clickTime % 2) == 0) {
+				clickTime ++;
+				angular.element(icon).next().removeClass('current');
+				angular.element(icon).next().addClass('won');
+			}
+			$timeout(nextQuestion, 1000);
+		} else {
+			angular.element(icon).removeClass('current');
+			angular.element(icon).addClass('lost');
+			if ((clickTime % 2) == 1) {
+				angular.element(element).find('button').attr('disabled','disabled');
+				$timeout(nextQuestion, 1000);
+			}
+		}
+		clickTime ++;
+		return result;
     };
 }
 

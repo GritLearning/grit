@@ -1,28 +1,17 @@
+<div class="well">
+    <div class="row result-icons" level-id="levelId" result="noDisable" score-icon-directive>
+    </div>
+</div>
 <div ng-repeat="question in filtered = (quiz | filter:filterByLevel)" id="{{$index}}" my-repeat-directive>
-      <div class="progress progress-striped">
-          <div class="bar" style="width: {{(($index +1 ) * 100)/filtered.length}}%;"></div>
-      </div>
       <div class="hero-unit">
           <h1>{{question.question}}</h1>
           <h1>{{question.question_2}}</h1>
       </div>
       <div class="questionbody khmer">
-          <button class="btn btn-large" type="button" ng-repeat="answer in question.answer" ng-click="resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}">{{answer}}</button>
+      	<ul class="thumbnails">
+      		<li class="span4" ng-repeat="answer in question.answer">
+          		<center><button class="btn btn-large thumbnail" ng-disabled="! noDisable" type="button" ng-click="noDisable = resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}"><h4>{{answer}}</h4></button></center>
+          </li>
+         </ul>
       </div>
 </div>
-      <!-- form>
-          <fieldset>
-              <div class="control-group">
-                  <div class="controls">
-                      <div class="btn-group" data-toggle="buttons-radio">
-                          <button name="answer" class="btn btn-large" type="button" ng-repeat="answer in question.answer" value="{{answer}}">{{answer}}</button>
-                      </div>
-                  </div>
-              </div>
-              <!-- <div class="control-group">
-                  <div class="controls">
-                      <button type="submit" class="btn" ng-click="saveAnswer(question,answer)">continue</button>
-                  </div>
-              </div> -->
-          </fieldset>
-      </form-->

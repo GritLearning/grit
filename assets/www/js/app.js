@@ -16,6 +16,26 @@ angular.module('App', ['grit.services'])
     $routeProvider.when('/quiz/:levelId', {templateUrl: 'partials/quiz.html', controller: QuizCtrl});
     $routeProvider.otherwise({redirectTo: '/'});
   }])
+  .directive('scoreIconDirective', function($compile) {
+     return {
+    	scope: {
+            levelId: "=levelId",
+            result: "=result"
+         },
+         link: function($scope, $element, $attrs) {
+        	 $element.append("<div class='span1'>Level" + $scope.levelId + "</div>");
+        	 for(var i=0; i<10; i++) {
+        		 if (i == 0 || i == 1) {
+        			 $element.append("<div class='span1 current' id='result_" + i + "'><span></span></div>");
+        		 } else {
+        			 $element.append("<div class='span1 next' id='result_" + i + "'><span></span></div>");
+        		 }
+        		 
+        	 }
+        	 $compile($element.contents())($scope);
+         }
+     };
+  })
   .directive('myRepeatDirective', function() {
      return function(scope, element, attrs) {
        if (! scope.$first) {

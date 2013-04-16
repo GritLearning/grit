@@ -28,6 +28,32 @@ h2.final_result_passed {
 h2.final_result_failed {
        color: red;
 }
+button.btn-large {
+	width: 100%;
+}
+div.result-icons div {
+	height: 30px;
+}
+div.result-icons div.current {
+	background-image:url("../content/images/coin-current.png");
+	background-repeat:no-repeat;
+	background-size: 43%;
+}
+div.result-icons div.next {
+	background-image:url("../content/images/coin-later.png");
+	background-repeat:no-repeat;
+	background-size: 43%;
+}
+div.result-icons div.lost {
+	background-image:url("../content/images/coin-lost.png");
+	background-repeat:no-repeat;
+	background-size: 43%;
+}
+div.result-icons div.won {
+	background-image:url("../content/images/coin-won.png");
+	background-repeat:no-repeat;
+	background-size: 43%;
+}
 
 .sidebar {
     background-color: #F5F5F5;
