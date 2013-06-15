@@ -52,7 +52,7 @@ function ContentListCtrl($scope, $http, $routeParams, Player) {
     });
 
     $scope.filterByLevel = function(content) {
-        if(content.level <= $scope.levelId){
+        if(content.level == $scope.levelId){
             return content;
         }
     };
