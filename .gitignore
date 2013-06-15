@@ -1,11 +1,4 @@
-bin/
-gen/
 .*
 !.gitignore
-!.perltidyrc
-*~
-Makefile*
-*.vimbk
-*.swp
-*.swo
-local.properties
+*vimbk
+*swp
