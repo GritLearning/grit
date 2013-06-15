@@ -20,8 +20,11 @@ function ExitCtrl($scope) {
 
     if($scope.levelId){
         console.log("exit: found level: " + $scope.levelId);
+        $scope.myArray = new Array($scope.levelId); 
+        $scope.myString = '<img ng-repeat="n in [1,2,3,4]" src="/img/cool-star-noun_project_12715.svg" alt="Oops, cannot display image." width="152" height="114">'       
+        console.log("string is: " + $scope.myString);
     } else {
-        $scope.levelId = 99;
+        $scope.levelId = 0;
         console.log("exit: found no level");
     }
     // TODO: we need to remove the level storage to reset the app for next round of playing
