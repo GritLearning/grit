@@ -15,11 +15,13 @@ function RootCtrl($location) {
 }
 
 function ExitCtrl($scope) {
-    if(window.localStorage.getItem("level")){
-        $scope.levelId = window.localStorage.getItem("level");
-        console.log("exit: found level: " + level);
+    console.log("exiting");
+    $scope.levelId = window.localStorage.getItem("level");
+
+    if($scope.levelId){
+        console.log("exit: found level: " + $scope.levelId);
     } else {
-        $scope.levelId = 0;
+        $scope.levelId = 99;
         console.log("exit: found no level");
     }
 }

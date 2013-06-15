@@ -1,4 +1,4 @@
-<div ng-controller="AdminCtrl">
+<div ng-controller="ExitCtrl">
 
     <div class="container-fluid">
         <div class="row-fluid">
@@ -12,9 +12,22 @@
                 </div>
             </div>
             <div class="span10">
-                <p>
-                    Congrats, you made it to Level: {{level}}
-                </p>
+    	        <div>
+	       
+	           <img ng-repeat="n in [1,2,3,4]" src="../content/apps/cool-star-noun_project_12715.svg" alt="Oops, cannot display image." width="152" height="114">
+
+    	        </div>
+	        <div>
+	           <a class="btn btn-primary btn-large" href="#">Congrats, you made it to Level {{levelId}}!!</a>
+		   <div class="alert alert-block">
+                       <a class="close">&times;</a>
+                       <strong>Warning</strong> Number of stars is hard coded to 4, need to make it repeat levelId times!!
+                   </div>
+		   <div class="alert alert-block">
+                       <a class="close">&times;</a>
+                       <strong>Warning</strong> Star image is free download from TheNounProject, so in principle should be attributed.
+		   </div>
+                </div>
             </div>
         </div>
     </div>
