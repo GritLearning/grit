@@ -9,7 +9,18 @@ function RootCtrl($location) {
         console.log("found level: " + level);
         $location.path('/level/' + level);
     } else {
-        $location.path('/kids');
+        $location.path('/level/1');
+        console.log("found no level");
+    }
+}
+
+function ExitCtrl($scope) {
+    // we start at level 0 so if we have a level we can show some stars
+    // for the level the kids made it through
+    if(window.localStorage.getItem("level")){
+        var level = window.localStorage.getItem("level");
+        console.log("found level: " + level);
+    } else {
         console.log("found no level");
     }
 }
@@ -123,6 +134,8 @@ function KidsListCtrl($scope, $http, Player) {
     $http.get('content/kids.json').success(function(data) {
         $scope.kids = data;
     });
+    window.localStorage.setItem("level", 1);
+    console.log("Level: " + window.localStorage.getItem("level"));
 
     $scope.player = Player.getPlayer();
     $scope.setPlayer = function(kid) {
