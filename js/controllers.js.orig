@@ -15,13 +15,11 @@ function RootCtrl($location) {
 }
 
 function ExitCtrl($scope) {
-    console.log("exiting");
-    $scope.levelId = window.localStorage.getItem("level");
-
-    if($scope.levelId){
-        console.log("exit: found level: " + $scope.levelId);
+    if(window.localStorage.getItem("level")){
+        $scope.levelId = window.localStorage.getItem("level");
+        console.log("exit: found level: " + level);
     } else {
-        $scope.levelId = 99;
+        $scope.levelId = 0;
         console.log("exit: found no level");
     }
     // TODO: we need to remove the level storage to reset the app for next round of playing

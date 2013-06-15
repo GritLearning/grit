@@ -3,15 +3,19 @@
     </div>
 </div>
 <div ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:2)" id="{{$index}}" my-repeat-directive>
-      <div class="hero-unit">
-          <h1>{{question.question}}</h1>
-          <h1>{{question.question_2}}</h1>
-      </div>
-      <div class="questionbody khmer">
-      	<ul class="thumbnails">
-      		<li class="span4" ng-repeat="answer in question.answer">
-          		<center><button class="btn btn-large thumbnail" ng-disabled="! noDisable" type="button" ng-click="noDisable = resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}"><h4>{{answer}}</h4></button></center>
-          </li>
-         </ul>
-      </div>
+    <div class="span6">
+        <div class="hero-unit">
+            <h1>{{question.question}}</h1>
+            <h1>{{question.question_2}}</h1>
+        </div>
+    </div>
+    <div class="span6">
+        <div class="questionbody khmer">
+            <ul class="thumbnails">
+                <li class="span4" ng-repeat="answer in question.answer">
+                    <center><button class="btn btn-large thumbnail" ng-disabled="! noDisable" type="button" ng-click="noDisable = resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}"><h4>{{answer}}</h4></button></center>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
