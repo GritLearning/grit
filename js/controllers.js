@@ -15,13 +15,12 @@ function RootCtrl($location) {
 }
 
 function ExitCtrl($scope) {
-    // we start at level 0 so if we have a level we can show some stars
-    // for the level the kids made it through
     if(window.localStorage.getItem("level")){
-        var level = window.localStorage.getItem("level");
-        console.log("found level: " + level);
+        $scope.levelId = window.localStorage.getItem("level");
+        console.log("exit: found level: " + level);
     } else {
-        console.log("found no level");
+        $scope.levelId = 0;
+        console.log("exit: found no level");
     }
 }
 
@@ -157,6 +156,7 @@ function ResultCtrl($scope, $routeParams, Result) {
 	$scope.conclusion = Result.getConclusionResult();
 	$scope.homeScreen = function(level) {
 		Result.removeAll();
+        window.localStorage.setItem("level", level);
 		window.location = '#/level/' + level;
 	}
 	$scope.tryAgain = function(level) {
