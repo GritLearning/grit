@@ -2,7 +2,7 @@
     <div class="row result-icons" level-id="levelId" result="noDisable" score-icon-directive>
     </div>
 </div>
-<div ng-repeat="question in filtered = (quiz | filter:filterByLevel)" id="{{$index}}" my-repeat-directive>
+<div ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:2)" id="{{$index}}" my-repeat-directive>
       <div class="hero-unit">
           <h1>{{question.question}}</h1>
           <h1>{{question.question_2}}</h1>
