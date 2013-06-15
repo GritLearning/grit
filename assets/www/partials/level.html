@@ -9,13 +9,7 @@
                           <!-- still needs debugging why the getLevel does not update after adding kids -->
                           <li class="active"><a ng-href="#/quiz/{{levelId}}">level up</a></li>
                           <li class="divider"></li>
-                          <li class="nav-header">Player</li>
-                          <li ng-repeat="p in player">
-                              <img ng-src="{{p.image}}" class="img-rounded" ng-click="removePlayer(p)">
-                              <span class="badge badge-success">{{p.level}}</span>
-                          </li>
-                          <li class="divider"></li>
-                          <li><a href="#/kids">Home</a></li>
+                          <li><a href="#/exit">Exit</a></li>
                       </ul>
 
                 </div>
