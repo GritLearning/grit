@@ -3,3 +3,6 @@
 *vimbk
 *swp
 content
+
+# grunt build products
+js/all.min.js
