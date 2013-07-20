@@ -36,6 +36,24 @@ angular.module('App', ['grit.filters','grit.services'])
          }
      };
   })
+  .directive('gritPassword', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      ctrl.$parsers.unshift(function(viewValue) {
+        if (viewValue == 'grit') {
+          // it is valid
+          ctrl.$setValidity('gritPassword', true);
+          return viewValue;
+        } else {
+          // it is invalid, return undefined (no model update)
+          ctrl.$setValidity('gritPassword', false);
+          return undefined;
+        }
+      });
+    }
+  };
+  })
   .directive('myRepeatDirective', function() {
      return function(scope, element, attrs) {
        if (! scope.$first) {

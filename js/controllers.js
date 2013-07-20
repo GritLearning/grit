@@ -33,7 +33,6 @@ function AdminCtrl($scope, Player) {
     };
 
     $scope.unlock = function() {
-        //$('#auth').modal('true');
         return true;
     };
 

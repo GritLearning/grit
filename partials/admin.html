@@ -1,18 +1,4 @@
 <div ng-controller="AdminCtrl">
-
-<div id="auth" class="modal show" data-backdrop="static" tabindex="-1" role="dialog">
-  <div class="modal-header">
-    <h3>Please authenticate</h3>
-  </div>
-  <div class="modal-body">
-      <p>type your password here</p>
-      <form novalidate class="simple-form">
-          <input type="password" ng-model="pass" required/><br />
-          <button class="btn btn-large btn-primary" ng-click="unlock()">unlock</button>
-      </form>
-  </div>
-</div>
-
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span2">
@@ -21,21 +7,23 @@
                     <ul class="nav nav-list">
                           <li class="nav-header">Admin</li>
                           <li class="active"><a href="#/kids">Home</a></li>
-                          <li class="nav-header">Player</li>
-                          <li ng-repeat="p in player">
-                              <img ng-src="{{p.image}}" class="img-rounded" ng-click="removePlayer(p)">
-                              <span class="badge badge-success">{{p.level}}</span>
-                          </li>
-                          <li class="divider"></li>
-                          <li><a href="#" ng-click="closeGrit()">close</a></li>
-                          <li><a href="#" ng-click="settings()">Settings</a></li>
                       </ul>
 
                 </div>
             </div>
             <div class="span10">
                 <p>
-                    Admin screen
+                <h2>Admin screen</h2>
+                </p>
+                <p>
+                <form name="form" class="css-form" novalidate>
+                    Password: <input type="password" ng-model="password" name="password" gritPassword /> 
+                    <div ng-show="form.password.$error.gritPassword">Please provide a valid password</div>
+                    <div ng-hide="form.password.$error.gritPassword">
+                    <a href="#" ng-click="closeGrit()" class="btn btn-large btn-primary">close</a>
+                    <a href="#" ng-click="settings()" class="btn btn-large btn-primary">Settings</a>
+                    </div>
+                </form>
                 </p>
             </div>
         </div>
