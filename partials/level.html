@@ -1,3 +1,15 @@
+<div id="quiz" class="modal hide fade" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-header">
+        <h3>do a quiz to unlock more games</h3>
+    </div>
+    <div class="modal-body">
+        <form novalidate class="simple-form">
+            <center>
+                <a class="btn btn-large btn-primary" data-dismiss="modal" ng-href="#/quiz/{{levelId}}">quiz</a>
+            </center>
+        </form>
+    </div>
+</div>
 <div ng-controller="ContentListCtrl">
     <div class="container-fluid">
         <div class="row-fluid">
@@ -5,27 +17,42 @@
                 <div class="sidebar">
 
                     <ul class="nav nav-list">
-                          <li class="nav-header">Level {{levelId}}</li>
-                          <!-- still needs debugging why the getLevel does not update after adding kids -->
-                          <li><img src="/img/logo.png"></li>
-                          <li class="divider"></li>
-                          <li class="active"><a ng-href="#/quiz/{{levelId}}">level up</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#/exit">Exit</a></li>
-                      </ul>
+                        <li class="nav-header">Level {{levelId}}</li>
+                        <!-- still needs debugging why the getLevel does not update after adding kids -->
+                        <li><img src="/img/logo.png"></li>
+                        <li class="divider"></li>
+                        <li><a href="#/exit">Exit</a></li>
+                    </ul>
 
                 </div>
             </div>
             <div class="span10">
                 <p>
+                <ul class="thumbnails">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <a class="brand" href="#">unlocked</a>
+                        </div>
+                    </div>
+                    <li class="span4" ng-repeat="c in content | filter:filterByLevel">
+                    <a href="#" class="thumbnail" ng-click='open(c.launchCommand, c.name)'>
+                        <img ng-src="{{c.icon}}"
+                        alt="{{c.name}}"
+                        class="img-rounded" />
+                        <center><h4>{{c.name}}</h4></center>
+                    </a>
+                    </li>
+                </ul>
+                </p>
+                <p>
                     <ul class="thumbnails">
                         <div class="navbar">
                             <div class="navbar-inner">
-                                <a class="brand" href="#">Level {{levelId}}</a>
+                                <a class="brand" href="#">unlock more</a>
                             </div>
                         </div>
-                        <li class="span4" ng-repeat="c in content | filter:filterByLevel">
-                            <a href="#" class="thumbnail" ng-click='open(c.launchCommand, c.name)'>
+                        <li class="span4" ng-repeat="c in content | filter:filterByLevelFromHere">
+                            <a href="#quiz" class="thumbnail" data-toggle="modal">
                                 <img ng-src="{{c.icon}}"
                                         alt="{{c.name}}"
                                         class="img-rounded" />

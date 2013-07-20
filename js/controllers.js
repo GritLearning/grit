@@ -59,6 +59,12 @@ function ContentListCtrl($scope, $http, $routeParams, Player) {
         }
     };
 
+    $scope.filterByLevelFromHere = function(content) {
+        if(content.level > $scope.levelId){
+            return content;
+        }
+    };
+
     $scope.levelId = Number($routeParams.levelId);
     $scope.player = Player.getPlayer();
 

@@ -6,3 +6,6 @@ content
 
 # grunt build products
 js/all.min.js
+
+# node stuff
+node_modules/
