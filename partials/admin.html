@@ -17,9 +17,9 @@
                 </p>
                 <p>
                 <form name="form" class="css-form" novalidate>
-                    Password: <input type="password" ng-model="password" name="password" gritPassword /> 
-                    <div ng-show="form.password.$error.gritPassword">Please provide a valid password</div>
-                    <div ng-hide="form.password.$error.gritPassword">
+                    Password: <input type="password" ng-model="password" name="password" valid-pwd="\grit\b" required /> 
+                    <div ng-show='form.password.$error.validPwd'>Please provide a valid password</div>
+                    <div ng-hide='form.password.$error.validPwd'>
                     <a href="#" ng-click="closeGrit()" class="btn btn-large btn-primary">close</a>
                     <a href="#" ng-click="settings()" class="btn btn-large btn-primary">Settings</a>
                     </div>

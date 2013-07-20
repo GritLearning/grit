@@ -32,10 +32,6 @@ function AdminCtrl($scope, Player) {
         navigator.app.exitApp();
     };
 
-    $scope.unlock = function() {
-        return true;
-    };
-
     $scope.player = Player.getPlayer();
     $scope.settings = function() {
         cordova.exec(
