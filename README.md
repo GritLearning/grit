@@ -37,4 +37,4 @@ Before sending the final release to the store we should check:
 
 [] All image assets have been run through Imageoptim (http://imageoptim.com/) or similar
 [] `assets/www` contains only the files required for the app - all dev files and spec files should be removed to keep the .apk small
-[] `index.html` is loading the concatenated & minified Javascript file.
+[] `index.html` is loading the concatenated & minified Javascript file(s). At the very least we should be using minified versions of the `js/libs` files.
