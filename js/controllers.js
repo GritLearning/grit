@@ -44,7 +44,7 @@ function AdminCtrl($scope, Player) {
 }
 
 function ContentListCtrl($scope, $http, $routeParams, Player) {
-    $http.get('content/apps.json').success(function(data) {
+    $http.get('content/apps/apps.json').success(function(data) {
         $scope.content = data;
     });
 
