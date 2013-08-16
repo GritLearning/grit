@@ -2,27 +2,40 @@
 
 /* Filters */
 
-angular.module('grit.filters', [])
+angular.module('grit.filters', ['grit.services', 'underscore'])
+
   .filter('interpolate', ['version', function(version) {
     return function(text) {
       return String(text).replace(/\%VERSION\%/mg, version);
-    }
-  }])
-  .filter('shuffle', function() {
-    var shuffledArr = [],
-        shuffledLength = 0;
-    return function(arr) {
-        var o = arr.slice(0, arr.length);
-        if (shuffledLength == arr.length) return shuffledArr;
-        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        shuffledArr = o;
-        shuffledLength = o.length;
-        return o;
     };
-  })
+  }])
+
+  .filter('shuffle', ['_', function(_) {
+    var shuffledArr    = [],
+        shuffledLength = 0;
+
+    return function(arr) {
+      
+      if (! _.isArray(arr)) {
+        return arr;
+      }
+
+      var o = arr.slice(0, arr.length);
+
+      if (shuffledLength == arr.length) {
+        return shuffledArr;
+      }
+
+      for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+      shuffledArr = o;
+      shuffledLength = o.length;
+      return o;
+    };
+  }])
+
   .filter('range', function() {
-    return function(input, min, max) {
-      min = parseInt(min); 
+    return function (input, min, max) {
+      min = parseInt(min);
       max = parseInt(max);
       for (var i=min; i<max; i++)
         input.push(i);

@@ -1,12 +1,8 @@
-/* Put your CSS here */
-
-@font-face {
-      font-family: Khmer;
-      src: url("css/fonts/khmer.ttf");
-}       
-
-body {
-    /* font-family: Khmer; */
+.debugging {
+  font-size: 9px;
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
 }
 
 span.result_0 {

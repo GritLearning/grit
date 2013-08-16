@@ -1,45 +1,48 @@
 'use strict';
 
-/* Services */
+// Services
+
+var underscore = angular.module('underscore', []);
+underscore.factory('_', function() {
+    return window._; // assumes underscore has already been loaded on the page
+  });
 
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('grit.services', ['ngResource'])
-  .factory('Player', function($resource) {
+angular.module('grit.services', ['ngResource', 'ngStorage'])
+  .factory('Player', function($resource, $localStorage, $log) {
     var level = 1;
     var player = [];
     
     $resource.addPlayer = function(kid) {
         $resource.getPlayer;
-        console.log(player);
+        $log.log(player);
         player.push(kid);
-        window.localStorage.setItem("player", JSON.stringify(player));
+        $localStorage.player = JSON.stringify(player);
         $resource.getFirstLevel();
         return 'added player';
     };
     $resource.rmPlayer = function() {
         $resource.getPlayer;
         player.pop();
-        window.localStorage.setItem("player", JSON.stringify(player));
+        $localStorage.player = JSON.stringify(player);
         return 'removed player';
     };
     $resource.getPlayer = function() {
-        if(window.localStorage.getItem("player")){
-            player = JSON.parse(window.localStorage.getItem("player"));
+        if($localStorage.player){
+            player = JSON.parse($localStorage.player);
         }
         return player;
     };
     $resource.getFirstLevel = function() {
         $resource.getPlayer;
-        console.log(player);
+        $log.log(player);
 
         angular.forEach(player, function(value){
             if(value.level > level){
               level = value.level;
             }
         });
-        console.log("Level: " + level);
+        $log.log("Level: " + level);
         return level;
     };
     $resource.getLevel = function() {
@@ -47,7 +50,7 @@ angular.module('grit.services', ['ngResource'])
     };
     return $resource; // returning this is very important
   })
-  .factory('Result', function($resource) {
+  .factory('Result', function($resource, $log) {
   	var result = [];
   	$resource.addResult = function(quiz, answer) {
   		if (quiz.correct == answer) {
@@ -89,8 +92,8 @@ angular.module('grit.services', ['ngResource'])
       };
   	return $resource; // returning this is very important
   })
-  .factory('Quiz', function($resource){
-	  return $resource('content/locales/en/quiz.json', {}, {
-      query: {method:'GET', params:{id:'1'}, isArray:true}
+  .factory('Quiz', function($resource, $log){
+    // return $resource('content/locales/en/quiz.json', {}, { query: { method: 'GET', params: {id:'1'}, isArray: true } 
+    return $resource('content/locales/en/quiz.json');
   });
-});
+  
