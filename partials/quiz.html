@@ -4,13 +4,12 @@
 </div>
 
 <div ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:2)" id="{{$index}}" my-repeat-directive>
-{{$log.log(question)}}
 
     <div class="span6">
         <div class="hero-unit">
-            <!-- <h1>{{question.question.text}}</h1> -->
-            <img src={{question.question.url}} />
-            <!-- <h1>{{question.question_2.text}}</h1> -->
+            <!-- <p>{{question.question_1.text}}</p> -->
+            <img src={{question.question_1.url}} />
+            <!-- <p>{{question.question_2.text}}</p> -->
             <img src="{{question.question_2.url}}" />
         </div>
     </div>
@@ -21,7 +20,7 @@
                 <li class="span4" ng-repeat="answer in question.answers">
                   <center>
                     <button class="btn btn-large thumbnail" ng-disabled="! noDisable" type="button" ng-click="noDisable = resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}">
-                      <!-- <h4>{{answer.text}}</h4> -->
+                      <!-- <p>{{answer.text}}</p> -->
                       <img src={{answer.url}} />
                     </button>
                   </center>
@@ -29,16 +28,6 @@
             </ul>
         </div>
     </div>
-
-<pre class="debugging">
-<h3>Raw question data:</h3>
-question:{{question.question}}
-question_2:{{question.question_2}}
-answer: {{question.answers}}
-correct: {{question.correct}}
-id: {{question.id}}
-level: {{question.level}}
-type: {{question.type}}
-</pre>
-
+{{$log.log(question)}}
+<pre class="debugging">question data: {{question}}</pre>
 </div>
