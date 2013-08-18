@@ -25,6 +25,9 @@ Setup http-server
 
 * Run `npm install -g http-server` to install a minimal http-server that you can invoke from the command line. Alternatively you can run the `web-server.js` script in the repo to achieve the same thing.
 
+### Optional bower setup
+Bower(http://bower.io/) is a package manager similar to npm but more focused on front-end web development thatn `npm`. We use bower to manage most of our front-end dependencies (angular, jquery etc.). You don't need to worry about bower unless you want to upgrade these dependencies. 
+
 ## Setup Android
 
 To get the Android build going checkout ``grit-android`` and link the
@@ -35,6 +38,6 @@ main grit repository into ``assets/www``
 
 Before sending the final release to the store we should check:
 
-[] All image assets have been run through Imageoptim (http://imageoptim.com/) or similar
-[] `assets/www` contains only the files required for the app - all dev files and spec files should be removed to keep the .apk small
-[] `index.html` is loading the concatenated & minified Javascript file(s). At the very least we should be using minified versions of the `js/libs` files.
+- [] All image assets have been run through Imageoptim (http://imageoptim.com/) or similar
+- [] `assets/www` contains only the files required for the app - all dev files and spec files should be removed to keep the .apk small
+- [] `index.html` is loading the concatenated & minified Javascript file(s). At the very least we should be using minified versions of the `js/libs` files.
