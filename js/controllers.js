@@ -45,87 +45,89 @@ function AdminCtrl($scope, Player) {
     };
 }
 
-function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $log) {
-    $http.get('content/apps/apps.json').success(function(data) {
-        $scope.content = data;
-    });
+function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $log, _, $window) {
+  $http.get('content/apps/apps.json').success(function (data) {
+    $scope.apps = data;
+    $scope.currentLevel = Number($routeParams.levelId);
+    $scope.levels = [];
 
-    $scope.filterByLevel = function(content) {
-        if(content.level == $scope.levelId){
-            return content;
-        }
-    };
 
-    $scope.filterByLevelFromHere = function(content) {
-        if(content.level > $scope.levelId){
-            return content;
-        }
-    };
+    var highestLevel = _.max($scope.apps, function (app) { return app.level; }).level;
 
-    $scope.levelId = Number($routeParams.levelId);
-    $scope.player = Player.getPlayer();
+    // build an array of level objects for the template to use:
+    // aLevelObject = { id: <integer>, isLocked: <true|false>, isNext: <true|false> }
+   
+    for (var i = 1; i <= highestLevel; i += 1) {
+      $scope.levels.push({ 
+        id: i, 
+        isLocked: isLevelLocked(i, $scope.currentLevel),
+        isNext: isNextLevel(i, $scope.currentLevel)
+      });
+    }
 
-    $scope.open = function(app, name) {
-        $log.log("open: " + name);
-        $localStorage.level = $scope.levelId;
-        $log.log("Level: " + $localStorage.level);
-        cordova.exec(
-            successHdl(),
-            errorHdl(),
-            "GritLauncher", 
-            "startActivity", 
-            [ app ]);
-    };
+    // $log.log($scope.levels);
+
+    function isLevelLocked(level, currentLevel) {
+      return (level <= currentLevel) ? false : true;
+    }
+
+    function isNextLevel(level, currentLevel) {
+      return (currentLevel + 1 == level) ? true : false;
+    }
+  });
+
+  $scope.player = Player.getPlayer();
+
+  $scope.open = function(app, name) {
+    $log.log('Opening app: ' + name);
+    $localStorage.level = $scope.currentLevel;
+    $log.log('Stored level in localStorage: ' + $localStorage.level);
+
+    if (_.isObject(cordova) && _.isFunction(cordova.exec)) {
+      cordova.exec(
+        appLaunchSuccessHandler,
+        appLaunchErrorHandler,
+        'GritLauncher',
+        'startActivity',
+        [ app ]);
+    }
+    else {
+      $window.alert('If cordova existed I would open: ' + app);
+    }
+  };
 }
 
-function successHdl($log) {
-    $log.log('open worked');
-}
-function errorHdl($log) {
-    $log.log('open failed');
+function appLaunchSuccessHandler() {
+  // TODO: is there a way to inject $log into a stand-alone function (that isn't a controller) like this?
+  console.log('Successfully opened the app');
 }
 
-function QuizCtrl($scope, $routeParams, $timeout, Quiz, Result, $http, $log) {
+function appLaunchErrorHandler() {
+  // TODO: is there a way to inject $log into a stand-alone function (that isn't a controller) like this?
+  console.log('Failed to open the app');
+}
 
-  var http_promise = $http({method: 'GET', url: 'content/locales/kh/quiz.json'});
+function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log) {
+  $http.get('content/locales/kh/quiz.json').success(function (data) {
+    $scope.quiz = data;
+  });
 
-  // NOTE: not currently using Quiz service
-
-  // .success() gets a desstructured version of the single 'response' object that a .then() callback would get
-  http_promise.success(function (data, status, headers, config) {
-      // $log.log('success');
-      // $log.log(data);
-      // $log.log(status);
-      // $log.log(headers);
-      // $log.log(config);
-      $scope.quiz = data;
-    });
-
-  http_promise.error(function (data, status, headers, config) {
-      $log.log('failed to get quiz data:');
-      $log.log(data);
-      $log.log(status);
-      $log.log(headers);
-      $log.log(config);
-    });
-
-  // *************
-
-  // $scope.quiz = Quiz.query();
   $scope.orderProp = 'id';
   $scope.display = '1';
 
-  // NOTE: quiz = json quiz data
   $scope.filterByLevel = function(quiz) {
     if(quiz.level == $routeParams.levelId){
         return quiz;
     }
   };
+
+  // TODO: this is just for debugging. Remove before we go into production.
   $scope.$log = $log;
 
   $scope.levelId = $routeParams.levelId;
   $scope.noDisable = 1;
   $scope.result = Result.getResult();
+
   var clickTime = 0;
   var questionIndex = 0;
 
@@ -172,25 +174,25 @@ function QuizCtrl($scope, $routeParams, $timeout, Quiz, Result, $http, $log) {
       };
 }
 
-function KidsListCtrl($scope, $http, Player, $localStorage, $log) {
-    $http.get('content/kids.json').success(function(data) {
-        $scope.kids = data;
-    });
-    $localStorage.level = 1;
-    $log.log("Level: " + $localStorage.level);
-
-    $scope.player = Player.getPlayer();
-    $scope.setPlayer = function(kid) {
-        Player.addPlayer(kid);
-    };
-    $scope.removePlayer = function() {
-        Player.rmPlayer();
-    };
-
-    $scope.getLevel = Player.getLevel();
-
-
-}
+// function KidsListCtrl($scope, $http, Player, $localStorage, $log) {
+//     $http.get('content/kids.json').success(function(data) {
+//         $scope.kids = data;
+//     });
+//     $localStorage.level = 1;
+//     $log.log("Level: " + $localStorage.level);
+// 
+//     $scope.player = Player.getPlayer();
+//     $scope.setPlayer = function(kid) {
+//         Player.addPlayer(kid);
+//     };
+//     $scope.removePlayer = function() {
+//         Player.rmPlayer();
+//     };
+// 
+//     $scope.getLevel = Player.getLevel();
+// 
+// 
+// }
 
 function ResultCtrl($scope, $routeParams, Result, $localStorage, $log) {
   $scope.result = Result.getResult();

@@ -5,23 +5,30 @@
                 <div class="sidebar">
 
                     <ul class="nav nav-list">
-                          <li class="nav-header">Admin</li>
-                          <li class="active"><a href="#/kids">Home</a></li>
+                          <li class="active"><a href="/">Home</a></li>
                       </ul>
 
                 </div>
             </div>
             <div class="span10">
                 <p>
-                <h2>Admin screen</h2>
+                <h2>Admin settings</h2>
                 </p>
                 <p>
                 <form name="form" class="css-form" novalidate>
+                    <p>
                     Password: <input type="password" ng-model="password" name="password" valid-pwd="\grit\b" required /> 
-                    <div ng-show='form.password.$error.validPwd'>Please provide a valid password</div>
+                    </p>
+                    <p ng-show='form.password.$error.validPwd'>Please provide a valid password to unlock the admin settings</p>
                     <div ng-hide='form.password.$error.validPwd'>
-                    <a href="#" ng-click="closeGrit()" class="btn btn-large btn-primary">close</a>
-                    <a href="#" ng-click="settings()" class="btn btn-large btn-primary">Settings</a>
+                      <div class="well">
+                        close Grit learning and return to android homescreen
+                        <a href="#" ng-click="closeGrit()" class="btn btn-large btn-primary">Close Grit</a>
+                      </div>
+                      <div class="well">
+                        Open a setting screen to do ???
+                        <a href="#" ng-click="settings()" class="btn btn-large btn-primary">Open Settings</a>
+                      </div>
                     </div>
                 </form>
                 </p>

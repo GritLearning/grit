@@ -51,49 +51,44 @@ angular.module('grit.services', ['ngResource', 'ngStorage'])
     return $resource; // returning this is very important
   })
   .factory('Result', function($resource, $log) {
-  	var result = [];
-  	$resource.addResult = function(quiz, answer) {
-  		if (quiz.correct == answer) {
-  			result.push(1);
-  			if ((result.length % 2) == 1) {
-  				result.push(1);
-  			}
-  			return 1;
-  		} else {
-  			result.push(0);
-  			return 0;
-  		}
-  		return 'push result';
-  	};
-  	$resource.getResult = function() {
-  		return result;
-  	};
-  	$resource.removeAll = function() {
-  		result = [];
-  	};
-  	$resource.getConclusionResult = function() {
-  		var count = 0;
-  		var wrong = 0;
-  		var right = 0;
-  		angular.forEach(result, function(value) {
-  			count ++;
-  			if (value) {
-  				right ++;
-  			} else {
-  				wrong ++;
-  			}
-  		});
-  		// result up to 60% correct will be passed
-  		if ((right * 100)/count >= 70) {
-  			return 'passed';
-  		} else {
-  			return 'failed';
-  		}
+    var result = [];
+    $resource.addResult = function(quiz, answer) {
+      if (quiz.correct == answer) {
+        result.push(1);
+        if ((result.length % 2) == 1) {
+          result.push(1);
+        }
+        return 1;
+      } else {
+        result.push(0);
+        return 0;
+      }
+      return 'push result';
+    };
+    $resource.getResult = function() {
+      return result;
+    };
+    $resource.removeAll = function() {
+      result = [];
+    };
+    $resource.getConclusionResult = function() {
+      var count = 0;
+      var wrong = 0;
+      var right = 0;
+      angular.forEach(result, function(value) {
+        count ++;
+        if (value) {
+          right ++;
+        } else {
+          wrong ++;
+        }
+      });
+      // result up to 60% correct will be passed
+      if ((right * 100)/count >= 70) {
+        return 'passed';
+      } else {
+        return 'failed';
+      }
       };
-  	return $resource; // returning this is very important
-  })
-  .factory('Quiz', function($resource, $log){
-    // return $resource('content/locales/en/quiz.json', {}, { query: { method: 'GET', params: {id:'1'}, isArray: true } 
-    return $resource('content/locales/en/quiz.json');
+    return $resource; // returning this is very important
   });
-  
