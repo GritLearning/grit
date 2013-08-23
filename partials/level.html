@@ -44,7 +44,7 @@
                 <li ng-show="! level.isLocked" class="span4" ng-repeat="app in apps | filter:{level: level.id}">
                   <a href="#" class="thumbnail" ng-click='open(app.launchCommand, app.name)'>
                     <img ng-src="{{app.icon}}" alt="{{app.name}}" class="img-rounded" />
-                    <center><h4>hi {{app.name}}</h4></center>
+                    <center><h4>{{app.name}}</h4></center>
                   </a>
                 </li>
 
