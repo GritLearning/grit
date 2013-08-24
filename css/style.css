@@ -52,7 +52,48 @@ div.result-icons div.won {
 	background-size: 43%;
 }
 
+.container-fluid{
+  background-color: #000000;
+}
+
 .sidebar {
-    background-color: #F5F5F5;
+    background-color: #000000;
     height: 400px;
+}
+
+.navbar-inner{
+  background-color: #000000;
+  background-image: none;
+  margin: 10px;
+}
+
+.navbar .brand{
+  color: #ffffff;
+  text-shadow: none;
+}
+
+ul:nth-child(n+1) {
+  background-colour:#000000;
+}
+/*add a new container around the middle or relate these to the middle rather than having the above one for the logo ul*/
+ul:nth-child(n+2) {
+  background: url("/img/background-yellow.png");
+}
+ul:nth-child(n+3) {
+  background: url("/img/background-cyan.png");
+}
+ul:nth-child(n+4) {
+  background: url("/img/background-green.png");
+}
+ul:nth-child(n+5) {
+  background: url("/img/background-blue.png");
+}
+ul:nth-child(n+6) {
+  background: url("/img/background-pink.png");
+}
+ul:nth-child(n+7) {
+  background: url("/img/background-brown.png");
+}
+ul:nth-child(n+8) {
+  background: url("/img/background-greenish.png");
 }
