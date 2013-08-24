@@ -1,17 +1,3 @@
-<!-- Quiz confirmation modal -->
-<div id="quiz" class="modal hide fade" data-backdrop="static" tabindex="-1" role="dialog">
-    <div class="modal-header">
-        <h3>To unlock this game you need to complete a quiz.</h3>
-    </div>
-    <div class="modal-body">
-        <form novalidate class="simple-form">
-            <center>
-                <a class="btn btn-large btn-primary" data-dismiss="modal" ng-href="#/quiz/{{currentLevel}}">take quiz</a>
-            </center>
-        </form>
-    </div>
-</div>
-
 <div ng-controller="ContentListCtrl">
     <div class="container-fluid">
         <div class="row-fluid">
@@ -49,7 +35,7 @@
                 </li>
 
                 <li ng-show="level.isLocked" class="span4" ng-repeat="app in apps | filter:{level: level.id}">
-                  <a href="#quiz" class="thumbnail" data-toggle="modal">
+                  <a ng-href="#/quiz/{{currentLevel}}" class="thumbnail">
                     <img ng-src="{{app.icon}}" alt="{{app.name}}" class="img-rounded" />
                     <center><h4>{{app.name}}</h4></center>
                   </a>
