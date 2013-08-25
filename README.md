@@ -5,9 +5,9 @@ To get started with the Grit Learning app you need at least one content reposito
 ## Setup
 
 ```
-git clone ``grit``
-git clone ``grit-khmer``
-cd grit
+git clone grit         # or checkout via GUI client
+git clone grit-khmer   # or checkout via GUI client
+cd grit                # or open a terminal in the grit directory
 ln -s ../grit-khmer content
 ```
 
