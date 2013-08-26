@@ -7,56 +7,6 @@
   <meta name="viewport" content="user-scalable=no, width=device-width" />
   <title>Grit animation test</title>
   <style>
-    .coin1 {
-      /* -webkit-animation-duration: 2s; */
-      /* -webkit-animation-name: slidein; */
-      -webkit-animation-fill-mode: forwards;
-      -webkit-animation: fade-in 1s, slide-in 3s;
-      /* -webkit-animation-delay: 0s, 3s; */
-    }
-    .coin2 {
-      -webkit-transition: all 1s ease-in-out;
-      /* -webkit-animation-duration: 2s; */
-      /* -webkit-animation-name: slidein; */
-      -webkit-animation-fill-mode: forwards;
-      -webkit-animation: fade-out 1s;
-      /* -webkit-animation: slide-in 2s, fade-out 1s; */
-      /* -webkit-animation-delay: 0s, 1s; */
-    }
-
-    @-webkit-keyframes slide-in {
-      /* from = 0% */
-      from {
-        /* margin-left: 100%; */
-        /* width: 300px; */
-        -webkit-transform: translate3d(300px,450px,100px) 
-    /* rotate(0deg) */
-      }
-
-      /* 75% { */
-      /*   -webkit-transform: rotate(180deg) */
-      /* } */
-      /* to = 100% */
-      to { 
-        /* margin-left: 0%; */
-        -webkit-transform: translate3d(0,0,0) 
-    /* rotate(0deg) */
-        /* width: 100px; */
-      }
-    }
-
-    @-webkit-keyframes fade-in {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-    @-webkit-keyframes fade-out {
-        0% { opacity: 1; }
-        100% { 
-          opacity: 0; 
-          display: none;
-        }
-    }
-
     /* layout styles for this demo page */
     .hidden {
       opacity: 0;
@@ -103,6 +53,8 @@
       position: relative;
       width: 80px;
       height: 80px;
+      /* This controls the animation through time of this element */
+      -webkit-transition: all 0.75s ease-in-out;
     }
     .potential-coin .coin-img {
     }
@@ -214,19 +166,44 @@
         var currentOffset = $(this).offset();
         var newOffset =  $(nextAvailableCoinSlotInResults).offset();
         var offsetChange = {};
-        offsetChange.top  = '-=' + (currentOffset.top  - newOffset.top);
-        offsetChange.left = '-=' + (currentOffset.left - newOffset.left);
 
-        // ... trigger an animation to move the coin to the coin-slot
-        $(this).animate(offsetChange, 1500, function () {
-          console.log('animation complete');
+        // jQuery version
+        // **************
+        // TODO this needs to always be neg even if the result of subtraction is neg
+        // offsetChange.top  = '-=' + (currentOffset.top  - newOffset.top);
+        // offsetChange.left = '-=' + (currentOffset.left - newOffset.left);
+        // $(this).animate(offsetChange, 1500, function () {
+        //   console.log('animation complete');
+        //   // record the user's score
+        //   // TODO
+        //   // then move to the next question
+        //   console.log('Moving to next question');
+        // });
 
+        // CSS3 version
+        // **************
+        // Force the offset change to always be negative
+        offsetChange.top  = - Math.abs(currentOffset.top  - newOffset.top);
+        offsetChange.left = - Math.abs(currentOffset.left - newOffset.left);
+
+        // We have to dynamically calculate the distances of the transform as
+        // there are enough permutations (2 coins x 10 possible slots) to make
+        // doing it declaratively painful. However we declare as much of the
+        // animation as possible in the CSS.
+
+        var translation = 'translate3d(' + offsetChange.top + 'px, ' + offsetChange.left + 'px,0px)';
+        $(this).css('-webkit-transform', translation);
+
+        // Note: this is fired once for each coin so we don't want to move on until they have both ended
+        $(this).on('webkitTransitionEnd', function (event) {
+          console.log('an animation is complete');
           // record the user's score
           // TODO
-
           // then move to the next question
           console.log('Moving to next question');
         });
+      
+
 
         // ... then mark this coin slot as full
         $(nextAvailableCoinSlotInResults).removeClass('js-is-empty');

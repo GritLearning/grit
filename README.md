@@ -5,10 +5,10 @@ To get started with the Grit Learning app you need at least one content reposito
 ## Setup
 
 ```
-git clone grit         # or checkout via GUI client
-git clone grit-khmer   # or checkout via GUI client
-cd grit                # or open a terminal in the grit directory
-ln -s ../grit-khmer content
+git clone grit              # or checkout via GUI client
+git clone grit-khmer        # or checkout via GUI client
+cd grit                     # or open a terminal in the grit directory
+ln -s ../grit-khmer content # this will not work on windows :-(
 ```
 
 Setup node.js
@@ -38,6 +38,7 @@ main grit repository into ``assets/www``
 
 Before sending the final release to the store we should check:
 
-- [] All image assets have been run through Imageoptim (http://imageoptim.com/) or similar
-- [] `assets/www` contains only the files required for the app - all dev files and spec files should be removed to keep the .apk small
-- [] `index.html` is loading the concatenated & minified Javascript file(s). At the very least we should be using minified versions of the `js/libs` files.
+- [ ] All image assets have been run through Imageoptim (http://imageoptim.com/) or similar
+- [ ] `assets/www` contains only the files required for the app - all dev files and spec files should be removed to keep the .apk small
+- [ ] `index.html` is loading the concatenated & minified Javascript file(s). At the very least we should be using minified versions of the `js/libs` files.
+- [ ] document exactly what setup setups are required after somebody installs the app
