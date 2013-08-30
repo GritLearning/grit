@@ -52,6 +52,7 @@ angular.module('grit.services', ['ngResource', 'ngStorage'])
   })
   .factory('Result', function($resource, $log) {
     var result = [];
+
     $resource.addResult = function(quiz, answer) {
       if (quiz.correct == answer) {
         result.push(1);
@@ -65,12 +66,15 @@ angular.module('grit.services', ['ngResource', 'ngStorage'])
       }
       return 'push result';
     };
+
     $resource.getResult = function() {
       return result;
     };
+
     $resource.removeAll = function() {
       result = [];
     };
+
     $resource.getConclusionResult = function() {
       var count = 0;
       var wrong = 0;

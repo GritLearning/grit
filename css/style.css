@@ -1,58 +1,53 @@
-.debugging {
-  max-width: 50%;
-  font-size: 9px;
-  position: absolute;
-  right: 1em;
-  bottom: 1em;
-}
-
-span.result_0 {
-       width: 10%;
-       background-color: red;
-       float: left;
-       text-align: center;
-}
-span.result_1 {
-       width: 10%;
-       background-color: green;
-       float: left;
-       text-align: center;
-}
-
-h2.final_result_passed {
-       color: green;
-}
-h2.final_result_failed {
-       color: red;
-}
-button.btn-large {
-	width: 100%;
-}
-div.result-icons div {
-	height: 30px;
-}
-div.result-icons div.current {
-	background-image:url("/img/coin-current.png");
-	background-repeat:no-repeat;
-	background-size: 43%;
-}
-div.result-icons div.next {
-	background-image:url("/img/coin-later.png");
-	background-repeat:no-repeat;
-	background-size: 43%;
-}
-div.result-icons div.lost {
-	background-image:url("/img/coin-lost.png");
-	background-repeat:no-repeat;
-	background-size: 43%;
-}
-div.result-icons div.won {
-	background-image:url("/img/coin-won.png");
-	background-repeat:no-repeat;
-	background-size: 43%;
-}
-
+/* Homescreen sidebar */
+/* ****************** */
 .sidebar {
-    background-color: #F5F5F5;
-    height: 400px;
+  background-color: #F5F5F5;
+  height: 400px;
 }
+
+/* Quiz */
+/* **** */
+
+.question .possible-answers {
+  list-style: none;
+}
+.question .possible-answer {
+  margin: 1em auto;
+}
+.question .btn-large {
+  width: 100%;
+}
+
+/* Potential stars */
+/* *************** */
+.potential-stars {
+  width:   200px;
+  margin:  0 auto;
+}
+.potential-star {
+  float:     left;
+  position:  relative; /* become the positional parent for our 'position: absolute' children */
+  width:     80px;
+  height:    80px;
+
+  /* This controls the **time** part of the animation of this element. The spatial */
+  /* part is controlled by Javascript. */
+  -webkit-transition: all 0.75s ease-in-out;
+}
+
+
+/* star slots */
+/* ********** */
+.star-slots {
+  min-height: 80px;
+}
+.star-slot {
+  margin: 0;
+  position: relative; /* become the positional parent for our 'position: absolute' children */
+  float: left;
+  width: 80px;
+  height: 80px;
+}
+.star-slot .js-full-slot-img {
+  display: none;
+} 

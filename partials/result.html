@@ -1,14 +1,19 @@
 <div class="result">
-<div class="hero-unit">
-  <h1>That was awesome</h1>
-</div>
-<span ng-repeat="res in result" class="result_{{res}}">{{$index + 1}}</span>
-<br>
-<h2 class="final_result_{{conclusion}}">{{conclusion}}</h2>
-<input type="hidden" ng-model="button" ng-init="button=conclusion" />
-<div ng-switch on="button">
-	<button class="btn btn-large" type="button" ng-switch-when="passed" ng-click="homeScreen(nextLevel)">continue</button>
-	<div ng-switch-when="failed">
-		<button class="btn btn-large" type="button" ng-click="homeScreen(level)">continue</button>
-	</div>
+
+  <h1 ng-show="passed">You passed</h1>
+  <h1 ng-hide="passed">You failed</h1>
+
+  [show the row of stars they achieved]
+
+  <img alt="smiley face" src="img/smiley-face.png" />
+
+  <div>
+    <img src="img/coin-won.png" /> X {{score}}
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6 offset3">
+      <button class="btn btn-large btn-primary" ng-click="returnToHomeScreen()">go to level {{level}}</button>
+    </div>
+  </div>
 </div>
