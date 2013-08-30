@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('App', ['grit.filters', 'grit.services', 'ngStorage'])
+angular.module('App', ['grit.filters', 'grit.services', 'ngStorage', 'ngRoute'])
   .config(function ($compileProvider){
-    $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'partials/level.html', controller: RootCtrl});
