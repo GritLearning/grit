@@ -133,15 +133,30 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     else { // answer is wrong 
       hideFirstVisiblePotentialStar(questionIndex);
 
+
       if (areAllPotentialStarsLost(questionIndex)) {
+        var delay = 2000 // mS
+        disableAllAnswers();
+
         saveResultToStorage(0);
-        isFinalQuestion ? goToResults() : displayNextQuestion();
+
+        $timeout(function () {
+          enableAllAnswers();
+          isFinalQuestion ? goToResults() : displayNextQuestion();
+        }, delay);
       }
     }
   };
 
   // Helper methods
   // **************
+
+  var disableAllAnswers = function () {
+    $document.find('.possible-answers .possible-answer .btn').attr('disabled', true);
+  };
+  var enableAllAnswers = function () {
+    $document.find('.possible-answers .possible-answer .btn').attr('disabled', false);
+  };
 
   var markStarSlotAsFull = function (starSlot) {
     angular.element(starSlot).removeClass('js-is-empty');

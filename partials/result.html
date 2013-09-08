@@ -13,7 +13,8 @@
 
   <div class="row-fluid">
     <div class="span6 offset3">
-      <button class="btn btn-large btn-primary" ng-click="returnToHomeScreen()">go to level {{level}}</button>
+      <button ng-show="passed" class="btn btn-large btn-primary" ng-click="returnToHomeScreen()">look at level {{level}} games</button>
+      <button ng-hide="passed" class="btn btn-large btn-primary" ng-click="returnToHomeScreen()">go back to level {{level}} games</button>
     </div>
   </div>
 </div>
