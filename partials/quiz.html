@@ -1,9 +1,13 @@
+<div class="quiz-background">
+
 <div class="well">
     <div class="row result-icons" level-id="levelId" result="noDisable" score-icon-directive>
     </div>
 </div>
 
-<div ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:2)" id="{{$index}}" my-repeat-directive>
+
+    
+<div  ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:2)" id="{{$index}}" my-repeat-directive>
 
     <div class="span6">
         <div class="hero-unit">
@@ -17,9 +21,9 @@
     <div class="span6">
         <div class="questionbody khmer">
             <ul class="thumbnails">
-                <li class="span4" ng-repeat="answer in question.answers">
+                <li class="span4 " ng-repeat="answer in question.answers">
                   <center>
-                    <button class="btn btn-large thumbnail" ng-disabled="! noDisable" type="button" ng-click="noDisable = resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}">
+                    <button class="btn btn-large thumbnail answer" ng-disabled="! noDisable" type="button" ng-click="noDisable = resultClick($parent.$index, filtered.length, question, answer)" rel="{{index}}">
                       <!-- <p>{{answer.text}}</p> -->
                       <img src={{answer.url}} />
                     </button>
@@ -30,4 +34,6 @@
     </div>
 {{$log.log(question)}}
 <pre class="debugging">question data: {{question}}</pre>
+</div>
+
 </div>

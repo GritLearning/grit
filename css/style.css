@@ -1,3 +1,5 @@
+
+
 .debugging {
   max-width: 50%;
   font-size: 9px;
@@ -5,6 +7,22 @@
   right: 1em;
   bottom: 1em;
 }
+
+
+
+/*quiz*/
+
+.quiz-background{
+  background: url("/img/background-yellow.png");
+  height:100%;
+}
+
+.well{
+  background-color: #000000;
+  color:#ffffff;
+  font-size: 20px;
+}
+
 
 span.result_0 {
        width: 10%;
@@ -25,41 +43,60 @@ h2.final_result_passed {
 h2.final_result_failed {
        color: red;
 }
-button.btn-large {
-	width: 100%;
-}
-div.result-icons div {
+
+.result-icons div {
 	height: 30px;
 }
-div.result-icons div.current {
-	background-image:url("/img/coin-current.png");
-	background-repeat:no-repeat;
+.result-icons div.current {
+	background:url("/img/score-star.png") no-repeat ;
 	background-size: 43%;
 }
-div.result-icons div.next {
-	background-image:url("/img/coin-later.png");
-	background-repeat:no-repeat;
+.result-icons div.next {
+	background:url("/img/score-star-outline-1.png") no-repeat ;
 	background-size: 43%;
 }
-div.result-icons div.lost {
-	background-image:url("/img/coin-lost.png");
-	background-repeat:no-repeat;
+.result-icons div.lost {
+	background:url("/img/score-star-outline-2.png") no-repeat ;
 	background-size: 43%;
 }
-div.result-icons div.won {
-	background-image:url("/img/coin-won.png");
-	background-repeat:no-repeat;
+.result-icons div.won {
+	background:url("/img/score-star.png") no-repeat ;
 	background-size: 43%;
 }
+
+.hero-unit{
+  background-color: #ffffff;
+}
+
+.answer{
+background:url("/img/blob-orange.png") no-repeat;
+}
+
+button.btn-large {
+  height: 213px;
+  width: 210px;
+}
+
+.thumbnails .span4{
+  width:210px;
+}
+
+/*index*/
 
 .container-fluid{
   background-color: #000000;
 }
 
 .sidebar {
-    background-color: #000000;
-    height: 400px;
+  background-color: #000000;
+  height: 400px;
 }
+
+li.nav-header{
+  color:#ffffff;
+  font-size: 17.5px;
+  padding:30px inherit;
+  }
 
 .navbar-inner{
   background-color: #000000;
@@ -72,28 +109,80 @@ div.result-icons div.won {
   text-shadow: none;
 }
 
-ul:nth-child(n+1) {
-  background-colour:#000000;
-}
-/*add a new container around the middle or relate these to the middle rather than having the above one for the logo ul*/
-ul:nth-child(n+2) {
+
+
+/*locked/unlocked buttons*/
+.navbar-inner .label{
+  font-size: 15px;
+  margin:10px;
+  padding: 4px 6px;
+  }
+
+
+/*alternate background for levels*/
+
+ul.thumbnails:nth-child(4n+2) {
   background: url("/img/background-yellow.png");
 }
-ul:nth-child(n+3) {
+ul.thumbnails:nth-child(4n+3) {
   background: url("/img/background-cyan.png");
 }
-ul:nth-child(n+4) {
+ul.thumbnails:nth-child(4n+4) {
   background: url("/img/background-green.png");
 }
-ul:nth-child(n+5) {
+ul.thumbnails:nth-child(4n+5) {
   background: url("/img/background-blue.png");
 }
-ul:nth-child(n+6) {
-  background: url("/img/background-pink.png");
+
+
+/*blob background*/
+
+ul.thumbnails li.blob{
+  height: 213px;
+  width:210px;
+  }
+ 
+ul.thumbnails:nth-child(4n+2) li.blob{
+  background:url("/img/blob-orange.png") no-repeat;
+  } 
+ 
+ul.thumbnails:nth-child(4n+3) li.blob{
+  background:url("/img/blob-blue.png") no-repeat;
+  }
+
+ul.thumbnails:nth-child(4n+4) li.blob{
+  background:url("/img/blob-green.png") no-repeat;
+  }
+
+ul.thumbnails:nth-child(4n+5) li.blob{
+  background:url("/img/blob-pink.png") no-repeat;
+  }
+
+a{color: #ffffff;}
+
+a.thumbnail{
+  margin-left:10px;
+  height:180px;
+  width: 180px;
 }
-ul:nth-child(n+7) {
-  background: url("/img/background-brown.png");
+
+.thumbnail,
+a.thumbnail:active,
+a.thumbnail:hover,
+a.thumbnail:focus{
+  border:none;
+  box-shadow: none;
+
 }
-ul:nth-child(n+8) {
-  background: url("/img/background-greenish.png");
+a.thumbnail:active,
+a.thumbnail:hover,
+a.thumbnail:focus{
+  color:#000000;
 }
+.thumbnail img{
+  margin-top:40px;
+  margin-left:60px;
+}
+
+
+  
