@@ -1,6 +1,6 @@
 {
   "name": "grit",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -12,7 +12,9 @@
     "ngstorage": "~0.2.2",
     "underscore": "~1.5.1",
     "jquery": "~2.0.3",
-    "angular": "~1.0.7",
-    "angular-resource": "~1.0.7"
+    "angular": "~1.2.0",
+    "angular-resource": "~1.2.0",
+    "angular-route": "~1.2.0-rc.1",
+    "normalize-css": "~2.1.3"
   }
 }

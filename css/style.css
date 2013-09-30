@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 .debugging {
@@ -186,3 +187,58 @@ a.thumbnail:focus{
 
 
   
+=======
+/* Homescreen sidebar */
+/* ****************** */
+.sidebar {
+  background-color: #F5F5F5;
+  height: 400px;
+}
+
+/* Quiz */
+/* **** */
+
+.question .possible-answers {
+  list-style: none;
+}
+.question .possible-answer {
+  margin: 1em auto;
+}
+.question .btn-large {
+  width: 100%;
+}
+
+/* Potential stars */
+/* *************** */
+.potential-stars {
+  width:   200px;
+  margin:  0 auto;
+}
+.potential-star {
+  float:     left;
+  position:  relative; /* become the positional parent for our 'position: absolute' children */
+  width:     80px;
+  height:    80px;
+
+  /* This controls the **time** part of the animation of this element. The spatial */
+  /* part is controlled by Javascript. */
+  -webkit-transition: all 0.75s ease-in-out;
+}
+
+
+/* star slots */
+/* ********** */
+.star-slots {
+  min-height: 80px;
+}
+.star-slot {
+  margin: 0;
+  position: relative; /* become the positional parent for our 'position: absolute' children */
+  float: left;
+  width: 80px;
+  height: 80px;
+}
+.star-slot .js-full-slot-img {
+  display: none;
+} 
+>>>>>>> 73b380910ca1a7d7c91461f9ba22b8c2f25088e8

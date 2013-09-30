@@ -7,11 +7,11 @@ function RootCtrl($location, $localStorage, $log) {
   var level = $localStorage.level;
 
   if(level){
-    $log.log("found level: " + level);
+    $log.log("found level: " + level + ' in storage');
     $location.path('/level/' + level);
   } else {
     $location.path('/level/1');
-    $log.log("found no level");
+    $log.log("found no level in storage - defaulting to level 1");
   }
 }
 
@@ -25,8 +25,6 @@ function ExitCtrl($scope, $localStorage, $log) {
     $scope.levelId = 0;
     $log.log("exit: found no level");
   }
-  // TODO: we need to remove the level storage to reset the app for next round of playing
-  // $localStorage.$reset ??? - will reset *all* storage
 }
 
 function AdminCtrl($scope, Player) {
@@ -64,8 +62,6 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
         isNext: isNextLevel(i, $scope.currentLevel)
       });
     }
-
-    // $log.log($scope.levels);
 
     function isLevelLocked(level, currentLevel) {
       return (level <= currentLevel) ? false : true;
@@ -107,107 +103,158 @@ function appLaunchErrorHandler() {
   console.log('Failed to open the app');
 }
 
-function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log) {
-  $http.get('content/locales/kh/quiz.json').success(function (data) {
+function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location, $document, $q, $localStorage, _) {
+
+  // TODO: re-enable khmer before release. I have disabled it because I can't
+  //       answer questions in it :-)
+  // $http.get('content/locales/kh/quiz.json').success(function (data) {
+  $http.get('content/locales/en/quiz.json').success(function (data) {
     $scope.quiz = data;
   });
 
-  $scope.orderProp = 'id';
-  $scope.display = '1';
+  $scope._ = _;
+  $scope.questionIndexToShow = 0;
 
   $scope.filterByLevel = function(quiz) {
     if(quiz.level == $routeParams.levelId){
-        return quiz;
+      return quiz;
     }
   };
 
-  // TODO: this is just for debugging. Remove before we go into production.
-  $scope.$log = $log;
+  $scope.processAnswer = function (question, answer, questionIndex, isFinalQuestion) {
 
-  $scope.levelId = $routeParams.levelId;
-  $scope.noDisable = 1;
-  $scope.result = Result.getResult();
+    if (question.correct_answer.text === answer.text) { // answer is correct
+      saveResultToStorage(numVisiblePotentialStars(questionIndex));
 
-  var clickTime = 0;
-  var questionIndex = 0;
+      moveAvailableStarsToStarSlots(questionIndex).then(function () {
+        isFinalQuestion ? goToResults() : displayNextQuestion();
+      });
+    }
+    else { // answer is wrong 
+      hideFirstVisiblePotentialStar(questionIndex);
 
-  $scope.resultClick = function (index, length, quiz, answer) {
-        $log.log('got result click');
-        var result = Result.addResult(quiz, answer);
-        var element = document.getElementById(index);
+      if (areAllPotentialStarsLost(questionIndex)) {
+        saveResultToStorage(0);
+        isFinalQuestion ? goToResults() : displayNextQuestion();
+      }
+    }
+  };
 
-        if (index + 1 >= length && result) {
-          window.location = '#/result/' + $routeParams.levelId;
-        } else if (index + 1 >= length && clickTime % 2 === 1) {
-          window.location = '#/result/' + $routeParams.levelId;
-        }
+  // Helper methods
+  // **************
 
-        var nextQuestion = function () {
-          angular.element(element).css('display', 'none');
-          angular.element(element).next().css('display', 'block');
-        };
+  var markStarSlotAsFull = function (starSlot) {
+    angular.element(starSlot).removeClass('js-is-empty');
+    angular.element(starSlot).addClass('js-is-full');
+  };
 
-        var icon = document.getElementById('result_' + clickTime);
-        if (result) {
-          angular.element(icon).removeClass('current');
-          angular.element(icon).addClass('won');
-          angular.element(element).find('button').attr('disabled','disabled');
+  var nextAvailableStarSlot = function () {
+    return $document.find('.star-slots .star-slot.js-is-empty')[0];
+  };
 
-          if ((clickTime % 2) == 0) {
-            clickTime ++;
-            angular.element(icon).next().removeClass('current');
-            angular.element(icon).next().addClass('won');
-          }
+  var allVisiblePotentialStars = function (questionIndex) {
+    return $document.find('.question-' + questionIndex + ' .potential-stars .potential-star.js-is-winnable');
+  };
 
-          $timeout(nextQuestion, 1000);
-        } else {
-          angular.element(icon).removeClass('current');
-          angular.element(icon).addClass('lost');
+  var numVisiblePotentialStars = function (questionIndex) {
+    return allVisiblePotentialStars(questionIndex).length;
+  };
 
-          if ((clickTime % 2) == 1) {
-            angular.element(element).find('button').attr('disabled','disabled');
-            $timeout(nextQuestion, 1000);
-          }
-        }
-        clickTime ++;
-        return result;
-      };
+  var moveAvailableStarsToStarSlots = function (questionIndex) {
+
+    var promises = [];
+
+    _.each(allVisiblePotentialStars(questionIndex), function (element) {
+      var starSlot = nextAvailableStarSlot();
+      var currentOffset = angular.element(element).offset();
+      var newOffset =  angular.element(starSlot).offset();
+      var offsetChange = {};
+
+      // Force the offset change to always be negative
+      offsetChange.top  = - Math.abs(currentOffset.top  - newOffset.top);
+      offsetChange.left = - Math.abs(currentOffset.left - newOffset.left);
+
+      // We have to dynamically calculate the distances of the transform as
+      // there are enough permutations (2 stars x 10 possible slots) to make
+      // doing it declaratively painful. However we still declare as much of the
+      // animation as possible in the CSS.
+      var translation = 'translate3d(' + offsetChange.left + 'px, ' + offsetChange.top + 'px,0px)';
+      angular.element(element).css('-webkit-transform', translation);
+
+      var deferred = $q.defer();
+      promises.push(deferred.promise);
+
+      angular.element(element).on('webkitTransitionEnd', function (event) {
+        angular.element(starSlot).find('.js-empty-slot-img').hide();
+        angular.element(starSlot).find('.js-full-slot-img').show();
+        deferred.resolve();
+        $scope.$apply();
+      });
+
+      markStarSlotAsFull(starSlot);
+    });
+
+    // return a combined promise that will be fullfilled when *both* animations finish
+    return $q.all(promises); 
+  };
+  
+  var goToResults = function () {
+    $location.path('/result/' + $routeParams.levelId);
+  };
+
+  var saveResultToStorage = function (stars) {
+    // If there was not already a value in stars, trying to add 1 to it returns NaN
+    if ($localStorage.stars) {
+      $localStorage.stars += stars;
+    }
+    else {
+      $localStorage.stars = stars;
+    }
+
+    $log.log('User now has ' + $localStorage.stars + ' stars');
+  };
+
+  var displayNextQuestion = function () {
+    $scope.questionIndexToShow += 1;
+  };
+
+  var hideFirstVisiblePotentialStar = function(questionIndex) {
+    var $firstVisiblePotentialStar = $document.find('.question-' + questionIndex + ' .potential-stars .potential-star.js-is-winnable').first();
+
+    // change the star img to indicate that it has been lost
+    angular.element('.js-won-star-img', $firstVisiblePotentialStar).hide('fast');
+
+    // mark the potential-star wrapper as lost
+    $firstVisiblePotentialStar.removeClass('js-is-winnable');
+    $firstVisiblePotentialStar.addClass('js-is-lost');
+  };
+
+  var areAllPotentialStarsLost = function (questionIndex) {
+    var numWinnableStars = $document.find('.question-' + questionIndex + ' .potential-stars .potential-star.js-is-winnable').length;
+    return (numWinnableStars === 0) ? true : false;
+  };
 }
 
-// function KidsListCtrl($scope, $http, Player, $localStorage, $log) {
-//     $http.get('content/kids.json').success(function(data) {
-//         $scope.kids = data;
-//     });
-//     $localStorage.level = 1;
-//     $log.log("Level: " + $localStorage.level);
-// 
-//     $scope.player = Player.getPlayer();
-//     $scope.setPlayer = function(kid) {
-//         Player.addPlayer(kid);
-//     };
-//     $scope.removePlayer = function() {
-//         Player.rmPlayer();
-//     };
-// 
-//     $scope.getLevel = Player.getLevel();
-// 
-// 
-// }
+function ResultCtrl($scope, $localStorage, $log, $location) {
 
-function ResultCtrl($scope, $routeParams, Result, $localStorage, $log) {
-  $scope.result = Result.getResult();
-  $scope.level = $routeParams.levelId;
-  $scope.nextLevel = parseInt($routeParams.levelId) + 1;
-  $scope.conclusion = Result.getConclusionResult();
-  $scope.homeScreen = function(level) {
-    Result.removeAll();
-    $localStorage.level = level;
-    window.location = '#/level/' + level; // FIXME: should this be done through $location service?
+  var didUserPassQuiz = function (result) {
+    var PASS_MARK = 7;
+    return (result >= PASS_MARK) ? true : false;
+  };
+
+  $scope.passed = didUserPassQuiz($localStorage.stars);
+  $scope.score = $localStorage.stars;
+
+  // remove the user's result from storage
+  $localStorage.stars = 0;
+
+  $scope.level = parseInt($localStorage.level, 10);
+  if ($scope.passed) {
+    $scope.level += 1;
   }
-  $scope.tryAgain = function(level) {
-    Result.removeAll();
-    window.location = '#/quiz/' + level; // FIXME: use $location here?
-  }
-}
+  $localStorage.level = $scope.level;
 
-
+  $scope.returnToHomeScreen = function () {
+    $location.path('/level/' + $scope.level);
+  };
+} 

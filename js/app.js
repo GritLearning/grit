@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('App', ['grit.filters', 'grit.services', 'ngStorage'])
+angular.module('App', ['grit.filters', 'grit.services', 'ngStorage', 'ngRoute'])
   .config(function ($compileProvider){
-    $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'partials/level.html', controller: RootCtrl});
@@ -15,21 +15,21 @@ angular.module('App', ['grit.filters', 'grit.services', 'ngStorage'])
   }])
   .directive('scoreIconDirective', function($compile) {
      return {
-    	scope: {
+      scope: {
             levelId: "=levelId",
             result: "=result"
          },
          link: function($scope, $element, $attrs) {
-        	 $element.append("<div class='span1'>Level" + $scope.levelId + "</div>");
-        	 for(var i=0; i<10; i++) {
-        		 if (i == 0 || i == 1) {
-        			 $element.append("<div class='span1 current' id='result_" + i + "'><span></span></div>");
-        		 } else {
-        			 $element.append("<div class='span1 next' id='result_" + i + "'><span></span></div>");
-        		 }
-        		 
-        	 }
-        	 $compile($element.contents())($scope);
+           $element.append("<div class='span1'>Level" + $scope.levelId + "</div>");
+           for(var i=0; i<10; i++) {
+             if (i == 0 || i == 1) {
+               $element.append("<div class='span1 current' id='result_" + i + "'><span></span></div>");
+             } else {
+               $element.append("<div class='span1 next' id='result_" + i + "'><span></span></div>");
+             }
+             
+           }
+           $compile($element.contents())($scope);
          }
      };
   })
@@ -77,7 +77,7 @@ angular.module('App', ['grit.filters', 'grit.services', 'ngStorage'])
           }
       };
   })
-  .directive('myRepeatDirective', function() {
+  .directive('gritHideAllButFirst', function() {
       return function(scope, element, attrs) {
           if (! scope.$first) {
               angular.element(element).css('display','none');
