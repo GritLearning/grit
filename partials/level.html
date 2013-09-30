@@ -5,8 +5,8 @@
                 <div class="sidebar">
 
                     <ul class="nav nav-list">
+                        <li><img src="/img/logo.png"></li>
                         <li class="nav-header">Current Level: {{currentLevel}}</li>
-                        <li><img src="img/logo.png"></li>
                         <li class="divider"></li>
                         <li><a href="#/exit">Finish my session</a></li>
                         <li><a href="#/admin">Open Admin Settings</a></li>
@@ -20,14 +20,14 @@
               <ul class="thumbnails" ng-repeat="level in levels">
                 <div class="navbar">
                   <div class="navbar-inner">
-                    <a class="brand" href="#">Level {{level.id}}</a>
+                    <a class="brand" href="#">Level {{level.id}}</a>   
                     <span ng-show="level.isNext" class="label label-warning">Next level to try</span>
                     <span ng-show="level.isLocked" class="label label-important">Locked</span>
                     <span ng-show="! level.isLocked" class="label label-success">Unlocked</span>
                   </div>
                 </div>
 
-                <li ng-show="! level.isLocked" class="span4" ng-repeat="app in apps | filter:{level: level.id}">
+                <li ng-show="! level.isLocked" class="span4 blob" ng-repeat="app in apps | filter:{level: level.id}">
                   <a href="#" class="thumbnail" ng-click='open(app.launchCommand, app.name)'>
                     <img ng-src="{{app.icon}}" alt="{{app.name}}" class="img-rounded" />
                     <center><h4>{{app.name}}</h4></center>

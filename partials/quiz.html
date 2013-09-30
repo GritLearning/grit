@@ -1,3 +1,5 @@
+<div class="quiz-background">
+
 <div class="well">
   <div class="star-slots">
     <div ng-repeat="_meh in _.range(7)" class="star-slot js-is-empty">
@@ -11,7 +13,7 @@
   </div>
 </div>
 
-<div ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:5)">
+<div  ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:2)" id="{{$index}}" my-repeat-directive>
   <div class="question question-{{$index}}" ng-show="questionIndexToShow == $index">
 
     <div class="span6">
@@ -42,4 +44,6 @@
 
     </div> <!-- .span6 -->
   </div> <!-- .question -->
+</div>
+
 </div>
