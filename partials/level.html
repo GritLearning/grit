@@ -1,48 +1,48 @@
-<div ng-controller="ContentListCtrl">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
-                <div class="sidebar">
+<div class="wrapper" ng-controller="ContentListCtrl">
+  <div class="sidebar">
+    <img class="star" src="img/score-star.png" />
+    <h1 class="num-won-stars">32</h1>
+    <a class="quit-session" href="#/exit"><img alt="Quit session" src="img/button-quit-session.png" /></a>
+      <!-- <ul class="nav nav&#45;list"> -->
+      <!--     <li><img src="img/logo.png"></li> -->
+      <!--     <li class="nav&#45;header">Current Level: {{currentLevel}}</li> -->
+      <!--     <li class="divider"></li> -->
+      <!--     <li><a href="#/exit">Finish my session</a></li> -->
+      <!--     <li><a href="#/admin">Open Admin Settings</a></li> -->
+      <!-- </ul> -->
 
-                    <ul class="nav nav-list">
-                        <li><img src="/img/logo.png"></li>
-                        <li class="nav-header">Current Level: {{currentLevel}}</li>
-                        <li class="divider"></li>
-                        <li><a href="#/exit">Finish my session</a></li>
-                        <li><a href="#/admin">Open Admin Settings</a></li>
-                    </ul>
-
-                </div>
-            </div>
-            <div class="span10">
-              <h1>Grit Learning</h1>
-
-              <ul class="thumbnails" ng-repeat="level in levels">
-                <div class="navbar">
-                  <div class="navbar-inner">
-                    <a class="brand" href="#">Level {{level.id}}</a>   
-                    <span ng-show="level.isNext" class="label label-warning">Next level to try</span>
-                    <span ng-show="level.isLocked" class="label label-important">Locked</span>
-                    <span ng-show="! level.isLocked" class="label label-success">Unlocked</span>
-                  </div>
-                </div>
-
-                <li ng-show="! level.isLocked" class="span4 blob" ng-repeat="app in apps | filter:{level: level.id}">
-                  <a href="#" class="thumbnail" ng-click='open(app.launchCommand, app.name)'>
-                    <img ng-src="{{app.icon}}" alt="{{app.name}}" class="img-rounded" />
-                    <center><h4>{{app.name}}</h4></center>
-                  </a>
-                </li>
-
-                <li ng-show="level.isLocked" class="span4" ng-repeat="app in apps | filter:{level: level.id}">
-                  <a ng-href="#/quiz/{{currentLevel}}" class="thumbnail">
-                    <img ng-src="{{app.icon}}" alt="{{app.name}}" class="img-rounded" />
-                    <center><h4>{{app.name}}</h4></center>
-                  </a>
-                </li>
-              </ul>
-
-          </div>
-      </div>
   </div>
-</div>
+  <div class="levels">
+
+    <div class="level" ng-repeat="level in levels">
+      <div ng-show="level.isLocked"
+           ng-href="#/quiz/{{currentLevel}}" 
+           ng-click="window.navigate" 
+           class="locked-level-overlay">
+      </div>
+      <div class="level-name">{{level.id}}</div>
+
+      <ul class="game-thumbnails">
+
+        <li ng-show="! level.isLocked" class="game-thumbnail unlocked" ng-repeat="app in apps | filter:{level: level.id}">
+          <a href="#" class="link" ng-click='open(app.launchCommand, app.name)'>
+            <div class="frame">
+              <img ng-src="{{app.icon}}" alt="{{app.name}}" class="icon" />
+            </div>
+            <h4 class="title">{{app.name}}</h4>
+          </a>
+        </li>
+
+        <li ng-show="level.isLocked" class="game-thumbnail locked" ng-repeat="app in apps | filter:{level: level.id}">
+          <a ng-href="#/quiz/{{currentLevel}}" class="link">
+            <div class="frame">
+              <img ng-src="{{app.icon}}" alt="{{app.name}}" class="icon" />
+            </div>
+            <h4 class="title">{{app.name}}</h4>
+          </a>
+        </li>
+      </ul>
+
+    </div><!-- .level -->
+  </div><!-- .levels -->
+</div><!-- .wrapper -->
