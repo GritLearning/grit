@@ -1,49 +1,46 @@
-<div class="quiz-background">
-
-<div class="well">
+<div class="quiz">
+  <div class="level-name">1</div>
   <div class="star-slots">
     <div ng-repeat="_meh in _.range(7)" class="star-slot js-is-empty">
-      <img class="js-empty-slot-img" alt="" src="img/coin-current.png" />
-      <img class="js-full-slot-img" alt="" src="img/coin-won.png" />
+      <img class="js-empty-slot-img" alt="" src="img/score-star-outline-1.png" />
+      <img class="js-full-slot-img" alt="" src="img/score-star.png" />
     </div>
     <div ng-repeat="_meh in _.range(3)" class="star-slot js-is-empty">
-      <img class="js-empty-slot-img" alt="" src="img/coin-later.png" />
-      <img class="js-full-slot-img" alt="" src="img/coin-won.png" />
+      <img class="js-empty-slot-img" alt="" src="img/score-star-outline-2.png" />
+      <img class="js-full-slot-img" alt="" src="img/score-star.png" />
     </div>
   </div>
-</div>
 
-<div  ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:2)" id="{{$index}}" my-repeat-directive>
-  <div class="question question-{{$index}}" ng-show="questionIndexToShow == $index">
+  <div ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:5)" id="{{$index}}" my-repeat-directive>
+    <div class="question question-{{$index}}" ng-show="questionIndexToShow == $index">
 
-    <div class="span6">
-      <div class="hero-unit">
-        <img alt="" ng-src={{question.question_1.url}} />
-        <img alt="" ng-src="{{question.question_2.url}}" />
-      </div>
-    </div>
-
-    <div class="span6">
-      <ul class="possible-answers">
-        <li class="possible-answer" ng-repeat="answer in question.answers">
-          <button class="btn btn-large thumbnail" ng-disabled="hasBeenClicked" ng-click="processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
-            <img alt="" ng-src={{answer.url}} />
-          </button>
-        </li>
-      </ul>
-
-      <div class="potential-stars">
-        <div class="potential-star js-is-winnable">
-          <img alt="" class="js-won-star-img"  src="img/coin-won.png" />
-        </div>
-
-        <div class="potential-star js-is-winnable">
-          <img alt="" class="js-won-star-img"  src="img/coin-won.png" />
+      <div class="span6">
+        <div class="hero-unit">
+          <img alt="" ng-src={{question.question_1.url}} />
+          <img alt="" ng-src="{{question.question_2.url}}" />
         </div>
       </div>
 
-    </div> <!-- .span6 -->
-  </div> <!-- .question -->
-</div>
+      <div class="span6">
+        <ul class="possible-answers">
+          <li class="possible-answer" ng-repeat="answer in question.answers">
+            <button class="btn btn-large thumbnail" ng-disabled="hasBeenClicked" ng-click="processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
+              <img alt="" ng-src={{answer.url}} />
+            </button>
+          </li>
+        </ul>
 
-</div>
+        <div class="potential-stars">
+          <div class="potential-star js-is-winnable">
+            <img alt="" class="js-won-star-img"  src="img/score-star.png" />
+          </div>
+
+          <div class="potential-star js-is-winnable">
+            <img alt="" class="js-won-star-img"  src="img/score-star.png" />
+          </div>
+        </div>
+
+      </div> <!-- .span6 -->
+    </div> <!-- .question -->
+  </div>
+</div><!-- .quiz -->

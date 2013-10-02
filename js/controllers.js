@@ -49,6 +49,11 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
     $scope.currentLevel = Number($routeParams.levelId);
     $scope.levels = [];
 
+    $scope.openQuiz = function (level) {
+      $log.log('Opening quiz for level ' + level);
+      // TODO: is this the idiomatic way to navigate in angular?
+      $window.location.href = '#/quiz/' + level;
+    };
 
     var highestLevel = _.max($scope.apps, function (app) { return app.level; }).level;
 
@@ -70,6 +75,7 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
     function isNextLevel(level, currentLevel) {
       return (currentLevel + 1 == level) ? true : false;
     }
+
   });
 
   $scope.player = Player.getPlayer();

@@ -17,14 +17,14 @@
     <div class="level" ng-repeat="level in levels">
       <div ng-show="level.isLocked"
            ng-href="#/quiz/{{currentLevel}}" 
-           ng-click="window.navigate" 
+           ng-click="openQuiz(currentLevel)" 
            class="locked-level-overlay">
       </div>
       <div class="level-name">{{level.id}}</div>
 
       <ul class="game-thumbnails">
 
-        <li ng-show="! level.isLocked" class="game-thumbnail unlocked" ng-repeat="app in apps | filter:{level: level.id}">
+        <li ng-show="! level.isLocked" class="game-thumbnail" ng-repeat="app in apps | filter:{level: level.id}">
           <a href="#" class="link" ng-click='open(app.launchCommand, app.name)'>
             <div class="frame">
               <img ng-src="{{app.icon}}" alt="{{app.name}}" class="icon" />
@@ -33,7 +33,7 @@
           </a>
         </li>
 
-        <li ng-show="level.isLocked" class="game-thumbnail locked" ng-repeat="app in apps | filter:{level: level.id}">
+        <li ng-show="level.isLocked" class="game-thumbnail" ng-repeat="app in apps | filter:{level: level.id}">
           <a ng-href="#/quiz/{{currentLevel}}" class="link">
             <div class="frame">
               <img ng-src="{{app.icon}}" alt="{{app.name}}" class="icon" />

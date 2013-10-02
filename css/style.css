@@ -20,129 +20,40 @@ body {
   color: white;
 }
 
+/* Layer 1: Modules */
+/* **************** */
 
-
-
-
-
-
-
-
-
-
-
-/* Layer 1 Modules */
-/* *************** */
-
-.debugging {
-  max-width: 50%;
-  font-size: 9px;
-  position: absolute;
-  right: 1em;
-  bottom: 1em;
-}
-
-/*quiz*/
-
-.quiz-background{
-  background: url("../img/background-yellow.png");
-  height:100%;
-}
-
-.well{
-  background-color: #000000;
-  color:#ffffff;
-  font-size: 20px;
-}
-
-
-span.result_0 {
-       width: 10%;
-       background-color: red;
-       float: left;
-       text-align: center;
-}
-span.result_1 {
-       width: 10%;
-       background-color: green;
-       float: left;
-       text-align: center;
-}
-
-h2.final_result_passed {
-       color: green;
-}
-h2.final_result_failed {
-       color: red;
-}
-
-.result-icons div {
-	height: 30px;
-}
-.result-icons div.current {
-	background:url("../img/score-star.png") no-repeat ;
-	background-size: 43%;
-}
-.result-icons div.next {
-	background:url("../img/score-star-outline-1.png") no-repeat ;
-	background-size: 43%;
-}
-.result-icons div.lost {
-	background:url("../img/score-star-outline-2.png") no-repeat ;
-	background-size: 43%;
-}
-.result-icons div.won {
-	background:url("../img/score-star.png") no-repeat ;
-	background-size: 43%;
-}
-
-.hero-unit{
-  background-color: #ffffff;
-}
-
-.answer{
-background:url("../img/blob-orange.png") no-repeat;
-}
-
-button.btn-large {
-  height: 213px;
-  width: 210px;
-}
-
-.thumbnails .span4{
-  width:210px;
-}
 
 /*index*/
 
-.container-fluid{
-  background-color: #000000;
-}
-li.nav-header{
-  color:#ffffff;
-  font-size: 17.5px;
-  padding:30px inherit;
-  }
-
-.navbar-inner{
-  background-color: #000000;
-  background-image: none;
-  margin: 10px;
-}
-
-.navbar .brand{
-  color: #ffffff;
-  text-shadow: none;
-}
+/* .container-fluid{ */
+/*   background-color: #000000; */
+/* } */
+/* li.nav-header{ */
+/*   color:#ffffff; */
+/*   font-size: 17.5px; */
+/*   padding:30px inherit; */
+/*   } */
+/*  */
+/* .navbar-inner{ */
+/*   background-color: #000000; */
+/*   background-image: none; */
+/*   margin: 10px; */
+/* } */
+/*  */
+/* .navbar .brand{ */
+/*   color: #ffffff; */
+/*   text-shadow: none; */
+/* } */
 
 
 
 /*locked/unlocked buttons*/
-.navbar-inner .label{
-  font-size: 15px;
-  margin:10px;
-  padding: 4px 6px;
-  }
+/* .navbar-inner .label{ */
+/*   font-size: 15px; */
+/*   margin:10px; */
+/*   padding: 4px 6px; */
+/*   } */
 
 
 /* Home (levels) */
@@ -176,7 +87,6 @@ li.nav-header{
   right: 0;
   margin-bottom: 1em;
 }
-
 
 .levels {
   margin-left: 120px;
@@ -325,31 +235,41 @@ li.nav-header{
 }
 .question .btn-large {
   width: 100%;
+  /* height: 213px; */
+  /* width: 210px; */
 }
 
-/* Potential stars */
-/* *************** */
 .potential-stars {
-  width:   200px;
+  width:   180px;
   margin:  0 auto;
+  background-color: black;
+  border-radius: 50px;
+  overflow: hidden;
+  text-align: center;
+  padding: 10px 0px 10px 0;
 }
+
 .potential-star {
-  float:     left;
+  /* padding-left: 10px; */
+  display: inline-block;
   position:  relative; /* become the positional parent for our 'position: absolute' children */
-  width:     80px;
-  height:    80px;
+  width:     62px;
+  height:    59px;
 
   /* This controls the **time** part of the animation of this element. The spatial */
   /* part is controlled by Javascript. */
   -webkit-transition: all 0.75s ease-in-out;
 }
 
-
-/* star slots */
-/* ********** */
 .star-slots {
   min-height: 80px;
+  border-radius: 40px;
+  background-color: black;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: 800px;
 }
+
 .star-slot {
   margin: 0;
   position: relative; /* become the positional parent for our 'position: absolute' children */
@@ -357,11 +277,85 @@ li.nav-header{
   width: 80px;
   height: 80px;
 }
+
 .star-slot .js-full-slot-img {
   display: none;
 } 
 
+/* quiz misc ************************************** */
+.quiz {
+  background: url("../img/background-yellow.png");
+  height:100%;
+  overflow: hidden;
+}
+.quiz .level-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  /* height: 70px; */
+  padding: 20px;
+  background-color: black;
+  color: red;
+  font-size: 54px;
+}
 
-/* utilities */ 
-/* ********* */ 
+.well{
+  background-color: #000000;
+  color:#ffffff;
+  font-size: 20px;
+}
 
+
+span.result_0 {
+       width: 10%;
+       background-color: red;
+       float: left;
+       text-align: center;
+}
+span.result_1 {
+       width: 10%;
+       background-color: green;
+       float: left;
+       text-align: center;
+}
+
+h2.final_result_passed {
+       color: green;
+}
+h2.final_result_failed {
+       color: red;
+}
+
+.result-icons div {
+	height: 30px;
+}
+.result-icons div.current {
+	background:url("../img/score-star.png") no-repeat ;
+	background-size: 43%;
+}
+.result-icons div.next {
+	background:url("../img/score-star-outline-1.png") no-repeat ;
+	background-size: 43%;
+}
+.result-icons div.lost {
+	background:url("../img/score-star-outline-2.png") no-repeat ;
+	background-size: 43%;
+}
+.result-icons div.won {
+	background:url("../img/score-star.png") no-repeat ;
+	background-size: 43%;
+}
+
+.hero-unit{
+  background-color: #ffffff;
+}
+
+.answer{
+background:url("../img/blob-orange.png") no-repeat;
+}
+
+
+.thumbnails .span4{
+  width:210px;
+}
