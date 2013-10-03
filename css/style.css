@@ -14,47 +14,25 @@
 /* Layer 1 HTML elements */
 /* ********************* */
 
+html{
+  height: 100%;
+}
+
 body {
+  /* min-height: 100%; */
+  height: 100%;
   font-family: cubano-regular;
   background-color: black;
   color: white;
 }
 
+/* TODO: this feels very hacky */
+/* .ng-scope { */
+/*   height: 100%; */
+/* } */
+
 /* Layer 1: Modules */
 /* **************** */
-
-
-/*index*/
-
-/* .container-fluid{ */
-/*   background-color: #000000; */
-/* } */
-/* li.nav-header{ */
-/*   color:#ffffff; */
-/*   font-size: 17.5px; */
-/*   padding:30px inherit; */
-/*   } */
-/*  */
-/* .navbar-inner{ */
-/*   background-color: #000000; */
-/*   background-image: none; */
-/*   margin: 10px; */
-/* } */
-/*  */
-/* .navbar .brand{ */
-/*   color: #ffffff; */
-/*   text-shadow: none; */
-/* } */
-
-
-
-/*locked/unlocked buttons*/
-/* .navbar-inner .label{ */
-/*   font-size: 15px; */
-/*   margin:10px; */
-/*   padding: 4px 6px; */
-/*   } */
-
 
 /* Home (levels) */
 /* ************* */
@@ -115,7 +93,7 @@ body {
   background: url("../img/background-blue.png");
 }
 
-.level .level-name {
+.level .level-id {
   font-size: 72px;
   position: absolute;
   left: 20px;
@@ -128,24 +106,20 @@ body {
   background-color: black;
 }
 
-.level:nth-child(4n+1) .level-name {
+.level:nth-child(4n+1) .level-id {
   color: #00ff00; // green
 } 
 
-.level:nth-child(4n+2) .level-name {
+.level:nth-child(4n+2) .level-id {
   color: #f1b66a; // bright orange
 } 
  
-.level:nth-child(4n+3) .level-name {
+.level:nth-child(4n+3) .level-id {
   color: #00ffff; // bright blue
 }
 
-.level:nth-child(4n+4) .level-name {
+.level:nth-child(4n+4) .level-id {
   color: purple;
-}
-
-.level:nth-child(4n+5) .frame {
-  background-image: url("../img/blob-green.png");
 }
 
 .game-thumbnails {
@@ -227,26 +201,80 @@ body {
 /* Quiz */
 /* **** */
 
+.question {
+  margin-top: 20px;
+}
+
+.question .question-images {
+  text-align: center;
+  float: left;
+  width: 50%;
+  /* outline: 1px solid blue; */
+}
+
 .question .possible-answers {
-  list-style: none;
+  position: relative; /* become positioning root for our absolute children */
+  float: left;
+  width: 50%;
+  text-align: center;
 }
 .question .possible-answer {
   margin: 1em auto;
+  float: left;
+  width: 50%;
+  display: inline-block;
 }
-.question .btn-large {
-  width: 100%;
-  /* height: 213px; */
-  /* width: 210px; */
+
+.possible-answer .frame {
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 20px;
+  margin: 0px auto;
+  display: inline-block;
+  background-image: url("../img/blob-green.png");
+  /* min-width: 170px; */
+  /* min-height: 170px; */
+}
+
+/* .level:nth-child(4n+1) .frame { */
+/*   background-image: url("../img/blob-green.png"); */
+/* }  */
+/*  */
+/* .level:nth-child(4n+2) .frame { */
+/*   background-image: url("../img/blob-orange.png"); */
+/* }  */
+/*   */
+/* .level:nth-child(4n+3) .frame { */
+/*   background-image: url("../img/blob-blue.png"); */
+/* } */
+/*  */
+/* .level:nth-child(4n+4) .frame { */
+/*   background-image: url("../img/blob-pink.png"); */
+/* } */
+/*  */
+/* .level:nth-child(4n+5) .frame { */
+/*   background-image: url("../img/blob-green.png"); */
+/* } */
+
+.possible-answer .image {
+  width: 170px;
+  height: 170px;
 }
 
 .potential-stars {
-  width:   180px;
-  margin:  0 auto;
   background-color: black;
   border-radius: 50px;
-  overflow: hidden;
   text-align: center;
-  padding: 10px 0px 10px 0;
+  padding: 8px 0 0 0;
+
+  margin: auto;
+  width: 180px;
+  height: 75px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .potential-star {
@@ -288,7 +316,8 @@ body {
   height:100%;
   overflow: hidden;
 }
-.quiz .level-name {
+
+.quiz .level-id {
   position: absolute;
   left: 0;
   right: 0;
@@ -300,62 +329,66 @@ body {
   font-size: 54px;
 }
 
-.well{
-  background-color: #000000;
-  color:#ffffff;
-  font-size: 20px;
+.clear {
+  overflow: hidden;
 }
 
+/* .well{ */
+/*   background-color: #000000; */
+/*   color:#ffffff; */
+/*   font-size: 20px; */
+/* } */
+/*  */
+/*  */
+/* span.result_0 { */
+/*        width: 10%; */
+/*        background-color: red; */
+/*        float: left; */
+/*        text-align: center; */
+/* } */
+/* span.result_1 { */
+/*        width: 10%; */
+/*        background-color: green; */
+/*        float: left; */
+/*        text-align: center; */
+/* } */
+/*  */
+/* h2.final_result_passed { */
+/*        color: green; */
+/* } */
+/* h2.final_result_failed { */
+/*        color: red; */
+/* } */
 
-span.result_0 {
-       width: 10%;
-       background-color: red;
-       float: left;
-       text-align: center;
-}
-span.result_1 {
-       width: 10%;
-       background-color: green;
-       float: left;
-       text-align: center;
-}
+/* .result-icons div { */
+/* 	height: 30px; */
+/* } */
+/* .result-icons div.current { */
+/* 	background:url("../img/score-star.png") no-repeat ; */
+/* 	background-size: 43%; */
+/* } */
+/* .result-icons div.next { */
+/* 	background:url("../img/score-star-outline-1.png") no-repeat ; */
+/* 	background-size: 43%; */
+/* } */
+/* .result-icons div.lost { */
+/* 	background:url("../img/score-star-outline-2.png") no-repeat ; */
+/* 	background-size: 43%; */
+/* } */
+/* .result-icons div.won { */
+/* 	background:url("../img/score-star.png") no-repeat ; */
+/* 	background-size: 43%; */
+/* } */
+/*  */
+/* .hero-unit{ */
+/*   background-color: #ffffff; */
+/* } */
 
-h2.final_result_passed {
-       color: green;
-}
-h2.final_result_failed {
-       color: red;
-}
-
-.result-icons div {
-	height: 30px;
-}
-.result-icons div.current {
-	background:url("../img/score-star.png") no-repeat ;
-	background-size: 43%;
-}
-.result-icons div.next {
-	background:url("../img/score-star-outline-1.png") no-repeat ;
-	background-size: 43%;
-}
-.result-icons div.lost {
-	background:url("../img/score-star-outline-2.png") no-repeat ;
-	background-size: 43%;
-}
-.result-icons div.won {
-	background:url("../img/score-star.png") no-repeat ;
-	background-size: 43%;
-}
-
-.hero-unit{
-  background-color: #ffffff;
-}
-
-.answer{
-background:url("../img/blob-orange.png") no-repeat;
-}
-
-
-.thumbnails .span4{
-  width:210px;
-}
+/* .answer{ */
+/* background:url("../img/blob-orange.png") no-repeat; */
+/* } */
+/*  */
+/*  */
+/* .thumbnails .span4{ */
+/*   width:210px; */
+/* } */

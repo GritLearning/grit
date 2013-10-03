@@ -1,5 +1,5 @@
 <div class="quiz">
-  <div class="level-name">1</div>
+  <div class="level-id">{{levelId}}</div>
   <div class="star-slots">
     <div ng-repeat="_meh in _.range(7)" class="star-slot js-is-empty">
       <img class="js-empty-slot-img" alt="" src="img/score-star-outline-1.png" />
@@ -11,36 +11,35 @@
     </div>
   </div>
 
-  <div ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:5)" id="{{$index}}" my-repeat-directive>
-    <div class="question question-{{$index}}" ng-show="questionIndexToShow == $index">
+  <div class="" ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:5)" id="{{$index}}" my-repeat-directive>
+    <div class="question question-{{$index}} clear" ng-show="questionIndexToShow == $index">
 
-      <div class="span6">
-        <div class="hero-unit">
-          <img alt="" ng-src={{question.question_1.url}} />
-          <img alt="" ng-src="{{question.question_2.url}}" />
-        </div>
+      <div class="question-images">
+        <img alt="" ng-src="{{question.question_2.url}}" />
+        <img alt="" ng-src={{question.question_1.url}} />
       </div>
 
-      <div class="span6">
-        <ul class="possible-answers">
-          <li class="possible-answer" ng-repeat="answer in question.answers">
-            <button class="btn btn-large thumbnail" ng-disabled="hasBeenClicked" ng-click="processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
-              <img alt="" ng-src={{answer.url}} />
-            </button>
-          </li>
-        </ul>
+      <div class="possible-answers clear">
+        <div class="possible-answer" 
+             ng-repeat="answer in question.answers"
+            ng-disabled="hasBeenClicked">
+              <div class="frame" ng-click="processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
+                <img class="image" alt="" ng-src={{answer.url}} />
+              </div>
+        </div><!-- .possible-answer -->
 
-        <div class="potential-stars">
-          <div class="potential-star js-is-winnable">
-            <img alt="" class="js-won-star-img"  src="img/score-star.png" />
-          </div>
+        <div class="potential-stars clear">
 
           <div class="potential-star js-is-winnable">
             <img alt="" class="js-won-star-img"  src="img/score-star.png" />
           </div>
-        </div>
 
-      </div> <!-- .span6 -->
+          <div class="potential-star js-is-winnable">
+            <img alt="" class="js-won-star-img"  src="img/score-star.png" />
+          </div>
+
+        </div><!-- .potential-stars -->
+      </div><!-- .possible-answers -->
     </div> <!-- .question -->
   </div>
 </div><!-- .quiz -->

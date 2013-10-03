@@ -2,10 +2,9 @@
 
 /* Controllers */
 
-function RootCtrl($location, $localStorage, $log) {
-  $log.log("in root controller");
+function RootCtrl($scope, $location, $localStorage, $log) {
+  $log.log("in RootCtrl");
   var level = $localStorage.level;
-
   if(level){
     $log.log("found level: " + level + ' in storage');
     $location.path('/level/' + level);
@@ -16,7 +15,7 @@ function RootCtrl($location, $localStorage, $log) {
 }
 
 function ExitCtrl($scope, $localStorage, $log) {
-  $log.log("exiting");
+  $log.log("In ExitCtrl");
   $scope.levelId = $localStorage.level;
 
   if($scope.levelId){
@@ -43,7 +42,8 @@ function AdminCtrl($scope, Player) {
     };
 }
 
-function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $log, _, $window) {
+function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $log, _, $window, $location) {
+  $log.log('In ContentListCtrl');
   $http.get('content/apps/apps.json').success(function (data) {
     $scope.apps = data;
     $scope.currentLevel = Number($routeParams.levelId);
@@ -51,9 +51,12 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
 
     $scope.openQuiz = function (level) {
       $log.log('Opening quiz for level ' + level);
-      // TODO: is this the idiomatic way to navigate in angular?
-      $window.location.href = '#/quiz/' + level;
+      $location.path('/quiz/' + level);
     };
+
+    $scope.totalStarsForThisSession = $localStorage.totalStarsForThisSession || 0;
+    $log.log('Total stars for this session: ' + $scope.totalStarsForThisSession);
+
 
     var highestLevel = _.max($scope.apps, function (app) { return app.level; }).level;
 
@@ -120,6 +123,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   $scope._ = _;
   $scope.questionIndexToShow = 0;
+  $scope.levelId = $routeParams.levelId;
 
   $scope.filterByLevel = function(quiz) {
     if(quiz.level == $routeParams.levelId){
@@ -129,6 +133,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   $scope.processAnswer = function (question, answer, questionIndex, isFinalQuestion) {
 
+    $log.log('running processAnswer');
     if (question.correct_answer.text === answer.text) { // answer is correct
       saveResultToStorage(numVisiblePotentialStars(questionIndex));
 
@@ -237,6 +242,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   var displayNextQuestion = function () {
     $scope.questionIndexToShow += 1;
+    $log.log('next index is: ' + $scope.questionIndexToShow);
   };
 
   var hideFirstVisiblePotentialStar = function(questionIndex) {
@@ -266,8 +272,19 @@ function ResultCtrl($scope, $localStorage, $log, $location) {
   $scope.passed = didUserPassQuiz($localStorage.stars);
   $scope.score = $localStorage.stars;
 
-  // remove the user's result from storage
+  // manage stars
+  // ************
+
+  // save their stars if they passed the quiz
+  if ($scope.passed) {
+    $localStorage.totalStarsForThisSession = $localStorage.stars;
+  }
+
+  // reset their per-quiz stars score
   $localStorage.stars = 0;
+
+  // manage levels 
+  // ************
 
   $scope.level = parseInt($localStorage.level, 10);
   if ($scope.passed) {
