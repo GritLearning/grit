@@ -14,16 +14,19 @@ function RootCtrl($scope, $location, $localStorage, $log) {
   }
 }
 
-function ExitCtrl($scope, $localStorage, $log) {
-  $log.log("In ExitCtrl");
-  $scope.levelId = $localStorage.level;
+function ExitCtrl($scope, $location, $localStorage, $log) {
+  $log.log("In ExitCtrl()");
 
-  if($scope.levelId){
-    $log.log("exit: found level: " + $scope.levelId);
-  } else {
-    $scope.levelId = 0;
-    $log.log("exit: found no level");
-  }
+  $scope.totalStarsForThisSession = $localStorage.totalStarsForThisSession || 0;
+  $log.log('Total stars for this session: ' + $scope.totalStarsForThisSession);
+
+  $scope.resetSession = function () {
+    $log.log('Resetting user session data');
+    $localStorage.$reset();
+
+    $log.log('Sending user back to levels screen');
+    $location.path('/level/1');
+  };
 }
 
 function AdminCtrl($scope, Player) {
@@ -70,6 +73,21 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
         isNext: isNextLevel(i, $scope.currentLevel)
       });
     }
+
+    $scope.showFinishModal = function () {
+      $log.log('In showFinishModal()');
+      angular.element('.modal-overlay').removeClass('hidden');
+      angular.element('.finish-modal').removeClass('hidden');
+    };
+
+    $scope.hideFinishModal = function () {
+      $log.log('In hideFinishModal()');
+      angular.element('.modal-overlay').addClass('hidden');
+      angular.element('.finish-modal').addClass('hidden');
+    };
+
+    // helper functions
+    // ****************
 
     function isLevelLocked(level, currentLevel) {
       return (level <= currentLevel) ? false : true;
@@ -125,6 +143,9 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
   $scope.questionIndexToShow = 0;
   $scope.levelId = $routeParams.levelId;
 
+  $scope.showQuiz= true;
+  $scope.showResults = false;
+
   $scope.filterByLevel = function(quiz) {
     if(quiz.level == $routeParams.levelId){
       return quiz;
@@ -138,7 +159,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
       saveResultToStorage(numVisiblePotentialStars(questionIndex));
 
       moveAvailableStarsToStarSlots(questionIndex).then(function () {
-        isFinalQuestion ? goToResults() : displayNextQuestion();
+        isFinalQuestion ? showResults() : displayNextQuestion();
       });
     }
     else { // answer is wrong 
@@ -153,7 +174,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
         $timeout(function () {
           enableAllAnswers();
-          isFinalQuestion ? goToResults() : displayNextQuestion();
+          isFinalQuestion ? showResults() : displayNextQuestion();
         }, delay);
       }
     }
@@ -223,9 +244,48 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     // return a combined promise that will be fullfilled when *both* animations finish
     return $q.all(promises); 
   };
+
+  var didUserPassQuiz = function (result) {
+    var PASS_MARK = 7;
+    return (result >= PASS_MARK) ? true : false;
+  };
   
-  var goToResults = function () {
-    $location.path('/result/' + $routeParams.levelId);
+  var updateStoredTotalSessionStars = function (stars) {
+    var a = parseInt($localStorage.totalStarsForThisSession, 10) || 0;
+    var b = parseInt(stars, 10) || 0;
+    $localStorage.totalStarsForThisSession = a + b;
+  };
+
+  var resetPerQuizStars = function () {
+    $localStorage.stars = 0;
+  };
+
+  var showResults = function () {
+    $scope.showQuiz = false;
+    $scope.showResults = true;
+
+    $scope.stars = $localStorage.stars;
+    $scope.passed = didUserPassQuiz($scope.stars);
+
+    if ($scope.passed) {
+      updateStoredTotalSessionStars($scope.score);
+    }
+
+    // manage levels 
+    // ************
+
+    // attempt to load stored level and default to 1 if we cannot
+    $scope.level = parseInt($localStorage.level, 10) || 1;
+    $log.log('Setting level to ' + $scope.level);
+
+    if ($scope.passed) {
+      $scope.level += 1;
+    }
+    $localStorage.level = $scope.level;
+
+    $scope.returnToHomeScreen = function () {
+      $location.path('/level/' + $scope.level);
+    };
   };
 
   var saveResultToStorage = function (stars) {
@@ -261,38 +321,3 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     return (numWinnableStars === 0) ? true : false;
   };
 }
-
-function ResultCtrl($scope, $localStorage, $log, $location) {
-
-  var didUserPassQuiz = function (result) {
-    var PASS_MARK = 7;
-    return (result >= PASS_MARK) ? true : false;
-  };
-
-  $scope.passed = didUserPassQuiz($localStorage.stars);
-  $scope.score = $localStorage.stars;
-
-  // manage stars
-  // ************
-
-  // save their stars if they passed the quiz
-  if ($scope.passed) {
-    $localStorage.totalStarsForThisSession = $localStorage.stars;
-  }
-
-  // reset their per-quiz stars score
-  $localStorage.stars = 0;
-
-  // manage levels 
-  // ************
-
-  $scope.level = parseInt($localStorage.level, 10);
-  if ($scope.passed) {
-    $scope.level += 1;
-  }
-  $localStorage.level = $scope.level;
-
-  $scope.returnToHomeScreen = function () {
-    $location.path('/level/' + $scope.level);
-  };
-} 

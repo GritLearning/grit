@@ -8,7 +8,6 @@ angular.module('App', ['grit.filters', 'grit.services', 'ngStorage', 'ngRoute'])
     $routeProvider.when('/', {templateUrl: 'partials/level.html', controller: RootCtrl});
     $routeProvider.when('/admin', {templateUrl: 'partials/admin.html', controller: AdminCtrl});
     $routeProvider.when('/exit', {templateUrl: 'partials/exit.html', controller: ExitCtrl});
-    $routeProvider.when('/result/:levelId', {templateUrl: 'partials/result.html', controller: ResultCtrl});
     $routeProvider.when('/level/:levelId', {templateUrl: 'partials/level.html', controller: ContentListCtrl});
     $routeProvider.when('/quiz/:levelId', {templateUrl: 'partials/quiz.html', controller: QuizCtrl});
     $routeProvider.otherwise({redirectTo: '/'});

@@ -1,4 +1,4 @@
-<div class="quiz">
+<div class="quiz-wrapper">
   <div class="level-id">{{levelId}}</div>
   <div class="star-slots">
     <div ng-repeat="_meh in _.range(7)" class="star-slot js-is-empty">
@@ -11,35 +11,46 @@
     </div>
   </div>
 
-  <div class="" ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:5)" id="{{$index}}" my-repeat-directive>
-    <div class="question question-{{$index}} clear" ng-show="questionIndexToShow == $index">
+  <div class="quiz" ng-show="showQuiz">
+    <div class="" ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:5)" id="{{$index}}" my-repeat-directive>
+      <div class="question question-{{$index}} clear" ng-show="questionIndexToShow == $index">
 
-      <div class="question-images">
-        <img alt="" ng-src="{{question.question_2.url}}" />
-        <img alt="" ng-src={{question.question_1.url}} />
-      </div>
+        <div class="question-images">
+          <img alt="" ng-src="{{question.question_2.url}}" />
+          <img alt="" ng-src={{question.question_1.url}} />
+        </div>
 
-      <div class="possible-answers clear">
-        <div class="possible-answer" 
-             ng-repeat="answer in question.answers"
-            ng-disabled="hasBeenClicked">
-              <div class="frame" ng-click="processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
-                <img class="image" alt="" ng-src={{answer.url}} />
-              </div>
-        </div><!-- .possible-answer -->
+        <div class="possible-answers clear">
+          <div class="possible-answer" 
+              ng-disabled="hasBeenClicked"
+              ng-repeat="answer in question.answers">
+                <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')" 
+                    ng-click="(! hasBeenClicked) && processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
+                  <img class="image" alt="" ng-src={{answer.url}} />
+                </div>
+          </div><!-- .possible-answer -->
 
-        <div class="potential-stars clear">
+          <div class="potential-stars clear">
 
-          <div class="potential-star js-is-winnable">
-            <img alt="" class="js-won-star-img"  src="img/score-star.png" />
-          </div>
+            <div class="potential-star js-is-winnable">
+              <img alt="" class="js-won-star-img"  src="img/score-star.png" />
+            </div>
 
-          <div class="potential-star js-is-winnable">
-            <img alt="" class="js-won-star-img"  src="img/score-star.png" />
-          </div>
+            <div class="potential-star js-is-winnable">
+              <img alt="" class="js-won-star-img"  src="img/score-star.png" />
+            </div>
 
-        </div><!-- .potential-stars -->
-      </div><!-- .possible-answers -->
-    </div> <!-- .question -->
-  </div>
-</div><!-- .quiz -->
+          </div><!-- .potential-stars -->
+        </div><!-- .possible-answers -->
+      </div> <!-- .question -->
+    </div>
+  </div><!-- .quiz -->
+
+  <div class="result clear" ng-show="showResults">
+    <h1 class="text" ng-show="passed">You passed!</h1>
+    <h1 class="text" ng-hide="passed">Try again!</h1>
+
+    <button ng-show="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</button>
+    <button ng-hide="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</button>
+  </div><!-- .result -->
+</div><!-- .quiz-wrapper -->

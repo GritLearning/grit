@@ -1,8 +1,19 @@
+<div class="modal-overlay hidden"></div>
+
+<div class="finish-modal hidden">
+  <img src="img/finished.png" />
+  <div class="buttons">
+    <img class="no" ng-click="hideFinishModal()" src="img/no.png" />
+    <a class="yes" href="#/exit"><img src="img/yes.png" /></a>
+  </div>
+</div><!-- .finish-modal -->
+
 <div class="wrapper" ng-controller="ContentListCtrl">
+
   <div class="sidebar">
     <img class="star" src="img/score-star.png" />
     <h1 class="num-won-stars">{{totalStarsForThisSession}}</h1>
-    <a class="quit-session" href="#/exit"><img alt="Quit session" src="img/button-quit-session.png" /></a>
+    <img class="quit-session" ng-click="showFinishModal()" src="img/button-quit-session.png" />
     <!--     <li class="nav&#45;header">Current Level: {{currentLevel}}</li> -->
     <!--     <li><a href="#/exit">Finish my session</a></li> -->
     <!--     <li><a href="#/admin">Open Admin Settings</a></li> -->
@@ -16,7 +27,7 @@
            ng-click="openQuiz(currentLevel)" 
            class="locked-level-overlay">
       </div>
-      <div class="level-name">{{level.id}}</div>
+      <div class="level-id">{{level.id}}</div>
 
       <ul class="game-thumbnails">
 
@@ -42,3 +53,5 @@
     </div><!-- .level -->
   </div><!-- .levels -->
 </div><!-- .wrapper -->
+
+
