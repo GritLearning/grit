@@ -74,18 +74,6 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
       });
     }
 
-    $scope.showFinishModal = function () {
-      $log.log('In showFinishModal()');
-      angular.element('.modal-overlay').removeClass('hidden');
-      angular.element('.finish-modal').removeClass('hidden');
-    };
-
-    $scope.hideFinishModal = function () {
-      $log.log('In hideFinishModal()');
-      angular.element('.modal-overlay').addClass('hidden');
-      angular.element('.finish-modal').addClass('hidden');
-    };
-
     // helper functions
     // ****************
 
@@ -99,6 +87,49 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
 
   });
 
+  // modals
+  // ******
+  
+  $scope.showFinishModal = function () {
+    $log.log('In showFinishModal()');
+    angular.element('.modal-overlay').removeClass('hidden');
+    angular.element('.finish-modal').addClass('visible');
+    disableBodyScrolling();
+  };
+
+  $scope.hideFinishModal = function () {
+    $log.log('In hideFinishModal()');
+    angular.element('.modal-overlay').addClass('hidden');
+    angular.element('.finish-modal').removeClass('visible');
+    enableBodyScrolling();
+  };
+
+  $scope.goToExitScreen = function () {
+    $log.log('In goToExitScreen()');
+    enableBodyScrolling();
+    $location.path('/exit');
+  };
+
+  var enableBodyScrolling = function () {
+    $log.log('In enableBodyScrolling()');
+    angular.element('body').removeClass('stop-scrolling');
+    angular.element('body').off('touchmove.grit.prevent-scroll')
+  };
+
+  var disableBodyScrolling = function () {
+    $log.log('In disableBodyScrolling()');
+    angular.element('body').addClass('stop-scrolling');
+    angular.element('body').on('touchmove.grit.prevent-scroll', defaultPreventer)
+  };
+
+  var defaultPreventer = function (e) {
+    $log.log('In defaultPreventer()');
+    e.preventDefault();
+  };
+
+  // app launching 
+  // *************
+  
   $scope.player = Player.getPlayer();
 
   $scope.open = function(app, name) {
@@ -268,7 +299,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     $scope.passed = didUserPassQuiz($scope.stars);
 
     if ($scope.passed) {
-      updateStoredTotalSessionStars($scope.score);
+      updateStoredTotalSessionStars($scope.stars);
     }
 
     // manage levels 

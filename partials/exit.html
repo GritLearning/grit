@@ -1,13 +1,14 @@
-<div >
+<div class="exit-wrapper clear">
+  <div class="exit clear" ng-click="resetSession()">
 
-  <div ng-click="resetSession()">
-    <div class="win-message">
-      YOU WON
+    <div class="message">
+      <img src="img/text/you-won.png" />
     </div>
-    <div class="">
+
+    <div class="score">
       <img src="img/score-star-big.png" />
-      <h1 class="num-won-stars">{{totalStarsForThisSession}}</h1>
+      <div class="stars">{{totalStarsForThisSession}}</div>
     </div>
-  </div>
 
+  </div>
 </div>

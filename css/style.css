@@ -1,8 +1,13 @@
 /* Setup */
 /* ***** */
 
-/* palette: */
-/* yellow: #fcee21; */
+/* palette:
+      yellow  #fcee21 
+      orange  #f1b66a
+      cyan    #00ffff
+      purple  #FF00FF
+      green   #00ff00
+ */
 
 @font-face {
   font-family: 'cubano-regular';
@@ -14,44 +19,88 @@
 /* Layer 1 HTML elements */
 /* ********************* */
 
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent; /* For some Androids */
+}
+
+/* apply a natural box layout model to all elements because sanity. */
+*, 
+*:before, 
+*:after {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
 html{
   height: 100%;
 }
 
 body {
   height: 100%;
-  font-family: cubano-regular;
   background-color: black;
-  color: white;
+}
+
+img {
+  max-width: 100%;
+}
+
+hr {
+  outline: none;
+  border: none;
 }
 
 /* Layer 1: Modules */
 /* **************** */
 
+.app {
+  height: 100%;
+  text-align: center;
+  font-family: cubano-regular;
+  color: white;
+}
+
 /* Home (levels) */
 /* ************* */
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 .modal-overlay{
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.7; /* side effect: forces this onto a GPU layer */
   z-index: 1;
 }
 
 .finish-modal {
-  position: absolute;
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  right: 15%;
+  bottom: 15%;
   background-color: white;
   border-radius: 20px;
-  text-align: center;
   padding: 20px 40px;
-  width: 600px;
-  height: 300px;
   z-index: 2;
+  display: none;
+  /* -webkit-transform: translate3d(0 -100%, 0); */
+  /* -webkit-transition: all 0.1s ease-in-out; */
+  -webkit-transition: all 2s ease-in-out;
 }
+
+.finish-modal.visible {
+  display: block;
+  /* -webkit-transform: translate3d(0, 50%, 0); */
+}
+
 .finish-modal .buttons .yes {
   margin-left: 30px;
 }
@@ -59,13 +108,13 @@ body {
 }
 
 .sidebar {
-  color: #fcee21;
+  color: #fcee21; /* yellow */
   position: fixed;
   top: 0;
   left: 0;
   width: 120px;
   bottom: 0;
-  text-align: center;
+  -webkit-transform: translateZ(0);
 }
 
 .sidebar .star {
@@ -80,13 +129,17 @@ body {
 
 .sidebar .quit-session {
   display: block;
-  position: absolute;
-  bottom: 1em;
-  left: 0;
-  right: 0;
   width: 86px;
   height: 86px;
-  margin: auto;
+  margin: 400px auto auto auto;
+}
+
+/* acknowledge taps/clicks with a little shimmy */
+.ack-tap {
+  -webkit-transform: translateZ(0);
+}
+.ack-tap:active {
+  -webkit-transform: scale(0.97, 0.97);
 }
 
 .levels {
@@ -123,8 +176,6 @@ body {
   top: 0;
   bottom: 20%;
   min-width: 80px;
-  /* outline: 1px solid green; */
-  text-align: center;
   padding-top: 30px;
   background-color: black;
 }
@@ -134,15 +185,15 @@ body {
 } 
 
 .level:nth-child(4n+2) .level-id {
-  color: #f1b66a; // bright orange
+  color: #f1b66a; // orange
 } 
  
 .level:nth-child(4n+3) .level-id {
-  color: #00ffff; // bright blue
+  color: #00ffff; // cyan 
 }
 
 .level:nth-child(4n+4) .level-id {
-  color: purple;
+  color: #FF00FF; // purple
 }
 
 .game-thumbnails {
@@ -165,8 +216,6 @@ body {
   float: left;
   overflow: hidden;
   margin: 10px;
-  /* outline: 1px solid blue; */
-  text-align: center;
 }
  
 .link,
@@ -175,7 +224,7 @@ body {
 .link:active {
   text-decoration: none;
   color: black;
-  height: 180px;
+  height: 200px;
   width: 150px;
   display: block;
 }
@@ -216,7 +265,6 @@ body {
 
 .link .title {
   clear: both;
-  text-align: center;
   margin-top: 0;
   font-size: 22px;
 }
@@ -229,20 +277,29 @@ body {
 }
 
 .question .question-images {
-  text-align: center;
   float: left;
   width: 50%;
-  /* outline: 1px solid blue; */
+}
+
+.question .divider {
+  height: 10px;
+  width: 80%;
+  background-color: black;
+  box-shadow: 2px 2px 0 orange;
+}
+
+.question .question-text {
+  margin: 0;
+  font-size: 80px;
 }
 
 .question .possible-answers {
   position: relative; /* become positioning root for our absolute children */
   float: left;
   width: 50%;
-  text-align: center;
 }
 .question .possible-answer {
-  margin: 1em auto;
+  /* margin: 1em auto; */
   float: left;
   width: 50%;
   display: inline-block;
@@ -253,7 +310,7 @@ body {
   background-repeat: no-repeat;
   padding: 20px;
   margin: 0px auto;
-  display: inline-block;
+  /* display: inline-block; */
   background-image: url("../img/blob-green.png");
   /* min-width: 170px; */
   /* min-height: 170px; */
@@ -287,10 +344,15 @@ body {
   height: 170px;
 }
 
+.possible-answer .text {
+  width: 200px;
+  height: 200px;
+  font-size: 100px;
+}
+
 .potential-stars {
   background-color: black;
   border-radius: 50px;
-  text-align: center;
   padding: 8px 0 0 0;
 
   margin: auto;
@@ -320,8 +382,8 @@ body {
   border-radius: 40px;
   background-color: black;
   margin: 0 auto;
-  padding: 10px 20px;
-  width: 800px;
+  padding: 10px;
+  display: inline-block;
 }
 
 .star-slot {
@@ -341,6 +403,9 @@ body {
   background: url("../img/background-yellow.png");
   height:100%;
   overflow: hidden;
+  color: black;
+  text-shadow: 2px 2px 0px orange;
+
 }
 
 .quiz-wrapper .level-id {
@@ -348,95 +413,75 @@ body {
   left: 0;
   right: 0;
   top: 0;
-  /* height: 70px; */
-  padding: 20px;
+  height: 60px;
   background-color: black;
   color: red;
-  font-size: 54px;
+  font-size: 44px;
+  text-align: left;
+  padding-left: 30px;
+  color: #00ff00; /* changes */
+  text-shadow: none;
 }
 
 .result {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .result .text {
   padding-top: 50px;
-  font-size: 130px;
+  font-size: 150px;
   display: block;
   margin: 0 auto;
   color: black;
-  text-align: center;
 }
 
 .result .btn-return-home {
-  display: block;
   float: right;
-  width: 200px;
-  height: 100px;
-  background-color: black;
-  color: yellow;
-  font-size: 130px;
+  background: url("../img/arrow-right.png") no-repeat;
+  width: 232px;
+  height: 161px;
+  color: #00ffff;
+  font-size: 100px;
+  padding: 15px 0 0 10px;
+  text-shadow: 2px 2px 0px blue;
+  text-align: left;
 }
 
 .clear {
   overflow: hidden;
 }
 
-/* .well{ */
-/*   background-color: #000000; */
-/*   color:#ffffff; */
-/*   font-size: 20px; */
-/* } */
-/*  */
-/*  */
-/* span.result_0 { */
-/*        width: 10%; */
-/*        background-color: red; */
-/*        float: left; */
-/*        text-align: center; */
-/* } */
-/* span.result_1 { */
-/*        width: 10%; */
-/*        background-color: green; */
-/*        float: left; */
-/*        text-align: center; */
-/* } */
-/*  */
-/* h2.final_result_passed { */
-/*        color: green; */
-/* } */
-/* h2.final_result_failed { */
-/*        color: red; */
-/* } */
+.hidden {
+  display: none;
+}
 
-/* .result-icons div { */
-/* 	height: 30px; */
-/* } */
-/* .result-icons div.current { */
-/* 	background:url("../img/score-star.png") no-repeat ; */
-/* 	background-size: 43%; */
-/* } */
-/* .result-icons div.next { */
-/* 	background:url("../img/score-star-outline-1.png") no-repeat ; */
-/* 	background-size: 43%; */
-/* } */
-/* .result-icons div.lost { */
-/* 	background:url("../img/score-star-outline-2.png") no-repeat ; */
-/* 	background-size: 43%; */
-/* } */
-/* .result-icons div.won { */
-/* 	background:url("../img/score-star.png") no-repeat ; */
-/* 	background-size: 43%; */
-/* } */
-/*  */
-/* .hero-unit{ */
-/*   background-color: #ffffff; */
-/* } */
+/* exit screen */
+/* *********** */
 
-/* .answer{ */
-/* background:url("../img/blob-orange.png") no-repeat; */
-/* } */
-/*  */
-/*  */
-/* .thumbnails .span4{ */
-/*   width:210px; */
-/* } */
+
+.exit-wrapper {
+  background: url("../img/background-brown.png");
+  height: 100%;
+}
+
+.exit {
+  margin: 4em;
+  padding: 2em;
+  color: #fcee21; /* yellow */
+  background-color: black;
+}
+
+.exit .message {
+  float: left;
+  width: 50%;
+}
+
+.exit .score {
+  float: left;
+  width: 50%;
+}
+.exit .score .stars {
+  font-size: 100px;
+  padding-top: 30px;
+}

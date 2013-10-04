@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('App', ['grit.filters', 'grit.services', 'ngStorage', 'ngRoute'])
+angular.module('App', ['grit.filters', 'grit.services', 'grit.directives', 'ngStorage', 'ngRoute', 'ngTouch'])
   .config(function ($compileProvider){
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })

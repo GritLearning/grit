@@ -16,8 +16,11 @@
       <div class="question question-{{$index}} clear" ng-show="questionIndexToShow == $index">
 
         <div class="question-images">
-          <img alt="" ng-src="{{question.question_2.url}}" />
-          <img alt="" ng-src={{question.question_1.url}} />
+          <h1 class="question-text">{{question.question_2.text}}</h1>
+          <hr class="divider" />
+          <h1 class="question-text">{{question.question_1.text}}</h1>
+          <!-- <img alt="" ng&#45;src="{{question.question_2.url}}" /> -->
+          <!-- <img alt="" ng&#45;src={{question.question_1.url}} /> -->
         </div>
 
         <div class="possible-answers clear">
@@ -26,7 +29,8 @@
               ng-repeat="answer in question.answers">
                 <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')" 
                     ng-click="(! hasBeenClicked) && processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
-                  <img class="image" alt="" ng-src={{answer.url}} />
+                  <!-- <img class="image" alt="" ng&#45;src={{answer.url}} /> -->
+                  <div enable-fit-text class="text">{{answer.text}}</div>
                 </div>
           </div><!-- .possible-answer -->
 
@@ -50,7 +54,7 @@
     <h1 class="text" ng-show="passed">You passed!</h1>
     <h1 class="text" ng-hide="passed">Try again!</h1>
 
-    <button ng-show="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</button>
-    <button ng-hide="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</button>
+    <div ng-show="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</div>
+    <div ng-hide="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</div>
   </div><!-- .result -->
 </div><!-- .quiz-wrapper -->
