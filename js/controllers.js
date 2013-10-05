@@ -185,7 +185,8 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   $scope.processAnswer = function (question, answer, questionIndex, isFinalQuestion) {
 
-    $log.log('running processAnswer');
+    $log.log('processAnswer()');
+
     if (question.correct_answer.text === answer.text) { // answer is correct
       saveResultToStorage(numVisiblePotentialStars(questionIndex));
 
@@ -195,7 +196,6 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     }
     else { // answer is wrong 
       hideFirstVisiblePotentialStar(questionIndex);
-
 
       if (areAllPotentialStarsLost(questionIndex)) {
         var delay = 2000 // mS
@@ -211,14 +211,24 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     }
   };
 
+  $scope.layoutDone = function () {
+    // schedule a function to run in our next turn in the event loop
+    $timeout(function () { 
+      $log.log('in the layoutDone() callback');
+      $('.question').addClass('slide-in-out'); // add the class that enables questions to slide in & out.
+    }, 0); 
+  }
+
   // Helper methods
   // **************
 
   var disableAllAnswers = function () {
-    $document.find('.possible-answers .possible-answer .btn').attr('disabled', true);
+    $document.find('.possible-answers .possible-answer').attr('disabled', true);
+    $document.find('.possible-answers .possible-answer .frame').addClass('frame-disabled');
   };
   var enableAllAnswers = function () {
-    $document.find('.possible-answers .possible-answer .btn').attr('disabled', false);
+    $document.find('.possible-answers .possible-answer .frame').removeClass('frame-disabled');
+    $document.find('.possible-answers .possible-answer').attr('disabled', false);
   };
 
   var markStarSlotAsFull = function (starSlot) {
@@ -265,6 +275,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
       angular.element(element).on('webkitTransitionEnd', function (event) {
         angular.element(starSlot).find('.js-empty-slot-img').hide();
         angular.element(starSlot).find('.js-full-slot-img').show();
+        angular.element(element).hide(); // hide the element we just moved so that it doesn't look odd when we slide-out this question
         deferred.resolve();
         $scope.$apply();
       });
@@ -292,15 +303,22 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
   };
 
   var showResults = function () {
+    $log.log('showResults()');
     $scope.showQuiz = false;
     $scope.showResults = true;
 
+    // manage stars 
+    // ************
+    
     $scope.stars = $localStorage.stars;
     $scope.passed = didUserPassQuiz($scope.stars);
 
     if ($scope.passed) {
       updateStoredTotalSessionStars($scope.stars);
     }
+
+    // Reset the per-quiz stars counter
+    $localStorage.stars = 0;
 
     // manage levels 
     // ************
@@ -314,12 +332,18 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     }
     $localStorage.level = $scope.level;
 
+
+    $log.log('localStorage: stars' + $localStorage.stars);
+    $log.log('localStorage: totalStarsForThisSession' + $localStorage.totalStarsForThisSession);
+
     $scope.returnToHomeScreen = function () {
       $location.path('/level/' + $scope.level);
     };
   };
 
   var saveResultToStorage = function (stars) {
+    $log.log('Saving ' + stars + ' stars to localStorage');
+
     // If there was not already a value in stars, trying to add 1 to it returns NaN
     if ($localStorage.stars) {
       $localStorage.stars += stars;
@@ -333,7 +357,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   var displayNextQuestion = function () {
     $scope.questionIndexToShow += 1;
-    $log.log('next index is: ' + $scope.questionIndexToShow);
+    $log.log('next question index is: ' + $scope.questionIndexToShow);
   };
 
   var hideFirstVisiblePotentialStar = function(questionIndex) {
