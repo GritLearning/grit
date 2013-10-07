@@ -19,11 +19,12 @@
       <div class="question question-{{$index}} " ng-show="questionIndexToShow == $index">
 
         <div class="question-images">
-          <h1 class="question-text">{{question.question_2.text}}</h1>
+          <!-- <h1 class="question&#45;text">{{question.question_2.text}}</h1> -->
+          <!-- <hr class="divider" /> -->
+          <!-- <h1 class="question&#45;text">{{question.question_1.text}}</h1> -->
+          <img alt="" ng-src="{{question.question_2.url}}" />
           <hr class="divider" />
-          <h1 class="question-text">{{question.question_1.text}}</h1>
-          <!-- <img alt="" ng&#45;src="{{question.question_2.url}}" /> -->
-          <!-- <img alt="" ng&#45;src={{question.question_1.url}} /> -->
+          <img alt="" ng-src={{question.question_1.url}} />
         </div>
 
         <div class="possible-answers">
