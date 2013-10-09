@@ -165,8 +165,8 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   // TODO: re-enable khmer before release. I have disabled it because I can't
   //       answer questions in it :-)
-  $http.get('content/locales/kh/quiz.json').success(function (data) {
-  // $http.get('content/locales/en/quiz.json').success(function (data) {
+  // $http.get('content/locales/kh/quiz.json').success(function (data) {
+  $http.get('content/locales/en/quiz.json').success(function (data) {
     $scope.quiz = data;
   });
 

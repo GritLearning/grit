@@ -33,8 +33,8 @@
               ng-repeat="answer in question.answers">
                 <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')" 
                     ng-click="(! hasBeenClicked) && processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
-                  <!-- <img class="image" alt="" ng&#45;src={{answer.url}} /> -->
-                  <div enable-fit-text class="text">{{answer.text}}</div>
+                  <img class="image" alt="" ng-src={{answer.url}} />
+                  <!-- <div enable&#45;fit&#45;text class="text">{{answer.text}}</div> -->
                 </div>
           </div><!-- .possible-answer -->
 
