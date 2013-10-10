@@ -223,7 +223,7 @@ hr {
   float: left;
   overflow: hidden;
   width: 25%;
-  height: 300px;
+  height: 330px;
 }
  
 .link,
@@ -292,7 +292,11 @@ hr {
   width: 50%;
   font-family: 'khmer', 'cubano-regular';
   overflow: hidden;
-  /* outline: 1px solid red; */
+  padding-left: 20px;
+}
+
+.question .question-images .image {
+  max-height: 300px;
 }
 
 .question .divider {
@@ -321,15 +325,15 @@ hr {
 }
 
 .possible-answer .frame {
+  position: relative;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
   padding: 20px;
   margin: 0px auto;
-  /* display: inline-block; */
   background-image: url("../img/blob-green.png");
-  /* min-width: 170px; */
-  /* min-height: 170px; */
+  width: 300px;
+  height: 300px;
 }
 .possible-answer .frame.frame-disabled {
   opacity: 0.4;
@@ -356,8 +360,12 @@ hr {
 /* } */
 
 .possible-answer .image {
-  width: 200px;
-  height: 200px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .possible-answer .text {
@@ -381,7 +389,7 @@ hr {
   top: 0;
 }
 
-.potential-star {
+.potential-stars .potential-star {
   display: inline-block;
   position:  relative; /* become the positional parent for our 'position: absolute' children */
   width:     62px;
@@ -389,11 +397,15 @@ hr {
 
   -webkit-transform: translateZ(0);
 
-  /* This controls the **time** part of the animation of this element. The spatial */
-  /* part is controlled by Javascript. */
-  -webkit-transition: all 0.75s ease-in-out;
+  /* This controls the **time** part of the animations of this element. The spatial */
+  /* part of the transform is controlled by Javascript. */
+  -webkit-transition: -webkit-transform 0.75s ease-in-out, opacity 0.2s linear;
+  opacity: 0;
 }
 
+.potential-stars .potential-star.js-is-winnable {
+  opacity: 1;
+}
 /*
  * Slide in/out Animation
  * **********************
@@ -454,6 +466,8 @@ hr {
   -webkit-transform: translateX(0);
 }
 
+/* Star slots (across the top of each quiz page) */
+/* ********************************************* */
 
 .star-slots {
   border-radius: 40px;
@@ -473,11 +487,17 @@ hr {
   display: none;
 } 
 
-/* quiz misc ************************************** */
+/* Quiz */
+/* **** */
+
 .quiz-wrapper {
   background: url("../img/background-yellow.png");
-  height:100%;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   color: black;
   text-shadow: 2px 2px 0px orange;
 

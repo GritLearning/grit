@@ -198,7 +198,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
       hideFirstVisiblePotentialStar(questionIndex);
 
       if (areAllPotentialStarsLost(questionIndex)) {
-        var delay = 2000 // mS
+        var delay = 2000; // mS
         disableAllAnswers();
 
         saveResultToStorage(0);
@@ -213,11 +213,11 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   $scope.layoutDone = function () {
     // schedule a function to run in our next turn in the event loop
-    $timeout(function () { 
+    $timeout(function () {
       $log.log('in the layoutDone() callback');
       $('.question').addClass('slide-in-out'); // add the class that enables questions to slide in & out.
-    }, 0); 
-  }
+    }, 0);
+  };
 
   // Helper methods
   // **************
@@ -363,12 +363,8 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
   var hideFirstVisiblePotentialStar = function(questionIndex) {
     var $firstVisiblePotentialStar = $document.find('.question-' + questionIndex + ' .potential-stars .potential-star.js-is-winnable').first();
 
-    // change the star img to indicate that it has been lost
-    angular.element('.js-won-star-img', $firstVisiblePotentialStar).hide('fast');
-
-    // mark the potential-star wrapper as lost
+    // mark the potential-star wrapper as no longer winnable 
     $firstVisiblePotentialStar.removeClass('js-is-winnable');
-    $firstVisiblePotentialStar.addClass('js-is-lost');
   };
 
   var areAllPotentialStarsLost = function (questionIndex) {
