@@ -30,19 +30,19 @@ function ExitCtrl($scope, $location, $localStorage, $log) {
 }
 
 function AdminCtrl($scope, Player) {
-    $scope.closeGrit = function(){
-        navigator.app.exitApp();
-    };
+  $scope.closeGrit = function(){
+    navigator.app.exitApp();
+  };
 
-    $scope.player = Player.getPlayer();
-    $scope.settings = function() {
-        cordova.exec(
-            successHdl(),
-            errorHdl(),
-            "GritLauncher", 
-            "startActivity", 
-            [ 'com.android.settings' ]);
-    };
+  $scope.player = Player.getPlayer();
+  $scope.settings = function() {
+    cordova.exec(
+      successHdl(),
+      errorHdl(),
+      'GritLauncher',
+      'startActivity',
+      [ 'com.android.settings' ]);
+  };
 }
 
 function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $log, _, $window, $location) {
@@ -67,8 +67,8 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
     // aLevelObject = { id: <integer>, isLocked: <true|false>, isNext: <true|false> }
    
     for (var i = 1; i <= highestLevel; i += 1) {
-      $scope.levels.push({ 
-        id: i, 
+      $scope.levels.push({
+        id: i,
         isLocked: isLevelLocked(i, $scope.currentLevel),
         isNext: isNextLevel(i, $scope.currentLevel)
       });
