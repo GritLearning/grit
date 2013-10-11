@@ -31,7 +31,7 @@
 
       <ul class="game-thumbnails">
 
-        <li ng-show="! level.isLocked" class="game-thumbnail" ng-repeat="app in apps | filter:{level: level.id}">
+        <li ng-show="! level.isLocked" class="game-thumbnail" ng-repeat="app in apps | filter:{level: level.id}:true">
           <a href="#" class="link" ng-click='open(app.launchCommand, app.name)'>
             <div class="frame">
               <img ng-src="{{app.icon}}" alt="{{app.name}}" class="icon ack-tap" />
