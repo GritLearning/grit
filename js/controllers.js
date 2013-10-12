@@ -2,18 +2,6 @@
 
 /* Controllers */
 
-function RootCtrl($scope, $location, $localStorage, $log) {
-  $log.log("in RootCtrl");
-  var level = $localStorage.level;
-  if(level){
-    $log.log("found level: " + level + ' in storage');
-    $location.path('/level/' + level);
-  } else {
-    $location.path('/level/1');
-    $log.log("found no level in storage - defaulting to level 1");
-  }
-}
-
 function ExitCtrl($scope, $location, $localStorage, $log) {
   $log.log("In ExitCtrl()");
 
@@ -24,32 +12,38 @@ function ExitCtrl($scope, $location, $localStorage, $log) {
     $log.log('Resetting user session data');
     $localStorage.$reset();
 
-    $log.log('Sending user back to levels screen');
-    $location.path('/level/1');
+    $log.log('Sending user back to the home screen');
+    $location.path('/');
   };
 }
 
-function AdminCtrl($scope, Player) {
+function AdminCtrl($scope, _, $log, $window, $location) {
   $scope.closeGrit = function(){
-    navigator.app.exitApp();
-  };
+    $log.log('Exiting grit - goodbye.');
 
-  $scope.player = Player.getPlayer();
-  $scope.settings = function() {
-    cordova.exec(
-      successHdl(),
-      errorHdl(),
-      'GritLauncher',
-      'startActivity',
-      [ 'com.android.settings' ]);
+    if (_.isObject(navigator.app) && _.isFunction(navigator.app.exitApp)) {
+      navigator.app.exitApp();
+    }
+    else {
+      $window.alert('If cordova existed I would exit grit - instead I am sending you back to the home screen');
+      $location.path('/');
+    }
   };
 }
 
-function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $log, _, $window, $location) {
-  $log.log('In ContentListCtrl');
+function RootCtrl($scope, $timeout, $http, $routeParams, Player, $localStorage, $log, _, $window, $location, $anchorScroll) {
+  $log.log('In RootCtrl');
+
+  if($localStorage.level){
+    $log.log('found level: ' + $localStorage.level + ' in storage');
+  } else {
+    $log.log('found no level in storage');
+    $localStorage.level = 1;
+  }
+
   $http.get('content/apps/apps.json').success(function (data) {
     $scope.apps = data;
-    $scope.currentLevel = Number($routeParams.levelId);
+    $scope.currentLevel = Number($localStorage.level);
     $scope.levels = [];
 
     $scope.openQuiz = function (level) {
@@ -69,8 +63,7 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
     for (var i = 1; i <= highestLevel; i += 1) {
       $scope.levels.push({
         id: i,
-        isLocked: isLevelLocked(i, $scope.currentLevel),
-        isNext: isNextLevel(i, $scope.currentLevel)
+        isLocked: isLevelLocked(i, $scope.currentLevel)
       });
     }
 
@@ -79,10 +72,6 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
 
     function isLevelLocked(level, currentLevel) {
       return (level <= currentLevel) ? false : true;
-    }
-
-    function isNextLevel(level, currentLevel) {
-      return (currentLevel + 1 == level) ? true : false;
     }
 
   });
@@ -104,6 +93,66 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
     enableBodyScrolling();
   };
 
+  $scope.scrollToHighestOpenLevel = function () {
+    // We want to scroll to the highest open level when we load the page.
+    // Unfortunately because the levels are loaded by Angular ngRepeat
+    // directive , they don't reliably exist during execution of the
+    // controller.  The other problem is changing $location.hash triggers
+    // routing which causes this controller to get run again. This is why I
+    // have chosen to manually scroll the correct element into view using
+    // element.scrollIntoView()
+
+    $log.log('Scrolling to highest open level: ' + $localStorage.level);
+
+    var id = '#level-' + $localStorage.level,
+        attempts = 0,
+        maxAttempts = 10,
+        delayBetweenAttempts = 100; // mS;
+
+    var scrollTo = function (id) {
+      $(id)[0].scrollIntoView(true);
+    };
+
+    var targetElementHasBeenRendered = function (id) {
+      if ($(id).height() > 0) {
+        $log.log('target element has been rendered');
+        return true;
+      } else {
+        $log.log('target element has NOT been rendered');
+        return false;
+      }
+    };
+
+    var levelIsNotFirstLevel = function (level) {
+      (level === '#level-1') ? false : true; 
+    };
+
+    var windowHasNotScrolled = function () {
+      ($('body').scrollTop() === 0) ? false : true; 
+    };
+
+    var rescheduleScrollAttempt = function () {
+      if (attempts < maxAttempts) {
+        $log.log('rescheduling a scroll attempt');
+        $timeout(tryToScroll, delayBetweenAttempts);
+      }
+    };
+
+    var tryToScroll = function () {
+      attempts += 1;
+      if (targetElementHasBeenRendered(id)) {
+        scrollTo(id);
+        if (levelIsNotFirstLevel() && windowHasNotScrolled()) {
+          rescheduleScrollAttempt();
+        }
+      } else {
+        rescheduleScrollAttempt();
+      }
+    };
+
+    tryToScroll();
+  };
+
   $scope.goToExitScreen = function () {
     $log.log('In goToExitScreen()');
     enableBodyScrolling();
@@ -113,7 +162,7 @@ function ContentListCtrl($scope, $http, $routeParams, Player, $localStorage, $lo
   var enableBodyScrolling = function () {
     $log.log('In enableBodyScrolling()');
     angular.element('body').removeClass('stop-scrolling');
-    angular.element('body').off('touchmove.grit.prevent-scroll')
+    angular.element('body').off('touchmove.grit.prevent-scroll');
   };
 
   var disableBodyScrolling = function () {
@@ -337,7 +386,7 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
     $log.log('localStorage: totalStarsForThisSession' + $localStorage.totalStarsForThisSession);
 
     $scope.returnToHomeScreen = function () {
-      $location.path('/level/' + $scope.level);
+      $location.path('/');
     };
   };
 
