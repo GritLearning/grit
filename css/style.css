@@ -317,6 +317,7 @@ hr {
   position: relative; /* become positioning root for our absolute children */
   float: left;
   width: 50%;
+  min-height: 570px; /* keep this up so that the vertically centered potential stars align correctly even if there aren't four possible answers */
 }
 .question .possible-answer {
   /* margin: 1em auto; */
@@ -340,26 +341,6 @@ hr {
   opacity: 0.4;
 }
 
-/* .level:nth-child(4n+1) .frame { */
-/*   background-image: url("../img/blob-green.png"); */
-/* }  */
-/*  */
-/* .level:nth-child(4n+2) .frame { */
-/*   background-image: url("../img/blob-orange.png"); */
-/* }  */
-/*   */
-/* .level:nth-child(4n+3) .frame { */
-/*   background-image: url("../img/blob-blue.png"); */
-/* } */
-/*  */
-/* .level:nth-child(4n+4) .frame { */
-/*   background-image: url("../img/blob-pink.png"); */
-/* } */
-/*  */
-/* .level:nth-child(4n+5) .frame { */
-/*   background-image: url("../img/blob-green.png"); */
-/* } */
-
 .possible-answer .image {
   position: absolute;
   left: 0;
@@ -367,6 +348,8 @@ hr {
   right: 0;
   bottom: 0;
   margin: auto;
+  max-width: 270px;
+  max-height: 270px;
 }
 
 .possible-answer .text {

@@ -217,8 +217,8 @@ function appLaunchErrorHandler() {
 function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location, $document, $q, $localStorage, _) {
   $log.log('QuizCtrl()');
 
-  // $http.get('content/locales/kh/quiz.json').success(function (data) {
-  $http.get('content/locales/en/quiz.json').success(function (questions) {
+  $http.get('content/locales/kh/quiz.json').success(function (questions) {
+  // $http.get('content/locales/en/quiz.json').success(function (questions) {
     $log.log('Loading quiz JSON');
     $scope.quiz = filterQuestions(questions);
   });
