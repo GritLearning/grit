@@ -92,7 +92,7 @@ hr {
   top: 15%;
   left: 15%;
   right: 15%;
-  bottom: 35%;
+  bottom: 15%;
   background-color: white;
   border-radius: 20px;
   padding: 20px 40px;
@@ -111,7 +111,14 @@ hr {
 .finish-modal .buttons .yes {
   margin-left: 30px;
 }
+
 .finish-modal .buttons .no {
+}
+
+.finish-modal .open-admin-settings {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .sidebar {
@@ -266,11 +273,6 @@ hr {
 }
 
 .link .icon {
-  /* width: 64px; */
-  /* height: 64px; */
-  /* width: 128px; */
-  /* height: 256px; */
-  /* border-radius: 8px; */
 }
 
 .link .title {
@@ -309,7 +311,6 @@ hr {
 .question .question-text {
   margin: 0;
   font-size: 30px;
-  /* font-size: 80px; */
 }
 
 .question .possible-answers {
@@ -584,4 +585,13 @@ hr {
   font-size: 200px;
   line-height: 1;
   padding-top: 30px;
+}
+
+/* admin settings screen */
+/* ********************* */
+
+.admin-settings {
+  background: white;
+  color: black;
+  padding: 3em;
 }

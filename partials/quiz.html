@@ -12,10 +12,7 @@
   </div>
 
   <div class="quiz" ng-show="showQuiz">
-    <div class="" 
-         ng-repeat="question in filtered = (quiz | filter:filterByLevel | shuffle | limitTo:5)" 
-         repeat-done="layoutDone()"
-         id="{{$index}}">
+    <div ng-repeat="question in quiz" repeat-done="layoutDone()" id="{{$index}}">
       <div class="question question-{{$index}} " ng-show="questionIndexToShow == $index">
 
         <div class="question-images">

@@ -5,7 +5,7 @@ angular.module('App', ['grit.filters', 'ngAnimate', 'grit.services', 'grit.direc
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })
   .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {templateUrl: 'partials/level.html', controller: RootCtrl});
+    $routeProvider.when('/', {templateUrl: 'partials/home.html', controller: RootCtrl});
     $routeProvider.when('/admin', {templateUrl: 'partials/admin.html', controller: AdminCtrl});
     $routeProvider.when('/exit', {templateUrl: 'partials/exit.html', controller: ExitCtrl});
     $routeProvider.when('/quiz/:levelId', {templateUrl: 'partials/quiz.html', controller: QuizCtrl});

@@ -18,7 +18,11 @@ function ExitCtrl($scope, $location, $localStorage, $log) {
 }
 
 function AdminCtrl($scope, _, $log, $window, $location) {
-  $scope.closeGrit = function(){
+  $scope.returnToHomeScreen = function () {
+    $location.path('/');
+  };
+
+  $scope.closeGrit = function (){
     $log.log('Exiting grit - goodbye.');
 
     if (_.isObject(navigator.app) && _.isFunction(navigator.app.exitApp)) {
@@ -211,26 +215,19 @@ function appLaunchErrorHandler() {
 }
 
 function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location, $document, $q, $localStorage, _) {
+  $log.log('QuizCtrl()');
 
-  // TODO: re-enable khmer before release. I have disabled it because I can't
-  //       answer questions in it :-)
   // $http.get('content/locales/kh/quiz.json').success(function (data) {
-  $http.get('content/locales/en/quiz.json').success(function (data) {
-    $scope.quiz = data;
+  $http.get('content/locales/en/quiz.json').success(function (questions) {
+    $log.log('Loading quiz JSON');
+    $scope.quiz = filterQuestions(questions);
   });
 
   $scope._ = _;
   $scope.questionIndexToShow = 0;
   $scope.levelId = $routeParams.levelId;
-
   $scope.showQuiz= true;
   $scope.showResults = false;
-
-  $scope.filterByLevel = function(quiz) {
-    if(quiz.level == $routeParams.levelId){
-      return quiz;
-    }
-  };
 
   $scope.processAnswer = function (question, answer, questionIndex, isFinalQuestion) {
 
@@ -270,6 +267,15 @@ function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location
 
   // Helper methods
   // **************
+
+  var filterQuestions = function (questions) {
+    return _.chain(questions)
+            .where({ level: Number($routeParams.levelId) })
+            .shuffle()
+            .first(5)
+            .value();
+  };
+
 
   var disableAllAnswers = function () {
     $document.find('.possible-answers .possible-answer').attr('disabled', true);

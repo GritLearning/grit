@@ -1,5 +1,5 @@
-<div ng-controller="AdminCtrl">
-  <a href="#/">Home</a>
+<div class="admin-settings" -g-controller="AdminCtrl">
+  <a ng-click="returnToHomeScreen()" href="">Home</a>
   <h2>Admin settings</h2>
   <form name="form" class="css-form" novalidate>
     <p>
@@ -10,7 +10,7 @@
     <div ng-hide='form.password.$error.validPwd'>
       <div class="">
         close Grit learning and return to android homescreen
-        <a href="#" ng-click="closeGrit()" class="btn btn-large btn-primary">Close Grit</a>
+        <a href="" ng-click="closeGrit()" class="">Close Grit</a>
       </div>
     </div>
   </form>
