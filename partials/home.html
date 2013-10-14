@@ -38,7 +38,7 @@
           </a>
         </li>
 
-        <li ng-show="level.isLocked" class="game-thumbnail game-thumbnail-quiz">
+        <li ng-show="level.isLocked && (level.id === nextLevel)" class="game-thumbnail game-thumbnail-quiz">
           <a ng-href="#/quiz/{{currentLevel}}" class="link">
             <div class="frame">
               <img src="img/locked.png" alt="Locked icon" class="icon" />

@@ -48,6 +48,7 @@ function RootCtrl($scope, $timeout, $http, $routeParams, Player, $localStorage, 
   $http.get('content/apps/apps.json').success(function (data) {
     $scope.apps = data;
     $scope.currentLevel = Number($localStorage.level);
+    $scope.nextLevel = $scope.currentLevel + 1;
     $scope.levels = [];
 
     $scope.openQuiz = function (level) {
@@ -217,8 +218,8 @@ function appLaunchErrorHandler() {
 function QuizCtrl($scope, $routeParams, $timeout, Result, $http, $log, $location, $document, $q, $localStorage, _) {
   $log.log('QuizCtrl()');
 
-  // $http.get('content/locales/kh/quiz.json').success(function (questions) {
-  $http.get('content/locales/en/quiz.json').success(function (questions) {
+  $http.get('content/locales/kh/quiz.json').success(function (questions) {
+  // $http.get('content/locales/en/quiz.json').success(function (questions) {
     $log.log('Loading quiz JSON');
     $scope.quiz = filterQuestions(questions);
   });
