@@ -232,6 +232,26 @@ hr {
   width: 25%;
   height: 330px;
 }
+
+.game-thumbnail-quiz { /* extends .game-thumbnail */
+  -webkit-transform: translateZ(0);
+}
+
+.level:nth-child(4n+1) .game-thumbnail-quiz .title {
+  color: #00ff00; // green
+} 
+
+.level:nth-child(4n+2) .game-thumbnail-quiz .title {
+  color: #f1b66a; // orange
+} 
+ 
+.level:nth-child(4n+3) .game-thumbnail-quiz .title {
+  color: #00ffff; // cyan 
+}
+
+.level:nth-child(4n+4) .game-thumbnail-quiz .title {
+  color: #FF00FF; // purple
+}
  
 .link,
 .link:hover,
@@ -239,8 +259,6 @@ hr {
 .link:active {
   text-decoration: none;
   color: black;
-  /* height: 200px; */
-  /* width: 150px; */
   display: block;
 }
 

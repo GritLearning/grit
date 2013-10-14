@@ -38,6 +38,15 @@
           </a>
         </li>
 
+        <li ng-show="level.isLocked" class="game-thumbnail game-thumbnail-quiz">
+          <a ng-href="#/quiz/{{currentLevel}}" class="link">
+            <div class="frame">
+              <img src="img/locked.png" alt="Locked icon" class="icon" />
+            </div>
+            <h4 class="title">Quiz!</h4>
+          </a>
+        </li>
+
         <li ng-show="level.isLocked" class="game-thumbnail" ng-repeat="app in apps | filter:{level: level.id}:true">
           <a ng-href="#/quiz/{{currentLevel}}" class="link">
             <div class="frame">
@@ -46,6 +55,7 @@
             <h4 class="title">{{app.name}}</h4>
           </a>
         </li>
+
       </ul><!-- .game-thumbnails -->
     </div><!-- .level -->
   </div><!-- .levels -->
