@@ -1,5 +1,7 @@
 # grit
 
+[![Code Climate](https://codeclimate.com/github/GritLearning/grit.png)](https://codeclimate.com/github/GritLearning/grit)
+
 To find out more about `grit` feel free to join our mailing list here: https://groups.google.com/forum/#!forum/grit-learning
 
 To get started with the Grit Learning app you need at least one content repository and the main ``grit`` code base. To compile a Android app out of it you also need the ``grit-android`` repository.
