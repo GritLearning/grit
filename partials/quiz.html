@@ -16,9 +16,6 @@
       <div class="question question-{{$index}} " ng-show="questionIndexToShow == $index">
 
         <div class="question-images">
-          <!-- <h1 class="question&#45;text">{{question.question_2.text}}</h1> -->
-          <!-- <hr class="divider" /> -->
-          <!-- <h1 class="question&#45;text">{{question.question_1.text}}</h1> -->
           <img class="image" alt="" ng-src="{{question.question_2.url}}" />
           <img class="image" alt="" ng-src={{question.question_1.url}} />
         </div>
@@ -30,7 +27,6 @@
                 <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')" 
                     ng-click="(! hasBeenClicked) && processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
                   <img class="image" alt="" ng-src={{answer.url}} />
-                  <!-- <div enable&#45;fit&#45;text class="text">{{answer.text}}</div> -->
                 </div>
           </div><!-- .possible-answer -->
 
