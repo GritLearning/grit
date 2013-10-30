@@ -1,4 +1,4 @@
-angular.module('grit.controllers').controller('RootCtrl', function ($scope, $timeout, $http, $routeParams, Player, $localStorage, $log, _, $window, $location, $anchorScroll) {
+angular.module('grit.controllers').controller('RootCtrl', function ($scope, $timeout, $http, $routeParams, Player, $localStorage, $log, _, $window, $location) {
   'use strict';
   $log.log('In RootCtrl');
 
@@ -15,6 +15,14 @@ angular.module('grit.controllers').controller('RootCtrl', function ($scope, $tim
   };
 
   var loadAppsJSON = function (data) {
+
+    // Helpers
+    // *******
+
+    function isLevelLocked(level, currentLevel) {
+      return (level <= currentLevel) ? false : true;
+    }
+
     $scope.apps = data;
     $scope.currentLevel = Number($localStorage.level);
     $scope.nextLevel = $scope.currentLevel + 1;
@@ -38,10 +46,6 @@ angular.module('grit.controllers').controller('RootCtrl', function ($scope, $tim
         id: i,
         isLocked: isLevelLocked(i, $scope.currentLevel)
       });
-    }
-
-    function isLevelLocked(level, currentLevel) {
-      return (level <= currentLevel) ? false : true;
     }
   };
 
@@ -96,11 +100,11 @@ angular.module('grit.controllers').controller('RootCtrl', function ($scope, $tim
     };
 
     var levelIsNotFirstLevel = function (level) {
-      (level === '#level-1') ? false : true;
+      return (level === '#level-1') ? false : true;
     };
 
     var windowHasNotScrolled = function () {
-      ($('body').scrollTop() === 0) ? false : true;
+      return ($('body').scrollTop() === 0) ? false : true;
     };
 
     var rescheduleScrollAttempt = function () {
