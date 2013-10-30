@@ -1,12 +1,8 @@
-.*
-!.gitignore
-!.editorconfig
 *vimbk
-*swp
+*.swp
+*.swo
 content
 
-# grunt build products
-js/all.min.js
 
 # node stuff
 node_modules/

@@ -1,0 +1,26 @@
+{
+    "globals": {
+      "angular": false,
+      "cordova": false,
+      "$": false
+    },
+
+    "browser" : true,
+    "immed": true,
+    "curly": true,
+    "camelcase": true,
+    "eqeqeq": true,
+    "plusplus": true,
+    "forin": true,
+    "indent": 2,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "quotmark": "single",
+    "undef": true,
+    "unused": true,
+    "trailing": true,
+    "regexp": true,
+    "nonew": true,
+    "strict": true
+}
