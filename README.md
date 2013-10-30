@@ -25,9 +25,28 @@ Setup grunt
 * All the node modules required by grunt are already part of the repo (in the `node_modules` dir) so you shouldn't need anything else.
 * Run `grunt --help` to check that everything installed correctly. The output of this command tells you what tasks are available.
 
-Setup http-server
+## Setup http-server
 
-* Run `npm install -g http-server` to install a minimal http-server that you can invoke from the command line. Alternatively you can run the `web-server.js` script in the repo to achieve the same thing.
+`http-server` is a simple HTTP server (surprise!) that is installed as an NPM module in this repository. To invoke it do
+```
+cd /path/to/grit
+./node-modules/.bin/http-server .
+```
+
+Alternatively you can install `http-server` package globally (via `npm install -g http-server`) - then just do 
+```
+cd /path/to/grit
+http-server .
+```
+The advantage of installing it globally is that you can use it on other projects too.
+
+
+## Setup Tests 
+```
+npm install -g karma 
+cd /path/to/this/app
+karma start
+```
 
 ### Optional bower setup
 Bower(http://bower.io/) is a package manager similar to npm but more focused on front-end web development thatn `npm`. We use bower to manage most of our front-end dependencies (angular, jquery etc.). You don't need to worry about bower unless you want to upgrade these dependencies. 
