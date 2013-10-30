@@ -1,4 +1,4 @@
-angular.module('grit.controllers').controller('RootCtrl', function ($scope, $timeout, $http, $routeParams, Player, $localStorage, $log, _, $window, $location) {
+angular.module('grit.controllers').controller('RootCtrl', function ($scope, $timeout, $http, $routeParams, $localStorage, $log, _, $window, $location) {
   'use strict';
   $log.log('In RootCtrl');
 

@@ -1,14 +1,14 @@
-'use strict';
+// Filters
 
-/* Filters */
-
-angular.module('grit.filters', ['grit.services', 'underscore'])
+angular.module('grit.filters', ['underscore'])
   .filter('range', function() {
+    'use strict';
     return function (input, min, max) {
-      min = parseInt(min);
-      max = parseInt(max);
-      for (var i=min; i<max; i++)
+      min = parseInt(min, 10);
+      max = parseInt(max, 10);
+      for (var i = min; i < max; i = i+1) {
         input.push(i);
+      }
       return input;
     };
   });
