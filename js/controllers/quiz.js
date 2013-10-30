@@ -68,7 +68,7 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
       var deferred = $q.defer();
       promises.push(deferred.promise);
 
-      angular.element(element).on('webkitTransitionEnd', function (event) {
+      angular.element(element).on('webkitTransitionEnd', function () {
         angular.element(starSlot).find('.js-empty-slot-img').hide();
         angular.element(starSlot).find('.js-full-slot-img').show();
         angular.element(element).hide(); // hide the element we just moved so that it doesn't look odd when we slide-out this question
@@ -80,7 +80,7 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
     });
 
     // return a combined promise that will be fullfilled when *both* animations finish
-    return $q.all(promises); 
+    return $q.all(promises);
   };
 
   var didUserPassQuiz = function (result) {
@@ -92,10 +92,6 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
     var a = parseInt($localStorage.totalStarsForThisSession, 10) || 0;
     var b = parseInt(stars, 10) || 0;
     $localStorage.totalStarsForThisSession = a + b;
-  };
-
-  var resetPerQuizStars = function () {
-    $localStorage.stars = 0;
   };
 
   var showResults = function () {
@@ -181,6 +177,7 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
   $scope.showResults = false;
 
   $scope.processAnswer = function (question, answer, questionIndex, isFinalQuestion) {
+    /* jshint camelcase: false */
 
     $log.log('processAnswer()');
 
@@ -188,7 +185,11 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
       saveResultToStorage(numVisiblePotentialStars(questionIndex));
 
       moveAvailableStarsToStarSlots(questionIndex).then(function () {
-        isFinalQuestion ? showResults() : displayNextQuestion();
+        if (isFinalQuestion) {
+          showResults();
+        } else {
+          displayNextQuestion();
+        }
       });
     }
     else { // answer is wrong 
@@ -202,7 +203,12 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
 
         $timeout(function () {
           enableAllAnswers();
-          isFinalQuestion ? showResults() : displayNextQuestion();
+
+          if (isFinalQuestion) {
+            showResults();
+          } else {
+            displayNextQuestion();
+          }
         }, delay);
       }
     }
@@ -215,4 +221,4 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
       $('.question').addClass('slide-in-out'); // add the class that enables questions to slide in & out.
     }, 0);
   };
-}); 
+});
