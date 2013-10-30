@@ -48,7 +48,7 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
 
     var promises = [];
 
-    _.each(allVisiblePotentialStars(questionIndex), function (element) {
+    var processPotentialStar = function (element) {
       var starSlot = nextAvailableStarSlot();
       var currentOffset = angular.element(element).offset();
       var newOffset =  angular.element(starSlot).offset();
@@ -77,7 +77,9 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
       });
 
       markStarSlotAsFull(starSlot);
-    });
+    };
+
+    _.each(allVisiblePotentialStars(questionIndex), processPotentialStar);
 
     // return a combined promise that will be fullfilled when *both* animations finish
     return $q.all(promises);
