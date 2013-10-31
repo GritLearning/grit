@@ -28,11 +28,6 @@ angular.module('grit.controllers').controller('RootCtrl', function ($scope, $tim
     $scope.nextLevel = $scope.currentLevel + 1;
     $scope.levels = [];
 
-    $scope.openQuiz = function (level) {
-      $log.log('Opening quiz for level ' + level);
-      $location.path('/quiz/' + level);
-    };
-
     $scope.totalStarsForThisSession = $localStorage.totalStarsForThisSession || 0;
     $log.log('Total stars for this session: ' + $scope.totalStarsForThisSession);
 

@@ -1,4 +1,4 @@
-angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $routeParams, $timeout, Result, $http, $log, $location, $document, $q, $localStorage, _) {
+angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $routeParams, $timeout, $http, $log, $location, $document, $q, $localStorage, _) {
   'use strict';
   $log.log('QuizCtrl()');
 

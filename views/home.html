@@ -20,10 +20,7 @@
   <div class="levels">
 
     <div class="level" ng-repeat="level in levels" repeat-done="scrollToHighestOpenLevel()">
-      <div ng-show="level.isLocked"
-           ng-href="#/quiz/{{currentLevel}}" 
-           ng-click="openQuiz(currentLevel)" 
-           class="locked-level-overlay">
+      <div ng-show="level.isLocked" class="locked-level-overlay">
       </div>
       <div id="level-{{level.id}}" class="level-id">{{level.id}}</div>
 
