@@ -265,7 +265,7 @@ hr {
 .link .frame {
   background-size: contain;
   background-repeat: no-repeat;
-  padding: 40px;
+  padding: 30px 40px 40px 40px;
   margin: 0px auto;
   display: inline-block;
 }
