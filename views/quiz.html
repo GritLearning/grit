@@ -16,8 +16,13 @@
       <div class="question question-{{$index}} " ng-show="questionIndexToShow == $index">
 
         <div class="question-images">
-          <img class="image" alt="" ng-src="{{question.question_2.url}}" />
-          <img class="image" alt="" ng-src={{question.question_1.url}} />
+          <span ng-if="numberOfQuestionPartsIn(question) == 2">
+            <img class="image-half-height" alt="" ng-src="{{question.question_2.url}}" />
+            <img class="image-half-height" alt="" ng-src={{question.question_1.url}} />
+          </span>
+          <span ng-if="numberOfQuestionPartsIn(question) == 1">
+            <img class="image-full-height" alt="" ng-src="{{question.question_1.url}}" />
+          </span>
         </div>
 
         <div class="possible-answers">

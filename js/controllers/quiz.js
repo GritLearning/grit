@@ -169,6 +169,15 @@ angular.module('grit.controllers').controller('QuizCtrl', function ($scope, $rou
   // Decorate the $scope for use by the HTML
   // ***************************************
 
+  $scope.numberOfQuestionPartsIn = function (question) {
+    /* jshint camelcase: false */
+    if (_.isObject(question.question_2) && question.question_2.url.length > 0) {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
+
   // $http.get('content/locales/kh/quiz.json').success(loadQuizJSON);
   $http.get('content/locales/en/quiz.json').success(loadQuizJSON);
 
