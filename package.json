@@ -17,6 +17,7 @@
     "karma": "~0.10.4",
     "karma-mocha": "~0.1.0",
     "karma-chai": "0.0.2",
-    "http-server": "~0.5.5"
+    "http-server": "~0.5.5",
+    "protractor": "~0.12.0"
   }
 }

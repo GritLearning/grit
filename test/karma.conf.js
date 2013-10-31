@@ -7,12 +7,18 @@ module.exports = function(config) {
   config.set({
 
     // base path, that will be used to resolve files and exclude
-    basePath: '',
+    basePath: '..',
 
 
     // frameworks to use
     frameworks: ['mocha', 'chai'],
 
+    // * unit tests need all access to all code
+    // * test framework & assertion library
+    // * our app code
+    // * test code
+    // * angular mocks
+    // * vendor code
     // list of files / patterns to load in the browser
     files: [
       'bower_components/jquery/jquery.js',

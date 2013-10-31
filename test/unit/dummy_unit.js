@@ -4,7 +4,6 @@
 describe('Array', function(){
   describe('#indexOf()', function(){
     it('should return -1 when the value is not present', function(){
-      console.log('hello console');
       expect(foo).to.be.a('string');
       expect(foo).to.equal('bar');
       expect(foo).to.have.length(3);
