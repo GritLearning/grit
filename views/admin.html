@@ -1,17 +1,13 @@
-<div class="admin-settings" -g-controller="AdminCtrl">
-  <a ng-click="returnToHomeScreen()" href="">Home</a>
-  <h2>Admin settings</h2>
+<div class="admin-settings">
+  <h2>Exit Grit (return to Android)</h2>
   <form name="form" class="css-form" novalidate>
     <p>
       Password: <input type="password" ng-model="password" name="password" valid-pwd="\grit\b" required /> 
     </p>
-    <p ng-show='form.password.$error.validPwd'>Please provide a valid password to unlock the admin settings</p>
+    <button class="btn btn-cancel" ng-click="returnToHomeScreen()">Cancel</button>
 
     <div ng-hide='form.password.$error.validPwd'>
-      <div class="">
-        close Grit learning and return to android homescreen
-        <a href="" ng-click="closeGrit()" class="">Close Grit</a>
-      </div>
+      <button class="btn btn-confirm" ng-click="closeGrit()">Close Grit</button>
     </div>
   </form>
 </div>
