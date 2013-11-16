@@ -653,4 +653,20 @@ hr {
   .question .possible-answers {
     min-height: 480px;
   }
+
+  .result .text {
+    font-size: 130px;
+  }
+
+  .question .question-images .image-half-height {
+    max-height: 250px;
+  }
+
+  .exit .score .stars {
+    padding-top: 0;
+  }
+  .exit .score .image {
+    width: 280px;
+    padding-top: 0;
+  }
 }
