@@ -623,3 +623,34 @@ hr {
 .admin-settings .btn.btn-confirm {
   background: #bada55;
 }
+
+
+/* 
+ * The default screen size is 1280x800 px (2013 Nexus 7)
+ * These media queries target smaller and bigger screens
+ */
+
+/* (0px x 0px) up to (1024px) screens */
+@media all and (max-width: 1024px) {
+
+  .level {
+    padding-left: 65px;
+  }
+
+  .sidebar .quit-session {
+    margin-top: 330px;
+  }
+
+  .link .title {
+    font-size: 26px;
+  }
+
+  .possible-answer .frame {
+    width: 240px;
+    height: 240px;
+  }
+
+  .question .possible-answers {
+    min-height: 480px;
+  }
+}
