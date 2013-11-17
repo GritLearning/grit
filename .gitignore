@@ -2,7 +2,5 @@
 *.swp
 *.swo
 content
-
-
-# node stuff
-node_modules/
+.tmp/
+www/
