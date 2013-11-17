@@ -37,6 +37,29 @@ Bower(http://bower.io/) is a package manager similar to npm but more focused on 
 To get the Android build going checkout ``grit-android`` and link the
 main grit repository into ``assets/www``
 
+## Development workflow
+
+1. Run `grunt watch` from the project directory
+    ```
+    cd /path/to/grit
+    grunt watch       # this starts the grunt watcher which will monitor the files in the project for
+                      # changes and build them into the ./www directory
+    ```
+2. Work on the files. `grunt watch` will notice those changes and re-build the project into the `./www` directory by default
+
+## Command line options for grunt
+
+You can pass some command line arguments to `grunt` that tell it w
+```
+grunt --env=development --platform=android --build-dir=./www 
+# these are the defaults options but you can override them. For example, to
+# build the project into a different directory (e.g. the assets directory of the
+# android project) you could do something like:
+grunt --env=development --platform=android --build-dir=../grit-android/assets/www
+```
+
+Have a look at `Gruntfile.js` for the full list of options and their meanings.
+
 
 ## Pre-release checklist
 
