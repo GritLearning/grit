@@ -87,18 +87,19 @@ Let us say that you keep source code on your machine in `/home/code`. You would 
     ```
 3. Go to the URL that the server is listenting on in your browser e.g. `http://localhost:8080`. You should now see the grit web app and be able to debug it as you would any other web app.
 
+## Use grunt watch to save time
+
 To save yourself from having to run grunt every time you change a file, you can run `grunt watch` which will notice file changes and re-run the build. From your terminal window, run `grunt watch` from the project directory.
     ```
-    cd /path/to/grit
-    grunt watch       # this starts the grunt watcher which will monitor the files in the project for
-                      # changes and build them into the ./www directory
-    ```
 
-    Now when you edit grit files. `grunt watch` will notice those changes and re-build the project into the `./www` directory by default
+    cd /path/to/grit
+    grunt watch
+    ```
+Now when you edit grit files. `grunt watch` will notice those changes and re-build the project into the `./www` directory by default
 
 ## Command line options for grunt
 
-You can pass some command line arguments to `grunt` that tell it w
+You can pass some command line arguments to `grunt` to customise how it builds the project. For example:
 ```
 grunt --env=development --platform=android --build-dir=./www 
 # these are the defaults options but you can override them. For example, to
