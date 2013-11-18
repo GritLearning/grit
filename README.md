@@ -4,10 +4,37 @@
 
 To find out more about `grit` feel free to join our mailing list here: https://groups.google.com/forum/#!forum/grit-learning
 
-To get started with the Grit Learning app you need at least one content repository and the main ``grit`` code base. To compile a Android app out of it you also need the ``grit-android`` repository.
+## Prerequesites
 
-## Setup
-Setup is a tad involved at the moment (sorry!). It is best explained by an example:
+Before you install grit you need to:
+
+1. Install the android developer tools
+    * There are quite a few steps in this but good information available at http://developer.android.com/index.html 
+    * We **strongly recommend** going through the process of setting up your Android tools (and hooking up your android device if you have one) using a **very simple** native android project. If you have not done it before, there are quite a few things to learn in that workflow and using a simple native app will mean that the questions you ask on Stack Overflow are much more likely to get answered because they have more in common with how other Android devs started.
+2. Install node.js
+    * You can install node using one of:
+        * All platforms: download it from http://nodejs.org
+        * Mac OS X only: Using homebrew e.g. `brew install node`
+        * Linux only: Using your package manager. Don't forget to check what version of Node your package manager will give you. Some update infrequently so it can be very old. This will cause you problems later on.
+
+    If you are unsure which option is best or are unfamiliar with package management on your platform, you should use http://nodejs.org
+3. Setup grunt
+    * Grunt is a Javascript build tool (like make, rake, ant in other languages)
+        * Install `grunt-cli` globally by running `npm install -g grunt-cli` (full instructions here: http://gruntjs.com/getting-started) 
+        * All the node modules required by grunt are already part of the repo (in the `node_modules` dir) so you shouldn't need anything else.
+        * Run `grunt --help` and check that it runs without error. Also it's output tells you what tasks are available.
+4. Setup http-server
+    * Run `npm install -g http-server` to install a minimal http-server that you can invoke from the command line. We will use this web server to serve files from `grit` to our browser for debugging etc. 
+    * Run `http-server --help` to see a summary of it's options.
+
+5. Setup bower (optional)
+    * Bower(http://bower.io/) is a package manager similar to npm but more focused on front-end web development than `npm`. 
+    * We use bower to manage most of our front-end dependencies (angular, jquery etc.). - see the `bower_components` directory in the `grit` repository.
+    * You don't need to worry about bower unless you want to upgrade these dependencies. 
+    * You can install bower by following the instructions at  http://bower.io
+
+## Building git for the first time 
+Grit is currently split across three git repositories so building it is a tad involved at the moment (sorry!). It is best explained by an example:
 
 Let us say that you keep source code on your machine in `/home/code`. You would do the following
 
@@ -16,40 +43,22 @@ Let us say that you keep source code on your machine in `/home/code`. You would 
     cd /home/code
     git clone https://github.com/GritLearning/grit-android
     ```
-2. Next, the `grit` repository has to be put into the `assets/www` directory within the `grit-android` project:
+2. Next, clone the `grit` repository . You can put it anywhere but in this example we are going to put it into `/home/code`:
     ```
-    cd /home/code/grit-android/assets
-    git clone https://github.com/GritLearning/grit www
+    cd /home/code/
+    git clone https://github.com/GritLearning/grit
     ```
-3. Finally, clone the `grit-khmer` repository into a directory called  `content` within `grit` e.g.
+3. Finally, clone the `grit-khmer` repository into a directory called `content` within the `grit` repository e.g.
     ```
-    cd /home/code/grit-android/assets/www
+    cd /home/code/grit
     git clone https://github.com/GritLearning/grit-khmer content
     ```
-
-If you are on a platform that supports it (Mac/Linux) you can clone the repositories into different places and link them using symbolic links.
-
-Setup node.js
-
-* Install node.js either from http://nodejs.org or `brew install node` on mac. You must have at least verstion 0.8 installed - run `node -v` to check.
-
-Setup grunt
-
-* Install `grunt-cli` by running `npm install -g grunt-cli` (full instructions here: http://gruntjs.com/getting-started) 
-* All the node modules required by grunt are already part of the repo (in the `node_modules` dir) so you shouldn't need anything else.
-* Run `grunt --help` to check that everything installed correctly. The output of this command tells you what tasks are available.
-
-Setup http-server
-
-* Run `npm install -g http-server` to install a minimal http-server that you can invoke from the command line. Alternatively you can run the `web-server.js` script in the repo to achieve the same thing.
-
-### Optional bower setup
-Bower(http://bower.io/) is a package manager similar to npm but more focused on front-end web development thatn `npm`. We use bower to manage most of our front-end dependencies (angular, jquery etc.). You don't need to worry about bower unless you want to upgrade these dependencies. 
-
-## Setup Android
-
-To get the Android build going checkout ``grit-android`` and link the
-main grit repository into ``assets/www``
+4. Build grit using grunt.
+    ```
+    mkdir /home/code/grit-android/assets/www
+    cd /home/code/grit
+    grunt --build-dir=/home/code/grit-android/assets/www
+    ```
 
 ## Development workflow
 
