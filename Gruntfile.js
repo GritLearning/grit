@@ -5,7 +5,6 @@ module.exports = function (grunt) {
   // TODO
   // * don't pull in all of bower_components
   // * run JS through a concatenation and/or minificaiton step
-  // * don't pull in all of the content folder
 
   /*
    * We have 4 types of content that make up our project:
@@ -138,8 +137,8 @@ module.exports = function (grunt) {
       assets: {
         files: [
           { src: ['img/**'], dest: '<%= options.buildDir %>/' },
-          { src: ['content/**'], dest: '<%= options.buildDir %>/' },
-          { src: ['bower_components/**'], dest: '<%= options.buildDir %>/' }
+          { src: ['content/locales/**'], dest: '<%= options.buildDir %>/' },
+          { src: ['content/apps/**'], dest: '<%= options.buildDir %>/' }
         ]
       },
       html: {
@@ -164,7 +163,27 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          { src: ['js/**'], dest: '<%= options.buildDir %>/' }
+          { src: ['js/**'], dest: '<%= options.buildDir %>/' },
+          // Option A: copy everything from bower_components to the build directory
+          // { src: ['bower_components/**'], dest: '<%= options.buildDir %>/' }
+
+          // Option B: cherry pick just what we need from bower_components to
+          // the build directory. This is quite brittle but only a temporary
+          // measure until we get concatenation & minification sorted out.
+          {
+            src: [
+              'bower_components/normalize-css/normalize.css',
+              'bower_components/jquery/jquery.js',
+              'bower_components/underscore/underscore.js',
+              'bower_components/angular/angular.js',
+              'bower_components/angular-resource/angular-resource.js',
+              'bower_components/angular-route/angular-route.js',
+              'bower_components/angular-touch/angular-touch.js',
+              'bower_components/angular-animate/angular-animate.js',
+              'bower_components/ngstorage/ngStorage.js',
+            ],
+            dest: '<%= options.buildDir %>/'
+          }
         ]
       }
     },
@@ -174,8 +193,10 @@ module.exports = function (grunt) {
     watch: {
       assets: {
         files: [
-          // the no. of image files in content overwhelms the grunt watcher so
-          // we leave it out.
+          // the large number of image files in content overwhelms the grunt
+          // watcher so we leave it out. In practice, this has not caused many
+          // issues because content does not change very often during
+          // development
           // 'content/**',
           'img/**',
           'bower_components/**'
