@@ -11,11 +11,11 @@ Before you install grit you need to:
 1. Install the android developer tools
     * There are quite a few steps in this but good information available at http://developer.android.com/index.html 
     * We **strongly recommend** going through the process of setting up your Android tools (and hooking up your android device if you have one) using a **very simple** native android project. If you have not done it before, there are quite a few things to learn in that workflow and using a simple native app will mean that the questions you ask on Stack Overflow are much more likely to get answered because they have more in common with how other Android devs started.
-2. Install node.js
+2. Install node.js (version 0.10.0 or greater)
     * You can install node using one of:
         * All platforms: download it from http://nodejs.org
         * Mac OS X only: Using homebrew e.g. `brew install node`
-        * Linux only: Using your package manager. Don't forget to check what version of Node your package manager will give you. Some update infrequently so it can be very old. This will cause you problems later on.
+        * Linux only: Using your package manager. Don't forget to check what version of Node your package manager will give you. Some update infrequently so the version of node they offer can be very old. This will cause you problems later on.
 
     If you are unsure which option is best or are unfamiliar with package management on your platform, you should use http://nodejs.org
 3. Setup grunt
@@ -41,20 +41,24 @@ Let us say that you keep source code on your machine in `/home/code`. You would 
 1. Clone the `grit-android` repository into a directory in `/home/code` e.g.
     ```
     cd /home/code
+
     git clone https://github.com/GritLearning/grit-android
     ```
 2. Next, clone the `grit` repository . You can put it anywhere but in this example we are going to put it into `/home/code`:
     ```
     cd /home/code/
+
     git clone https://github.com/GritLearning/grit
     ```
 3. Finally, clone the `grit-khmer` repository into a directory called `content` within the `grit` repository e.g.
     ```
     cd /home/code/grit
+
     git clone https://github.com/GritLearning/grit-khmer content
     ```
 4. Build grit using grunt.
     ```
+
     mkdir /home/code/grit-android/assets/www
     cd /home/code/grit
     grunt --build-dir=/home/code/grit-android/assets/www
