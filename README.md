@@ -7,13 +7,27 @@ To find out more about `grit` feel free to join our mailing list here: https://g
 To get started with the Grit Learning app you need at least one content repository and the main ``grit`` code base. To compile a Android app out of it you also need the ``grit-android`` repository.
 
 ## Setup
+Setup is a tad involved at the moment (sorry!). It is best explained by an example:
 
-```
-git clone grit              # or checkout via GUI client
-git clone grit-khmer        # or checkout via GUI client
-cd grit                     # or open a terminal in the grit directory
-ln -s ../grit-khmer content # this will not work on windows :-(
-```
+Let us say that you keep source code on your machine in `/home/code`. You would do the following
+
+1. Clone the `grit-android` repository into a directory in `/home/code` e.g.
+    ```
+    cd /home/code
+    git clone https://github.com/GritLearning/grit-android
+    ```
+2. Next, the `grit` repository has to be put into the `assets/www` directory within the `grit-android` project:
+    ```
+    cd /home/code/grit-android/assets
+    git clone https://github.com/GritLearning/grit www
+    ```
+3. Finally, clone the `grit-khmer` repository into a directory called  `content` within `grit` e.g.
+    ```
+    cd /home/code/grit-android/assets/www
+    git clone https://github.com/GritLearning/grit-khmer content
+    ```
+
+If you are on a platform that supports it (Mac/Linux) you can clone the repositories into different places and link them using symbolic links.
 
 Setup node.js
 
