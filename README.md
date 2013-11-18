@@ -33,46 +33,68 @@ Before you install grit you need to:
     * You don't need to worry about bower unless you want to upgrade these dependencies. 
     * You can install bower by following the instructions at  http://bower.io
 
-## Building git for the first time 
+## Building git for deploying to a device
 Grit is currently split across three git repositories so building it is a tad involved at the moment (sorry!). It is best explained by an example:
 
 Let us say that you keep source code on your machine in `/home/code`. You would do the following
 
 1. Clone the `grit-android` repository into a directory in `/home/code` e.g.
     ```
-    cd /home/code
 
+    cd /home/code
     git clone https://github.com/GritLearning/grit-android
     ```
 2. Next, clone the `grit` repository . You can put it anywhere but in this example we are going to put it into `/home/code`:
     ```
-    cd /home/code/
 
+    cd /home/code/
     git clone https://github.com/GritLearning/grit
     ```
 3. Finally, clone the `grit-khmer` repository into a directory called `content` within the `grit` repository e.g.
     ```
-    cd /home/code/grit
 
+    cd /home/code/grit
     git clone https://github.com/GritLearning/grit-khmer content
     ```
-4. Build grit using grunt.
+    4. Apache cordova will expect the web files to be in the `assets/www` directory within the android project. Create that directory if it does not already exist
     ```
 
     mkdir /home/code/grit-android/assets/www
+    ```
+5. Build grit using grunt.
+    Now we need to build grit into the `grit-android/assets/www` directory so we run grunt with a command line arg to tell it where to put the files.
+    ```
+
     cd /home/code/grit
     grunt --build-dir=/home/code/grit-android/assets/www
     ```
+6. Grit should be ready to deploy to your device now.
 
-## Development workflow
+## Building grit for your browser 
+1. Build grit for the browser.
+    IF we run grunt without any arguments, it will build grit into the `./www` directory in the repository.
+    ```
 
-1. Run `grunt watch` from the project directory
+    cd /path/to/grit
+    grunt
+    ```
+2. In a separate terminal window, start a HTTP server to serve the files to the browser
+    ```
+
+    cd /path/to/grit
+    http-server ./www
+    # http-server will output some text here including the URL it is listening on
+    ```
+3. Go to the URL that the server is listenting on in your browser e.g. `http://localhost:8080`. You should now see the grit web app and be able to debug it as you would any other web app.
+
+To save yourself from having to run grunt every time you change a file, you can run `grunt watch` which will notice file changes and re-run the build. From your terminal window, run `grunt watch` from the project directory.
     ```
     cd /path/to/grit
     grunt watch       # this starts the grunt watcher which will monitor the files in the project for
                       # changes and build them into the ./www directory
     ```
-2. Work on the files. `grunt watch` will notice those changes and re-build the project into the `./www` directory by default
+
+    Now when you edit grit files. `grunt watch` will notice those changes and re-build the project into the `./www` directory by default
 
 ## Command line options for grunt
 
@@ -85,14 +107,4 @@ grunt --env=development --platform=android --build-dir=./www
 grunt --env=development --platform=android --build-dir=../grit-android/assets/www
 ```
 
-Have a look at `Gruntfile.js` for the full list of options and their meanings.
-
-
-## Pre-release checklist
-
-Before sending the final release to the store we should check:
-
-- [ ] All image assets have been run through Imageoptim (http://imageoptim.com/) or similar
-- [ ] `assets/www` contains only the files required for the app - all dev files and spec files should be removed to keep the .apk small
-- [ ] `index.html` is loading the concatenated & minified Javascript file(s). At the very least we should be using minified versions of the `js/libs` files.
-- [ ] document exactly what setup setups are required after somebody installs the app
+Have a look at `Gruntfile.js` for the full list of options and their meanings.  
