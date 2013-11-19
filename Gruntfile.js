@@ -2,10 +2,6 @@
 module.exports = function (grunt) {
   'use strict';
 
-  // TODO
-  // * don't pull in all of bower_components
-  // * run JS through a concatenation and/or minificaiton step
-
   /*
    * We have 4 types of content that make up our project:
    *  1. html
@@ -23,7 +19,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'setup',        // always first step
-    // 'jshint',
+    'jshint',
     'clean',
     'sass:dev',
     // 'buildjs',
@@ -186,6 +182,16 @@ module.exports = function (grunt) {
           }
         ]
       }
+    },
+
+    jshint: {
+
+      options: {
+        jshintrc: true,
+        ignores: ['js/libs/**/*.js']
+      },
+
+      all: ['Gruntfile.js', 'js/**/*.js']
     },
 
     // The watcher is tuned for the development environment on the web platform

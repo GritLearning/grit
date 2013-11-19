@@ -1,14 +1,13 @@
 'use strict';
 
-// create modules
+// create helper modules
 angular.module('grit.controllers', []);
 
+// create the main application module
 angular.module('App', ['grit.filters', 'ngAnimate', 'grit.controllers', 'grit.directives', 'ngStorage', 'ngRoute', 'ngTouch'])
-
   .config(function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
   })
-
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'views/home.html', controller: 'RootCtrl'});
     $routeProvider.when('/admin', {templateUrl: 'views/admin.html', controller: 'AdminCtrl'});
