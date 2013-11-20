@@ -43,49 +43,48 @@ Let us say that you keep source code on your machine in `/home/code`. You would 
 1. Clone the `grit-android` repository into a directory in `/home/code` e.g.
     ```
 
-    cd /home/code
-    git clone https://github.com/GritLearning/grit-android
+    $ cd /home/code
+    $ git clone https://github.com/GritLearning/grit-android
     ```
 2. Next, clone the `grit` repository . You can put it anywhere but in this example we are going to put it into `/home/code`:
     ```
 
-    cd /home/code/
-    git clone https://github.com/GritLearning/grit
+    $ cd /home/code/
+    $ git clone https://github.com/GritLearning/grit
     ```
 3. Finally, clone the `grit-khmer` repository into a directory called `content` within the `grit` repository e.g.
     ```
 
-    cd /home/code/grit
-    git clone https://github.com/GritLearning/grit-khmer content
+    $ cd /home/code/grit
+    $ git clone https://github.com/GritLearning/grit-khmer content
     ```
 4. Apache cordova will expect the web files to be in the `assets/www` directory within the android project. Create that directory if it does not already exist
     ```
 
-    mkdir /home/code/grit-android/assets/www
+    $ mkdir /home/code/grit-android/assets/www
     ```
 5. Build grit using grunt.
     Now we need to build grit into the `grit-android/assets/www` directory so we run grunt with a command line arg to tell it where to put the files.
     ```
 
-    cd /home/code/grit
-    grunt --build-dir=../grit-android/assets/www  # <-- this path only works if you follow our suggested code layout (see above)
+    $ cd /home/code/grit
+    $ grunt --build-dir=../grit-android/assets/www  # <-- this path only works if you follow our suggested code layout (see above)
     ```
 
 Grit should be ready to deploy to your device now.
 
 ## Building grit for your browser 
-1. Build grit for the browser.
-    IF we run grunt without any arguments, it will build grit into the `./www` directory in the repository.
+1. If we run grunt without any arguments, it will build grit into the `./www` directory in the repository.
     ```
 
-    cd /path/to/grit
-    grunt
+    $ cd /path/to/grit
+    $ grunt
     ```
 2. In a separate terminal window, start a HTTP server to serve the files to the browser
     ```
 
-    cd /path/to/grit
-    http-server ./www
+    $ cd /path/to/grit
+    $ http-server ./www
     # http-server will output some text here including the URL it is listening on
     ```
 3. Go to the URL that the server is listenting on in your browser e.g. `http://localhost:8080`. You should now see the grit web app and be able to debug it as you would any other web app.
@@ -93,22 +92,23 @@ Grit should be ready to deploy to your device now.
 ## Use grunt watch to save time
 
 To save yourself from having to run grunt every time you change a file, you can run `grunt watch` which will notice file changes and re-run the build. From your terminal window, run `grunt watch` from the project directory.
-    ```
 
-    cd /path/to/grit
-    grunt watch
-    ```
+```
+$ cd /path/to/grit
+$ grunt watch
+```
+
 Now when you edit grit files. `grunt watch` will notice those changes and re-build the project into the `./www` directory by default
 
 ## Command line options for grunt
 
 You can pass some command line arguments to `grunt` to customise how it builds the project. For example:
 ```
-grunt --env=development --platform=android --build-dir=./www 
+$ grunt --env=development --platform=android --build-dir=./www 
 # these are the defaults options but you can override them. For example, to
 # build the project into a different directory (e.g. the assets directory of the
 # android project) you could do something like:
-grunt --env=development --platform=android --build-dir=../grit-android/assets/www
+$ grunt --env=development --platform=android --build-dir=../grit-android/assets/www
 ```
 
 Have a look at `Gruntfile.js` for the full list of options and their meanings.  
