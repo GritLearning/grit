@@ -41,8 +41,7 @@ Grit is currently split across three git repositories so building it is a tad in
 Let us say that you keep source code on your machine in `/home/code`. You would do the following
 
 1. Clone the `grit-android` repository into a directory in `/home/code` e.g.
-    ```
-
+    ```shell
     $ cd /home/code
     $ git clone https://github.com/GritLearning/grit-android
     ```
