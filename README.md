@@ -2,9 +2,19 @@
 
 [![Code Climate](https://codeclimate.com/github/GritLearning/grit.png)](https://codeclimate.com/github/GritLearning/grit)
 
-Grit is an android app (built using Apache Cordova) that provides an application launcher for a selected group of childrens education games. The games are organised into levels and students have to complete a maths quiz to unlock each level. To find out more about `grit` feel free to join our mailing list here: https://groups.google.com/forum/#!forum/grit-learning
+Grit is a android tablet based learning platform that is targeted as a complementary way of learning for kids that already attend school. We currently target 7" tablets and grit is running in landscape mode.
 
-This repository contains the source code for the web app. The android wrapper and quiz content are in separate repositories.
+Grit is built using Apache Cordova. Grit provides an application launcher for a selected group of childrens education games. The games are organised into levels and students have to complete a maths quiz to unlock each level. 
+
+## how to contribute
+
+* join the mailing list https://groups.google.com/forum/?fromgroups#!forum/grit-learning
+* fix and submit bugs
+* contribute content
+* UI prototype: http://share.axure.com/9895XH/
+
+
+This repository contains the source code for the web app. The *android wrapper* and *quiz content* are in separate repositories.
 
 ## Prerequesites
 
