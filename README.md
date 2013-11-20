@@ -2,7 +2,9 @@
 
 [![Code Climate](https://codeclimate.com/github/GritLearning/grit.png)](https://codeclimate.com/github/GritLearning/grit)
 
-To find out more about `grit` feel free to join our mailing list here: https://groups.google.com/forum/#!forum/grit-learning
+Grit is an android app (built using Apache Cordova) that provides an application launcher for a selected group of childrens education games. The games are organised into levels and students have to complete a maths quiz to unlock each level. To find out more about `grit` feel free to join our mailing list here: https://groups.google.com/forum/#!forum/grit-learning
+
+This repository contains the source code for the web app. The android wrapper and quiz content are in separate repositories.
 
 ## Prerequesites
 
@@ -56,7 +58,7 @@ Let us say that you keep source code on your machine in `/home/code`. You would 
     cd /home/code/grit
     git clone https://github.com/GritLearning/grit-khmer content
     ```
-    4. Apache cordova will expect the web files to be in the `assets/www` directory within the android project. Create that directory if it does not already exist
+4. Apache cordova will expect the web files to be in the `assets/www` directory within the android project. Create that directory if it does not already exist
     ```
 
     mkdir /home/code/grit-android/assets/www
@@ -66,9 +68,10 @@ Let us say that you keep source code on your machine in `/home/code`. You would 
     ```
 
     cd /home/code/grit
-    grunt --build-dir=/home/code/grit-android/assets/www
+    grunt --build-dir=../grit-android/assets/www  # <-- this path only works if you follow our suggested code layout (see above)
     ```
-6. Grit should be ready to deploy to your device now.
+
+Grit should be ready to deploy to your device now.
 
 ## Building grit for your browser 
 1. Build grit for the browser.
