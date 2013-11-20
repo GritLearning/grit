@@ -81,8 +81,8 @@ Grit should be ready to deploy to your device now.
     $ grunt
     ```
 2. In a separate terminal window, start a HTTP server to serve the files to the browser
-    ```
 
+    ```shell
     $ cd /path/to/grit
     $ http-server ./www
     # http-server will output some text here including the URL it is listening on
@@ -93,7 +93,7 @@ Grit should be ready to deploy to your device now.
 
 To save yourself from having to run grunt every time you change a file, you can run `grunt watch` which will notice file changes and re-run the build. From your terminal window, run `grunt watch` from the project directory.
 
-```
+```shell
 $ cd /path/to/grit
 $ grunt watch
 ```
@@ -103,9 +103,12 @@ Now when you edit grit files. `grunt watch` will notice those changes and re-bui
 ## Command line options for grunt
 
 You can pass some command line arguments to `grunt` to customise how it builds the project. For example:
-```
+
+```shell
+# these are the defaults options but you can override them. 
 $ grunt --env=development --platform=android --build-dir=./www 
-# these are the defaults options but you can override them. For example, to
+
+# For example, to
 # build the project into a different directory (e.g. the assets directory of the
 # android project) you could do something like:
 $ grunt --env=development --platform=android --build-dir=../grit-android/assets/www
