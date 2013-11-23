@@ -244,6 +244,7 @@ module.exports = function (grunt) {
   // alias task names for less typing
   grunt.registerTask('unit', ['karma:unit']);
   grunt.registerTask('e2e', ['protractor:all']);
+  grunt.registerTask('test', ['unit', 'e2e']);
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-sass');
