@@ -1,8 +1,7 @@
-// Filters
+'use strict';
 
-angular.module('grit.filters', ['underscore'])
+angular.module('filters', ['underscore'])
   .filter('range', function() {
-    'use strict';
     return function (input, min, max) {
       min = parseInt(min, 10);
       max = parseInt(max, 10);

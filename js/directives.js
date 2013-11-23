@@ -1,8 +1,6 @@
 'use strict';
 
-/* Directives */
-
-angular.module('grit.directives', []).
+angular.module('directives', []).
   directive('repeatDone', function() {
     return function(scope, element, attrs) {
       if (scope.$last) { // all are rendered
