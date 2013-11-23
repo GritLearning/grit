@@ -1,6 +1,3 @@
-// Karma configuration
-// Generated on Wed Oct 30 2013 16:21:06 GMT+1300 (NZDT)
-
 module.exports = function(config) {
   'use strict';
 
@@ -11,7 +8,7 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['jasmine'],
 
     // * unit tests need all access to all code
     // * test framework & assertion library
@@ -41,7 +38,7 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress'],
+    reporters: ['spec'],
 
 
     // web server port
@@ -69,7 +66,7 @@ module.exports = function(config) {
     // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
     // - PhantomJS
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // If browser does not capture in given timeout [ms], kill it
@@ -78,6 +75,9 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: false,
+
+    // plugins: [
+    // ]
   });
 };

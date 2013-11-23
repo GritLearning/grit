@@ -1,5 +1,5 @@
 exports.config = {
-  // baseUrl: 
+  baseUrl: 'http://localhost:8080',
 
   // Load Selenium
   // *************
@@ -50,6 +50,6 @@ exports.config = {
     isVerbose: true,
     includeStackTrace: true,
     // onComplete: some function to call
-    defaultTimeoutInterval: 30000 // defaults to 5000 mS
+    defaultTimeoutInterval: 10000 // defaults to 5000 mS
   }
 };

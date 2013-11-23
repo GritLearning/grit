@@ -1,5 +1,10 @@
 {
     "globals": {
+      "describe": false,
+      "it": false,
+      "expect": false,
+      "protractor": false,
+      "beforeEach": false,
       "angular": false,
       "cordova": false,
       "$": false

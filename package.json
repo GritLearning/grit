@@ -11,6 +11,7 @@
     "grunt-contrib-uglify": "~0.2.7",
     "protractor": "~0.13.0",
     "grunt-protractor-runner": "~0.1.9",
-    "grunt-karma": "~0.6.2"
+    "grunt-karma": "~0.6.2",
+    "karma-spec-reporter": "0.0.6"
   }
 }
