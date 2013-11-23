@@ -125,3 +125,17 @@ $ grunt --env=development --platform=android --build-dir=../grit-android/assets/
 ```
 
 Have a look at `Gruntfile.js` for the full list of options and their meanings.  
+
+## Tests
+
+* unit tests are written in Jasmine and run by karma
+* end-to-end (e2e) tests are written in Jasmine and run by protractor
+
+To run the tests:
+
+```shell
+$ cd /path/to/grit
+$ grunt unit # runs all unit tests through karma
+$ grunt e2e  # runs all end-to-end tests through protractor & webdriver 
+$ grunt test # run both unit tests and end-to-end tests
+```
