@@ -224,12 +224,32 @@ module.exports = function (grunt) {
         files: ['js/**/*.js'],
         tasks: ['setup', 'copy:js']
       }
+    },
+
+    protractor: {
+      // Docs: https://npmjs.org/package/grunt-protractor-runner
+      all: {
+        configFile: 'test/protractor.conf.js', // Target-specific config file
+      }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true
+      }
     }
   });
+
+  // alias task names for less typing
+  grunt.registerTask('unit', ['karma:unit']);
+  grunt.registerTask('e2e', ['protractor:all']);
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-karma');
 };
