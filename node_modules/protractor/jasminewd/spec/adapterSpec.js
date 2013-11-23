@@ -10,6 +10,9 @@ var webdriver = require('selenium-webdriver');
 var getFakeDriver = function() {
   var flow = webdriver.promise.controlFlow();
   return {
+    controlFlow: function() {
+      return flow;
+    },
     sleep: function(ms) {
       return flow.timeout(ms);
     },
@@ -108,6 +111,28 @@ describe('webdriverJS Jasmine adapter', function() {
     expect(fakeDriver.getBigNumber()).toBeLotsMoreThan(33);
   });
 
+  describe('not', function() {
+    it('should still pass normal synchronous tests', function() {
+      expect(4).not.toEqual(5);
+    });
+
+    it('should compare a promise to a primitive', function() {
+      expect(fakeDriver.getValueA()).not.toEqual('b');
+    });
+
+    it('should compare a promise to a promise', function() {
+      expect(fakeDriver.getValueA()).not.toEqual(fakeDriver.getValueB());
+    });
+  });
+
+  it('should throw an error with a WebElement actual value', function() {
+    var webElement = new webdriver.WebElement(fakeDriver, 'idstring');
+
+    expect(function() {
+      expect(webElement).toEqual(4);
+    }).toThrow('expect called with WebElement argment, expected a Promise. ' +
+        'Did you mean to use .getText()?');
+  });
 
   // Uncomment to see timeout failures.
   // it('should timeout after 200ms', function() {
