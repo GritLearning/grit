@@ -1,7 +1,7 @@
-# bower-angular-touch
+# bower-angular-mocks
 
 This repo is for distribution on `bower`. The source for this module is in the
-[main AngularJS repo](https://github.com/angular/angular.js/tree/master/src/ngTouch).
+[main AngularJS repo](https://github.com/angular/angular.js/tree/master/src/ngMock).
 Please file issues and pull requests against that repo.
 
 ## Install
@@ -9,25 +9,13 @@ Please file issues and pull requests against that repo.
 Install with `bower`:
 
 ```shell
-bower install angular-touch
-```
-
-Add a `<script>` to your `index.html`:
-
-```html
-<script src="/bower_components/angular-touch/angular-touch.js"></script>
-```
-
-And add `ngTouch` as a dependency for your app:
-
-```javascript
-angular.module('myApp', ['ngTouch']);
+bower install angular-mocks
 ```
 
 ## Documentation
 
 Documentation is available on the
-[AngularJS docs site](http://docs.angularjs.org/api/ngTouch).
+[AngularJS docs site](http://docs.angularjs.org/guide/dev_guide.unit-testing).
 
 ## License
 
