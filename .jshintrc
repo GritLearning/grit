@@ -22,5 +22,6 @@
     "trailing": true,
     "regexp": true,
     "nonew": true,
+    "globalstrict": true,
     "strict": true
 }

@@ -1,0 +1,13 @@
+<div class="admin-settings">
+  <h2>Exit Grit (return to Android)</h2>
+  <form name="form" class="css-form" novalidate>
+    <p>
+      Password: <input type="password" ng-model="password" name="password" valid-pwd="\grit\b" required /> 
+    </p>
+    <button class="btn btn-cancel" ng-click="returnToHomeScreen()">Cancel</button>
+
+    <div ng-hide='form.password.$error.validPwd'>
+      <button class="btn btn-confirm" ng-click="closeGrit()">Close Grit</button>
+    </div>
+  </form>
+</div>

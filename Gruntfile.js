@@ -1,35 +1,235 @@
-module.exports = function(grunt) {
+/* global module */
+module.exports = function (grunt) {
   'use strict';
 
-  // Load grunt plugins
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  /*
+   * We have 4 types of content that make up our project:
+   *  1. html
+   *  2. css
+   *  3. js
+   *  4. assets (sounds, fonts, imgs etc.)
+   *
+   * We build the project in 2 phases:
+   *  1. generate any files that need to be built (e.g. scss) into the temporary dir (./.tmp by default)
+   *  2. copy the contents of the tmp dir to the build outputs dir (./www by default)
+   *
+   * We have a separate task for each phase of each content-type. This gives us
+   * maximum flexibility over how the tasks are setup.
+   */
 
-  // Project configuration.
+  grunt.registerTask('default', [
+    'setup',        // always first step
+    'jshint',
+    'clean',
+    'sass:dev',
+    // 'buildjs',
+    'copy'          // always last step
+  ]);
+
+  grunt.registerTask('setup', 'Setup Grunt Configuration', function () {
+    var envRE = /^(development|production)$/;
+    var platformRE = /^(android|ios|web)$/;
+
+    if (grunt.option('env')) {
+      if (envRE.test(grunt.option('env'))) {
+        grunt.config('options.env', grunt.option('env'));
+      }
+      else {
+        grunt.fail.fatal('I do not recognise the environment you requested: ' + grunt.option('env'));
+      }
+    }
+    else {
+      grunt.config('options.env', grunt.config('defaults.env'));
+    }
+
+    if (grunt.option('platform')) {
+      if (platformRE.test(grunt.option('platform'))) {
+        grunt.config('options.platform', grunt.option('platform'));
+      }
+      else {
+        grunt.fail.fatal('I do not recognise the platform you requested: ' + grunt.option('platform'));
+      }
+    }
+    else {
+      grunt.config('options.platform', grunt.config('defaults.platform'));
+    }
+
+    if (grunt.option('build-dir')) {
+      grunt.config('options.buildDir', grunt.option('build-dir'));
+    }
+    else {
+      grunt.config('options.buildDir', grunt.config('defaults.buildDir'));
+    }
+
+    grunt.log.writeflags(grunt.config('options'), 'Options For This Run');
+  });
+
   grunt.initConfig({
 
-    // Concatenate & minify JS. see https://github.com/gruntjs/grunt-contrib-uglify
-    uglify: {
-      build: {
-        // The order that the files appear here is the order they are concatenated in
+    // Setup safe fallback build options in case we did not get any from
+    // command line
+    defaults: {
+      buildDir : './www',
+      env      : 'development',
+      platform : 'web',
+      tmpDir   : './.tmp'
+    },
+
+    sass: {
+      dist: {
+        options: {
+          style: 'compressed'
+        },
+        files: {
+          // 'destination': 'source'
+          '<%= defaults.tmpDir %>/style.css': 'scss/style.scss'
+        }
+      },
+      dev: {
+        options: {
+          style: 'expanded',
+          lineComments: true
+        },
+        files: {
+          // 'destination': 'source'
+          '<%= defaults.tmpDir %>/style.css': 'scss/style.scss'
+        }
+      }
+    },
+
+    // We are being explicit about what we are deleting because this task can
+    // potentially delete *any* file on the system that you have permissions on.
+    // Scary.
+    clean: {
+      tmp: ['<%= defaults.tmpDir %>/*'],
+      assets: {
         src: [
-          'js/libs/jquery-1.9.1.js',
-          'js/libs/cordova-2.5.0.js',
-          'js/libs/angular/angular.js',
-          'js/libs/angular/angular-resource.js',
-          'js/libs/bootstrap-button.js',
-          'js/libs/bootstrap-modal.js',
-          'js/app.js',
-          'js/index.js',
-          'js/services.js',
-          'js/controllers.js',
-          'js/filters.js',
-          'js/directives.js'
+          '<%= options.buildDir %>/fonts',
+          '<%= options.buildDir %>/content',
+          '<%= options.buildDir %>/bower_components',
+          '<%= options.buildDir %>/img'
         ],
-        dest: 'js/all.min.js'
+        options: { force: true }
+      },
+      js: {
+        src: [ '<%= options.buildDir %>/js' ],
+        options: { force: true }
+      },
+      html: {
+        src: [ '<%= options.buildDir %>/index.html' ],
+        options: { force: true }
+      },
+      views: {
+        src: [ '<%= options.buildDir %>/views' ],
+        options: { force: true }
+      },
+      css: {
+        src: [ '<%= options.buildDir %>/css' ],
+        options: { force: true }
+      }
+    },
+
+    copy: {
+      assets: {
+        files: [
+          { src: ['img/**'], dest: '<%= options.buildDir %>/' },
+          { src: ['content/locales/**'], dest: '<%= options.buildDir %>/' },
+          { src: ['content/apps/**'], dest: '<%= options.buildDir %>/' }
+        ]
+      },
+      html: {
+        files: [
+          { src: ['index.html'], dest: '<%= options.buildDir %>/index.html' }
+        ]
+      },
+      fonts: {
+        files: [
+          { src: ['fonts/**'], dest: '<%= options.buildDir %>/' }
+        ]
+      },
+      views: {
+        files: [
+          { src: ['views/**'], dest: '<%= options.buildDir %>/' }
+        ]
+      },
+      css: {
+        files: [
+          { src: ['<%= defaults.tmpDir %>/style.css'], dest: '<%= options.buildDir %>/css/style.css' }
+        ]
+      },
+      js: {
+        files: [
+          { src: ['js/**'], dest: '<%= options.buildDir %>/' },
+          // Option A: copy everything from bower_components to the build directory
+          // { src: ['bower_components/**'], dest: '<%= options.buildDir %>/' }
+
+          // Option B: cherry pick just what we need from bower_components to
+          // the build directory. This is quite brittle but only a temporary
+          // measure until we get concatenation & minification sorted out.
+          {
+            src: [
+              'bower_components/normalize-css/normalize.css',
+              'bower_components/jquery/jquery.js',
+              'bower_components/underscore/underscore.js',
+              'bower_components/angular/angular.js',
+              'bower_components/angular-resource/angular-resource.js',
+              'bower_components/angular-route/angular-route.js',
+              'bower_components/angular-touch/angular-touch.js',
+              'bower_components/angular-animate/angular-animate.js',
+              'bower_components/ngstorage/ngStorage.js',
+            ],
+            dest: '<%= options.buildDir %>/'
+          }
+        ]
+      }
+    },
+
+    jshint: {
+
+      options: {
+        jshintrc: true,
+        ignores: ['js/libs/**/*.js']
+      },
+
+      all: ['Gruntfile.js', 'js/**/*.js']
+    },
+
+    // The watcher is tuned for the development environment on the web platform
+    // as that is where we use it.
+    watch: {
+      assets: {
+        files: [
+          // the large number of image files in content overwhelms the grunt
+          // watcher so we leave it out. In practice, this has not caused many
+          // issues because content does not change very often during
+          // development
+          // 'content/**',
+          'img/**',
+          'bower_components/**'
+        ],
+        tasks: ['setup', 'copy:assets']
+      },
+
+      css: {
+        files: ['scss/**/*.scss'],
+        tasks: ['setup', 'sass:dev', 'copy:css']
+      },
+
+      views: {
+        files: ['views/**', 'index.html'],
+        tasks: ['setup', 'copy:views']
+      },
+
+      js: {
+        files: ['js/**/*.js'],
+        tasks: ['setup', 'copy:js']
       }
     }
   });
 
-  // Set default task (the task to run when you invoke grunt without a specific task) 
-  grunt.registerTask('default', ['uglify']);
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 };

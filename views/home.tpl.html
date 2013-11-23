@@ -1,0 +1,59 @@
+<div class="modal-overlay hidden"></div>
+
+<div class="finish-modal">
+  <img src="img/finished.png" />
+  <div class="buttons">
+    <img class="no ack-tap"  ng-click="hideFinishModal()" src="img/no.png"  />
+    <img class="yes ack-tap" ng-click="goToExitScreen()"  src="img/yes.png" />
+  </div>
+  <a href="#/admin" ng-click="hideFinishModal()" class="open-admin-settings">Exit</a>
+</div><!-- .finish-modal -->
+
+<div class="wrapper">
+
+  <div class="sidebar">
+    <img class="star" src="img/score-star.png" />
+    <div class="num-won-stars">{{totalStarsForThisSession}}</div>
+    <img class="quit-session ack-tap" ng-click="showFinishModal()" src="img/button-quit-session.png" />
+  </div>
+
+  <div class="levels">
+
+    <div class="level" ng-repeat="level in levels" repeat-done="scrollToHighestOpenLevel()">
+      <div ng-show="level.isLocked" class="locked-level-overlay">
+      </div>
+      <div id="level-{{level.id}}" class="level-id">{{level.id}}</div>
+
+      <ul class="game-thumbnails">
+
+        <li ng-show="! level.isLocked" class="game-thumbnail" ng-repeat="app in apps | filter:{level: level.id}:true">
+          <a href="#" class="link" ng-click='open(app.launchCommand, app.name)'>
+            <div class="frame">
+              <img ng-src="{{app.icon}}" alt="{{app.name}}" class="icon ack-tap" />
+            </div>
+            <h4 class="title">{{app.name}}</h4>
+          </a>
+        </li>
+
+        <li ng-show="level.isLocked && (level.id === nextLevel)" class="game-thumbnail game-thumbnail-quiz">
+          <a ng-href="#/quiz/{{currentLevel}}" class="link">
+            <div class="frame">
+              <img src="img/locked.png" alt="Locked icon" class="icon" />
+            </div>
+            <h4 class="title">Quiz!</h4>
+          </a>
+        </li>
+
+        <li ng-show="level.isLocked" class="game-thumbnail" ng-repeat="app in apps | filter:{level: level.id}:true">
+          <a ng-href="#/quiz/{{currentLevel}}" class="link">
+            <div class="frame">
+              <img ng-src="{{app.icon}}" alt="{{app.name}}" class="icon" />
+            </div>
+            <h4 class="title">{{app.name}}</h4>
+          </a>
+        </li>
+
+      </ul><!-- .game-thumbnails -->
+    </div><!-- .level -->
+  </div><!-- .levels -->
+</div><!-- .wrapper --> 

@@ -1,3 +1,6 @@
+'use strict';
+/* global console */
+
 var cordovaApp = {
 
   initialize: function () {
@@ -23,6 +26,6 @@ var cordovaApp = {
     document.addEventListener('backbutton', cordovaApp.onBackButtonPress, false);
     // List of events: http://docs.phonegap.com/en/2.9.0/cordova_events_events.md.html
   }
-}; 
+};
 
 cordovaApp.initialize();
