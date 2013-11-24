@@ -1,6 +1,7 @@
 'use strict';
+/* global QUIZ_JSON_URL */
 
-angular.module('quiz-ctrl', [])
+angular.module('quiz-ctrl', ['config'])
   .controller('QuizCtrl', function ($scope, $routeParams, $timeout, $http, $log, $location, $document, $q, $localStorage, _) {
     $log.log('QuizCtrl()');
 
@@ -180,8 +181,7 @@ angular.module('quiz-ctrl', [])
       }
     };
 
-    // $http.get('content/locales/kh/quiz.json').success(loadQuizJSON);
-    $http.get('content/locales/en/quiz.json').success(loadQuizJSON);
+    $http.get(QUIZ_JSON_URL).success(loadQuizJSON);
 
     $scope._ = _;
     $scope.questionIndexToShow = 0;

@@ -1,6 +1,7 @@
 'use strict';
+/* globals APPS_JSON_URL */
 
-angular.module('root-ctrl', [])
+angular.module('root-ctrl', ['config'])
   .controller('RootCtrl', function ($scope, $timeout, $http, $routeParams, $localStorage, $log, _, $window, $location) {
     $log.log('In RootCtrl');
 
@@ -187,5 +188,5 @@ angular.module('root-ctrl', [])
 
     // Init controller
     initStorage();
-    $http.get('content/apps/apps.json').success(loadAppsJSON);
+    $http.get(APPS_JSON_URL).success(loadAppsJSON);
   });
