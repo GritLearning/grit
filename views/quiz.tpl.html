@@ -15,24 +15,23 @@
     <div ng-repeat="question in quiz" repeat-done="layoutDone()" id="{{$index}}">
       <div class="question question-{{$index}} " ng-show="questionIndexToShow == $index">
 
-        <div class="question-images">
-          <span ng-if="numberOfQuestionPartsIn(question) == 2">
-            <img class="image-half-height" alt="" ng-src="{{question.question_2.url}}" />
-            <img class="image-half-height" alt="" ng-src={{question.question_1.url}} />
-          </span>
-          <span ng-if="numberOfQuestionPartsIn(question) == 1">
-            <img class="image-full-height" alt="" ng-src="{{question.question_1.url}}" />
-          </span>
+        <div class="question-texts">
+          <div class="text">
+            {{question.question_1.text}}
+          </div>
+          <div class="text">
+            {{question.question_2.text}}
+          </div>
         </div>
 
         <div class="possible-answers">
-          <div class="possible-answer" 
-              ng-disabled="hasBeenClicked"
-              ng-repeat="answer in question.answers">
-                <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')" 
-                    ng-click="(! hasBeenClicked) && processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
-                  <img class="image" alt="" ng-src={{answer.url}} />
-                </div>
+          <div class="possible-answer" ng-disabled="hasBeenClicked" ng-repeat="answer in question.answers">
+            <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')" 
+                ng-click="(! hasBeenClicked) && processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
+              <div class="text">
+                {{answer.text}}
+              </div>
+            </div>
           </div><!-- .possible-answer -->
 
           <div class="potential-stars">

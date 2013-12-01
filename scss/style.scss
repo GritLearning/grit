@@ -301,86 +301,69 @@ hr {
   font-size: 28px;
 }
 
-/* Quiz */
-/* **** */
+// Quiz
+// ****
 
 .question {
   margin-top: 20px;
   width: 100%;
+
+  .question-texts {
+    float: left;
+    width: 50%;
+    font-family: 'khmer';
+    overflow: hidden;
+    padding-left: 20px;
+    max-height: 600px;
+    font-size: 45px;
+  }
+
+  .possible-answers {
+    position: relative; // become positioning root for our absolute children
+    float: left;
+    width: 50%;
+
+    // keep this up so that the vertically centered potential stars align
+    // correctly even if there aren't four possible answers
+    min-height: 570px; 
+
+    .possible-answer {
+      float: left;
+      width: 50%;
+      display: inline-block;
+
+      .frame {
+        position: relative;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        padding: 60px 0 0 0;
+        margin: 0px auto;
+        background-image: url("../img/blob-green.png");
+        outline: none;
+
+        &.frame-disabled {
+          opacity: 0.4;
+        }
+
+        // Remove the red outline that appears on devices (but not web browsers)
+        &:active,
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .text {
+        max-width: 270px;
+        max-height: 270px;
+        font-size: 100px;
+        line-height: 1;
+        margin: 0;
+      }
+    }
+  }
 }
 
-.question .question-images {
-  float: left;
-  width: 50%;
-  font-family: 'khmer', 'cubano-regular';
-  overflow: hidden;
-  padding-left: 20px;
-}
-
-.question .question-images .image-full-height {
-  max-height: 600px;
-}
-
-.question .question-images .image-half-height {
-  max-height: 300px;
-}
-
-.question .divider {
-  height: 10px;
-  width: 80%;
-  background-color: black;
-  box-shadow: 2px 2px 0 orange;
-}
-
-.question .question-text {
-  margin: 0;
-  font-size: 30px;
-}
-
-.question .possible-answers {
-  position: relative; /* become positioning root for our absolute children */
-  float: left;
-  width: 50%;
-  min-height: 570px; /* keep this up so that the vertically centered potential stars align correctly even if there aren't four possible answers */
-}
-.question .possible-answer {
-  /* margin: 1em auto; */
-  float: left;
-  width: 50%;
-  display: inline-block;
-}
-
-.possible-answer .frame {
-  position: relative;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding: 20px;
-  margin: 0px auto;
-  background-image: url("../img/blob-green.png");
-  width: 300px;
-  height: 300px;
-}
-.possible-answer .frame.frame-disabled {
-  opacity: 0.4;
-}
-
-.possible-answer .image {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  max-width: 270px;
-  max-height: 270px;
-}
-
-.possible-answer .text {
-  width: 100%;
-  height: 100%;
-  font-size: 150px;
-}
 
 .potential-stars {
   background-color: black;
