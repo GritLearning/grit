@@ -40,6 +40,12 @@
   box-sizing: border-box;
 }
 
+// Android 4.4 webkit likes to put outlines around active elements
+*:active,
+*:focus {
+  outline: none;
+}
+
 html{
   height: 100%;
 }
@@ -145,9 +151,9 @@ hr {
 
 .sidebar .quit-session {
   display: block;
-  width: 86px;
-  height: 86px;
-  margin: 440px auto auto auto;
+  width: 50px;
+  height: 50px;
+  margin: 460px auto auto auto;
 }
 
 /* acknowledge taps/clicks with a little shimmy */
@@ -165,7 +171,6 @@ hr {
 .level {
   padding: 30px 0 30px 100px;
   position: relative;
-  /* outline: 1px solid red; */
   overflow: hidden;
   border-color: black;
   border-style: solid;
@@ -351,6 +356,7 @@ hr {
 }
 
 .possible-answer .frame {
+  // outline: none;
   position: relative;
   background-size: contain;
   background-repeat: no-repeat;
