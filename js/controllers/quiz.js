@@ -1,8 +1,7 @@
 'use strict';
-/* global QUIZ_JSON_URL */
 
 angular.module('quiz-ctrl', ['config'])
-  .controller('QuizCtrl', function ($scope, $routeParams, $timeout, $http, $log, $location, $document, $q, $localStorage, _) {
+  .controller('QuizCtrl', function ($scope, $routeParams, $timeout, $http, $log, $location, $document, $q, $localStorage, _, QUIZ_JSON_URL) {
     $log.log('QuizCtrl()');
 
     // Helper methods

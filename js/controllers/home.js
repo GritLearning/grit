@@ -1,8 +1,7 @@
 'use strict';
-/* globals APPS_JSON_URL */
 
 angular.module('root-ctrl', ['config'])
-  .controller('RootCtrl', function ($scope, $timeout, $http, $routeParams, $localStorage, $log, _, $window, $location) {
+  .controller('RootCtrl', function ($scope, $timeout, $http, $routeParams, $localStorage, $log, _, $window, $location, APPS_JSON_URL) {
     $log.log('In RootCtrl');
 
     // Helper methods

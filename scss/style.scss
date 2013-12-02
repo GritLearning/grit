@@ -40,6 +40,12 @@
   box-sizing: border-box;
 }
 
+// Android 4.4 webkit likes to put outlines around active elements
+*:active,
+*:focus {
+  outline: none;
+}
+
 html{
   height: 100%;
 }
@@ -51,11 +57,6 @@ body {
 
 img {
   max-width: 100%;
-}
-
-hr {
-  outline: none;
-  border: none;
 }
 
 /* Layer 1: Modules */
@@ -145,9 +146,9 @@ hr {
 
 .sidebar .quit-session {
   display: block;
-  width: 86px;
-  height: 86px;
-  margin: 440px auto auto auto;
+  width: 50px;
+  height: 50px;
+  margin: 460px auto auto auto;
 }
 
 /* acknowledge taps/clicks with a little shimmy */
@@ -165,7 +166,6 @@ hr {
 .level {
   padding: 30px 0 30px 100px;
   position: relative;
-  /* outline: 1px solid red; */
   overflow: hidden;
   border-color: black;
   border-style: solid;
@@ -340,16 +340,9 @@ hr {
         padding: 60px 0 0 0;
         margin: 0px auto;
         background-image: url("../img/blob-green.png");
-        outline: none;
 
         &.frame-disabled {
           opacity: 0.4;
-        }
-
-        // Remove the red outline that appears on devices (but not web browsers)
-        &:active,
-        &:focus {
-          outline: none;
         }
       }
 
