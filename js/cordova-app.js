@@ -24,6 +24,10 @@ var cordovaApp = {
     console.log('running deviceready event handler');
     // Note: for some reason, passing the function as this.onBackButtonPress does not work here
     document.addEventListener('backbutton', cordovaApp.onBackButtonPress, false);
+
+    // Lock screen into landscape using cordova plugin
+    navigator.screenOrientation.set('landscape');
+
     // List of events: http://docs.phonegap.com/en/2.9.0/cordova_events_events.md.html
   }
 };

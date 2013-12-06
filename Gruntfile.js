@@ -115,6 +115,10 @@ module.exports = function (grunt) {
         src: [ '<%= options.buildDir %>/js' ],
         options: { force: true }
       },
+      xml: {
+        src: [ '<%= options.buildDir %>/config.xml' ],
+        options: { force: true }
+      },
       html: {
         src: [ '<%= options.buildDir %>/index.html' ],
         options: { force: true }
@@ -135,6 +139,11 @@ module.exports = function (grunt) {
           { src: ['img/**'], dest: '<%= options.buildDir %>/' },
           { src: ['content/locales/**'], dest: '<%= options.buildDir %>/' },
           { src: ['content/apps/**'], dest: '<%= options.buildDir %>/' }
+        ]
+      },
+      xml: {
+        files: [
+          { src: ['config.xml'], dest: '<%= options.buildDir %>/config.xml' }
         ]
       },
       html: {
