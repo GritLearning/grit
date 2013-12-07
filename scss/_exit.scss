@@ -1,0 +1,32 @@
+.exit-wrapper {
+  background: url("../img/background-pink.png");
+  height: 100%;
+}
+
+.exit {
+  margin: 3em;
+  padding: 1em;
+  color: #fcee21; /* yellow */
+  background-color: black;
+}
+
+.exit .message {
+  float: left;
+  width: 50%;
+  position: relative;
+  padding-top: 10%;
+}
+
+.exit .message .image {
+}
+
+.exit .score {
+  float: left;
+  width: 50%;
+}
+.exit .score .stars {
+  font-size: 200px;
+  line-height: 1;
+  padding-top: 30px;
+}
+

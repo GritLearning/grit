@@ -1,0 +1,27 @@
+.admin-settings {
+  font-size: 200%;
+  text-align: left;
+  background: white;
+  color: black;
+  padding: 0 1em;
+  height: 100%;
+  overflow: hidden; /* create BFC */
+}
+
+.admin-settings .hint {
+  float: right;
+  font-style: italic;
+  font-size: 50%;
+}
+.admin-settings .btn {
+  padding: 0.5em;
+  float: left;
+  margin: 0 2em 0 0;
+}
+.admin-settings .btn.btn-cancel {
+  background: red;
+}
+.admin-settings .btn.btn-confirm {
+  background: #bada55;
+}
+
