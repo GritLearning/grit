@@ -1,0 +1,6 @@
+*vimbk
+*.swp
+*.swo
+content
+.tmp/
+www/
