@@ -8,13 +8,9 @@ Grit is built using Apache Cordova. Grit provides an application launcher for a 
 
 ## how to contribute
 
-* join the mailing list https://groups.google.com/forum/?fromgroups#!forum/grit-learning
-* fix and submit bugs
-* contribute content
-* UI prototype: http://share.axure.com/9895XH/
+To contribute to Grit, introduce yourself on the mailing list https://groups.google.com/forum/?fromgroups#!forum/grit-learning
 
-
-This repository contains the source code for the web app. The *android wrapper* and *quiz content* are in separate repositories.
+This repository contains the source code for the web app. The *quiz content* is in a separate repository.
 
 ## Prerequesites
 
@@ -46,51 +42,39 @@ This should set you up with a working Android development environment.
     * You don't need to worry about bower unless you want to upgrade these dependencies. 
     * You can install bower by following the instructions at  http://bower.io
 
-## Building git for deploying to a device
-Grit is currently split across three git repositories so building it is a tad involved at the moment (sorry!). It is best explained by an example:
+6. Setup JSONLint (optional)
+    * JSONlint is a handy linter for JSON files - see https://npmjs.org/package/jsonlint
+
+## Building Grit for deploying to a device
+Grit is currently split across two git repositories. It is best explained by an example:
 
 Let us say that you keep source code on your machine in `/home/code`. You would do the following
 
-1. Clone the `grit-android` repository into a directory in `/home/code` e.g.
+1. Clone the `grit` repository into a directory in `/home/code` e.g.
 
     ```shell
     $ cd /home/code
-    $ git clone https://github.com/GritLearning/grit-android
-    ```
-2. Next, clone the *grit* repository . You can put it anywhere but in this example we are going to put it into `/home/code`:
-
-    ```shell
-    $ cd /home/code/
     $ git clone https://github.com/GritLearning/grit
     ```
-3. Finally, clone the *grit-khmer* repository into a directory called `content` **within the *grit* repository** e.g.
+2. Next, clone the *grit-khmer* repository into a directory called `content` **within the *wwwsrc* repository** e.g.
 
     ```shell
-    $ cd /home/code/grit
+    $ cd /home/code/grit/wwwsrc
     $ git clone https://github.com/GritLearning/grit-khmer content
     ```
-4. Apache cordova will expect the web files to be in the `assets/www` directory within the android project. Create that directory if it does not already exist
-
-    ```shell
-    $ mkdir /home/code/grit-android/assets/www
-    ```
-5. Build grit using grunt.
+3. Build grit using grunt & cordova.
     Now we need to build grit into the `grit-android/assets/www` directory so we run grunt with a command line arg to tell it where to put the files.
 
     ```shell
-    $ cd /home/code/grit
-    $ grunt --build-dir=../grit-android/assets/www  # <-- this path only works if you follow our suggested code layout (see above)
+    $ cd /home/code/grit/wwwsrc
+    $ grunt               # this builds the files from wwwsrc into www
+    $ cd ..
+    $ cordova build       # this creates a debug APK for grit in platforms/android/bin/Grit-debug.apk
     ```
 
-Grit should be ready to deploy to your device now.
+Grit should be ready to deploy to your device now. Read [the cordova documentation](http://cordova.apache.org/docs/en/3.2.0/index.html) to learn how to use the `cordova' command line tool. 
 
-## Building grit for your browser 
-1. If we run grunt without any arguments, it will build grit into the `./www` directory in the repository.
-
-    ```shell
-    $ cd /path/to/grit
-    $ grunt
-    ```
+## Viewing grit in your browser 
 2. In a separate terminal window, start a HTTP server to serve the files to the browser
 
     ```shell
