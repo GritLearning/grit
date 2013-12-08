@@ -12,9 +12,14 @@
 *.class
 
 # generated files
-platforms/android/bin/
-platforms/android/gen/
-platforms/android/assets/www/
+platforms/android/bin/*
+!platforms/android/bin/.gitkeep
+
+platforms/android/gen/*
+!platforms/android/gen/.gitkeep
+
+platforms/android/assets/www/*
+!platforms/android/assets/www/.gitkeep
 
 # Local configuration file (sdk path, etc)
 local.properties
