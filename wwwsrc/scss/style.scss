@@ -1,15 +1,13 @@
-/* Setup */
-/* ***** */
+// Setup
 
-// TODO: use sass vars for these
-/* palette:
-      yellow  #fcee21 
-      orange  #f1b66a
-      cyan    #00ffff
-      purple  #FF00FF
-      green   #00ff00
- */
-
+// Colour palette
+$yellow:  #fcee21;
+$orange:  #f1b66a;
+$cyan:    #00ffff;
+$purple:  #FF00FF;
+$green:   #00ff00;
+$black:   #000;
+ 
 @font-face {
   font-family: 'cubano-regular';
   src: url('../fonts/cubano-regular-webfont.ttf') format('truetype');

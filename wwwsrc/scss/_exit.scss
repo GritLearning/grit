@@ -4,10 +4,10 @@
 }
 
 .exit {
-  margin: 3em;
+  margin: 27px;
   padding: 1em;
-  color: #fcee21; /* yellow */
-  background-color: black;
+  color: $yellow;
+  background-color: $black;
 }
 
 .exit .message {

@@ -37,6 +37,10 @@
 
         &.frame-disabled {
           opacity: 0.4;
+
+          .text {
+            opacity: 0.4;
+          }
         }
       }
 
