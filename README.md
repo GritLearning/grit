@@ -16,7 +16,6 @@ This repository contains the source code for the web app. The *quiz content* is 
 
 Before you install grit you need to:
 
-This should set you up with a working Android development environment.  
 1. Install the android developer tools
     * There are quite a few steps in this but good information available at http://developer.android.com/index.html 
     * We **strongly recommend** going through the process of setting up your Android tools (and hooking up your android device if you have one) using a **very simple** native android project. If you have not done it before, there are quite a few things to learn in that workflow and using a simple native app will mean that the questions you ask on Stack Overflow are much more likely to get answered because they have more in common with how other Android devs started.
