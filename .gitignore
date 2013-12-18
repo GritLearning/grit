@@ -21,6 +21,11 @@ platforms/android/gen/*
 platforms/android/assets/www/*
 !platforms/android/assets/www/.gitkeep
 
+platforms/android/CordovaLib/bin/*
+platforms/android/CordovaLib/bin/.gitkeep
+platforms/android/CordovaLib/gen/*
+platforms/android/CordovaLib/gen/.gitkeep
+
 # Local configuration file (sdk path, etc)
 local.properties
 
