@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.GritLearning.Grit2;
+package com.gritlearning.grit2;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
