@@ -1,28 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.gritlearning.grit2" version="2013-12-07" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Hello Cordova</name>
+<widget id="com.gritlearning.grit2" version="Grit: built on Sun May 25 2014 00:25:28 GMT+1200 (NZST)" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
-    <name>Grit</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
     <feature name="ScreenOrientation">
         <param name="android-package" value="com.tsukurusha.cordova.screenorientation.ScreenOrientation" />
     </feature>
-        <feature name="GritLauncher">
+    <feature name="GritLauncher">
         <param name="android-package" value="com.gritlearning.gritlauncher.GritLauncher" />
     </feature>
-    <name>Grit</name>
-    <description>
-        Grit is a android tablet based learning platform that is targeted as a complementary way of learning for kids that already attend school.
-    </description>
-    <name>Grit</name>
-    <description>
-        Grit is a android tablet based learning platform that is targeted as a complementary way of learning for kids that already attend school.
-    </description>
     <name>Grit</name>
     <description>
         Grit is a android tablet based learning platform that is targeted as a complementary way of learning for kids that already attend school.

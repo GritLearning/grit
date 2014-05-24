@@ -1,1 +1,33 @@
-{"prepare_queue":{"installed":[],"uninstalled":[]},"config_munge":{"res/xml/config.xml":{"/*":{"<feature name=\"ScreenOrientation\"><param name=\"android-package\" value=\"com.tsukurusha.cordova.screenorientation.ScreenOrientation\" /></feature>":1}}},"installed_plugins":{"com.tsukurusha.cordova.screenorientation":{"PACKAGE_NAME":"com.GritLearning.Grit2"}},"dependent_plugins":{}}
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"ScreenOrientation\"><param name=\"android-package\" value=\"com.tsukurusha.cordova.screenorientation.ScreenOrientation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"GritLauncher\"><param name=\"android-package\" value=\"com.gritlearning.gritlauncher.GritLauncher\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.tsukurusha.cordova.screenorientation": {
+            "PACKAGE_NAME": "com.GritLearning.Grit2"
+        },
+        "com.gritlearning.gritlauncher": {
+            "PACKAGE_NAME": "com.gritlearning.grit2"
+        }
+    },
+    "dependent_plugins": {}
+}
