@@ -3,15 +3,16 @@
   "version": "2.0.0-beta1",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.7.2",
-    "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-sass": "~0.8.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-uglify": "~0.2.7",
-    "protractor": "~0.13.0",
-    "grunt-protractor-runner": "~0.1.9",
+    "grunt-contrib-watch": "~0.5.3",
     "grunt-karma": "~0.6.2",
-    "karma-spec-reporter": "0.0.6"
+    "grunt-protractor-runner": "~0.1.9",
+    "grunt-sass": "~0.8.0",
+    "grunt-text-replace": "^0.3.11",
+    "karma-spec-reporter": "0.0.6",
+    "protractor": "~0.13.0"
   }
 }
