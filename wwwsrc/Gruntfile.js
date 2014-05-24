@@ -21,6 +21,7 @@ module.exports = function (grunt) {
     'setup',        // always first step
     'jshint',
     'clean',
+    'replace:configxml',
     'sass:dev',
     // 'buildjs',
     'copy'          // always last step
@@ -141,11 +142,6 @@ module.exports = function (grunt) {
           { src: ['content/apps/**'], dest: '<%= options.buildDir %>/' }
         ]
       },
-      xml: {
-        files: [
-          { src: ['config.xml'], dest: '<%= options.buildDir %>/config.xml' }
-        ]
-      },
       html: {
         files: [
           { src: ['index.html'], dest: '<%= options.buildDir %>/index.html' }
@@ -247,6 +243,20 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    replace: {
+      configxml: {
+        src: ['config.xml'],
+        dest: '<%= options.buildDir %>/config.xml',
+        replacements: [{
+          from: 'GRIT_VERSION_PLACEHOLDER',
+          to: function () {
+            var today = new Date().toString();
+            return 'Grit: built on ' + today;
+          }
+        }]
+      }
     }
   });
 
@@ -262,4 +272,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-text-replace');
 };
