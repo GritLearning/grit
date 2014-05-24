@@ -37,7 +37,7 @@ angular.module('root-ctrl', ['config'])
 
       // build an array of level objects for the template to use:
       // aLevelObject = { id: <integer>, isLocked: <true|false>, isNext: <true|false> }
-    
+
       for (var i = 1; i <= highestLevel; i += 1) {
         $scope.levels.push({
           id: i,
@@ -48,7 +48,7 @@ angular.module('root-ctrl', ['config'])
 
     // Scope Modals
     // ************
-    
+
     $scope.showFinishModal = function () {
       $log.log('In showFinishModal()');
       angular.element('.modal-overlay').removeClass('hidden');
@@ -75,7 +75,7 @@ angular.module('root-ctrl', ['config'])
       // have chosen to manually scroll the correct element into view using
       // element.scrollIntoView()
 
-      $log.log('Scrolling to highest open level: ' + $localStorage.level);
+      // $log.log('Scrolling to highest open level: ' + $localStorage.level);
 
       var id = '#level-' + $localStorage.level,
           attempts = 0,
@@ -88,10 +88,10 @@ angular.module('root-ctrl', ['config'])
 
       var targetElementHasBeenRendered = function (id) {
         if ($(id).height() > 0) {
-          $log.log('target element has been rendered');
+          // $log.log('target element has been rendered');
           return true;
         } else {
-          $log.log('target element has NOT been rendered');
+          // $log.log('target element has NOT been rendered');
           return false;
         }
       };
@@ -106,7 +106,7 @@ angular.module('root-ctrl', ['config'])
 
       var rescheduleScrollAttempt = function () {
         if (attempts < maxAttempts) {
-          $log.log('rescheduling a scroll attempt');
+          // $log.log('rescheduling a scroll attempt');
           $timeout(tryToScroll, delayBetweenAttempts);
         }
       };
@@ -127,19 +127,19 @@ angular.module('root-ctrl', ['config'])
     };
 
     var enableBodyScrolling = function () {
-      $log.log('In enableBodyScrolling()');
+      // $log.log('In enableBodyScrolling()');
       angular.element('body').removeClass('stop-scrolling');
       angular.element('body').off('touchmove.grit.prevent-scroll');
     };
 
     var disableBodyScrolling = function () {
-      $log.log('In disableBodyScrolling()');
+      // $log.log('In disableBodyScrolling()');
       angular.element('body').addClass('stop-scrolling');
       angular.element('body').on('touchmove.grit.prevent-scroll', defaultPreventer);
     };
 
     var defaultPreventer = function (e) {
-      $log.log('In defaultPreventer()');
+      // $log.log('In defaultPreventer()');
       e.preventDefault();
     };
 
@@ -153,7 +153,7 @@ angular.module('root-ctrl', ['config'])
     };
 
 
-    // App Launching 
+    // App Launching
     // *************
 
     $scope.open = function(app, name) {
