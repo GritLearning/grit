@@ -37,9 +37,12 @@
 
 .finish-modal .buttons .yes {
   margin-left: 30px;
+  max-width: 250px;
+
 }
 
 .finish-modal .buttons .no {
+  max-width: 250px;
 }
 
 .finish-modal .open-admin-settings {
@@ -124,14 +127,14 @@
 
 .level:nth-child(4n+1) .level-id {
   color: #00ff00; // green
-} 
+}
 
 .level:nth-child(4n+2) .level-id {
   color: #f1b66a; // orange
-} 
- 
+}
+
 .level:nth-child(4n+3) .level-id {
-  color: #00ffff; // cyan 
+  color: #00ffff; // cyan
 }
 
 .level:nth-child(4n+4) .level-id {
@@ -167,20 +170,20 @@
 
 .level:nth-child(4n+1) .game-thumbnail-quiz .title {
   color: #00ff00; // green
-} 
+}
 
 .level:nth-child(4n+2) .game-thumbnail-quiz .title {
   color: #f1b66a; // orange
-} 
- 
+}
+
 .level:nth-child(4n+3) .game-thumbnail-quiz .title {
-  color: #00ffff; // cyan 
+  color: #00ffff; // cyan
 }
 
 .level:nth-child(4n+4) .game-thumbnail-quiz .title {
   color: #FF00FF; // purple
 }
- 
+
 .link,
 .link:hover,
 .link:focus,
@@ -200,12 +203,12 @@
 
 .level:nth-child(4n+1) .frame {
   background-image: url("../img/blob-green.png");
-} 
+}
 
 .level:nth-child(4n+2) .frame {
   background-image: url("../img/blob-orange.png");
-} 
- 
+}
+
 .level:nth-child(4n+3) .frame {
   background-image: url("../img/blob-blue.png");
 }

@@ -26,7 +26,7 @@
 
         <div class="possible-answers">
           <div class="possible-answer" ng-disabled="hasBeenClicked" ng-repeat="answer in question.answers">
-            <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')" 
+            <div ng-class="(hasBeenClicked ? 'frame frame-disabled' : 'frame')"
                 ng-click="(! hasBeenClicked) && processAnswer(question, answer, $parent.$index, $parent.$last); hasBeenClicked = true">
               <div class="text">
                 {{answer.text}}
@@ -51,8 +51,10 @@
   </div><!-- .quiz -->
 
   <div class="result clear" ng-show="showResults">
-    <h1 class="text" ng-show="passed">You passed!</h1>
-    <h1 class="text" ng-hide="passed">Try again!</h1>
+    <div class="text" ng-show="passed"><img src="img/kh-you-win.png" /></div>
+    <div class="text" ng-hide="passed"><img src="img/kh-try-again.png" /></div>
+
+
 
     <div ng-show="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</div>
     <div ng-hide="passed" class="btn-return-home" ng-click="returnToHomeScreen()">{{level}}</div>
